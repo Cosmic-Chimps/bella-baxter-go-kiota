@@ -14,6 +14,8 @@ type CreateTrustDomainCommand struct {
     claimRules []ClaimRuleable
     // The description property
     description *string
+    // The grantedRole property
+    grantedRole *string
     // The issuedTokenTtlMinutes property
     issuedTokenTtlMinutes *int32
     // The name property
@@ -80,6 +82,16 @@ func (m *CreateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["grantedRole"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGrantedRole(val)
+        }
+        return nil
+    }
     res["issuedTokenTtlMinutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -122,6 +134,11 @@ func (m *CreateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a
     }
     return res
 }
+// GetGrantedRole gets the grantedRole property value. The grantedRole property
+// returns a *string when successful
+func (m *CreateTrustDomainCommand) GetGrantedRole()(*string) {
+    return m.grantedRole
+}
 // GetIssuedTokenTtlMinutes gets the issuedTokenTtlMinutes property value. The issuedTokenTtlMinutes property
 // returns a *int32 when successful
 func (m *CreateTrustDomainCommand) GetIssuedTokenTtlMinutes()(*int32) {
@@ -158,6 +175,12 @@ func (m *CreateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f4
     }
     {
         err := writer.WriteStringValue("description", m.GetDescription())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("grantedRole", m.GetGrantedRole())
         if err != nil {
             return err
         }
@@ -206,6 +229,10 @@ func (m *CreateTrustDomainCommand) SetClaimRules(value []ClaimRuleable)() {
 func (m *CreateTrustDomainCommand) SetDescription(value *string)() {
     m.description = value
 }
+// SetGrantedRole sets the grantedRole property value. The grantedRole property
+func (m *CreateTrustDomainCommand) SetGrantedRole(value *string)() {
+    m.grantedRole = value
+}
 // SetIssuedTokenTtlMinutes sets the issuedTokenTtlMinutes property value. The issuedTokenTtlMinutes property
 func (m *CreateTrustDomainCommand) SetIssuedTokenTtlMinutes(value *int32)() {
     m.issuedTokenTtlMinutes = value
@@ -227,12 +254,14 @@ type CreateTrustDomainCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClaimRules()([]ClaimRuleable)
     GetDescription()(*string)
+    GetGrantedRole()(*string)
     GetIssuedTokenTtlMinutes()(*int32)
     GetName()(*string)
     GetOidcIssuerUrl()(*string)
     GetOidcJwksUri()(*string)
     SetClaimRules(value []ClaimRuleable)()
     SetDescription(value *string)()
+    SetGrantedRole(value *string)()
     SetIssuedTokenTtlMinutes(value *int32)()
     SetName(value *string)()
     SetOidcIssuerUrl(value *string)()

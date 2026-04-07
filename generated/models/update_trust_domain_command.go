@@ -14,6 +14,8 @@ type UpdateTrustDomainCommand struct {
     claimRules []ClaimRuleable
     // The description property
     description *string
+    // The grantedRole property
+    grantedRole *string
     // The isEnabled property
     isEnabled *bool
     // The issuedTokenTtlMinutes property
@@ -82,6 +84,16 @@ func (m *UpdateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["grantedRole"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGrantedRole(val)
+        }
+        return nil
+    }
     res["isEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -134,6 +146,11 @@ func (m *UpdateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a
     }
     return res
 }
+// GetGrantedRole gets the grantedRole property value. The grantedRole property
+// returns a *string when successful
+func (m *UpdateTrustDomainCommand) GetGrantedRole()(*string) {
+    return m.grantedRole
+}
 // GetIsEnabled gets the isEnabled property value. The isEnabled property
 // returns a *bool when successful
 func (m *UpdateTrustDomainCommand) GetIsEnabled()(*bool) {
@@ -175,6 +192,12 @@ func (m *UpdateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f4
     }
     {
         err := writer.WriteStringValue("description", m.GetDescription())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("grantedRole", m.GetGrantedRole())
         if err != nil {
             return err
         }
@@ -229,6 +252,10 @@ func (m *UpdateTrustDomainCommand) SetClaimRules(value []ClaimRuleable)() {
 func (m *UpdateTrustDomainCommand) SetDescription(value *string)() {
     m.description = value
 }
+// SetGrantedRole sets the grantedRole property value. The grantedRole property
+func (m *UpdateTrustDomainCommand) SetGrantedRole(value *string)() {
+    m.grantedRole = value
+}
 // SetIsEnabled sets the isEnabled property value. The isEnabled property
 func (m *UpdateTrustDomainCommand) SetIsEnabled(value *bool)() {
     m.isEnabled = value
@@ -254,6 +281,7 @@ type UpdateTrustDomainCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClaimRules()([]ClaimRuleable)
     GetDescription()(*string)
+    GetGrantedRole()(*string)
     GetIsEnabled()(*bool)
     GetIssuedTokenTtlMinutes()(*int32)
     GetName()(*string)
@@ -261,6 +289,7 @@ type UpdateTrustDomainCommandable interface {
     GetOidcJwksUri()(*string)
     SetClaimRules(value []ClaimRuleable)()
     SetDescription(value *string)()
+    SetGrantedRole(value *string)()
     SetIsEnabled(value *bool)()
     SetIssuedTokenTtlMinutes(value *int32)()
     SetName(value *string)()
