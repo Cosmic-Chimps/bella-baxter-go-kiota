@@ -69,6 +69,11 @@ func (m *V1RequestBuilder) Groups()(*V1GroupsRequestBuilder) {
 func (m *V1RequestBuilder) Keys()(*V1KeysRequestBuilder) {
     return NewV1KeysRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Me the me property
+// returns a *V1MeRequestBuilder when successful
+func (m *V1RequestBuilder) Me()(*V1MeRequestBuilder) {
+    return NewV1MeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Notifications the notifications property
 // returns a *V1NotificationsRequestBuilder when successful
 func (m *V1RequestBuilder) Notifications()(*V1NotificationsRequestBuilder) {

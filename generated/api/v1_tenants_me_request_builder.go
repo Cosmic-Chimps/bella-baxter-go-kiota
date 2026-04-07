@@ -24,8 +24,18 @@ func NewV1TenantsMeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewV1TenantsMeRequestBuilderInternal(urlParams, requestAdapter)
 }
+// EncryptionKey the encryptionKey property
+// returns a *V1TenantsMeEncryptionKeyRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) EncryptionKey()(*V1TenantsMeEncryptionKeyRequestBuilder) {
+    return NewV1TenantsMeEncryptionKeyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Sso the sso property
 // returns a *V1TenantsMeSsoRequestBuilder when successful
 func (m *V1TenantsMeRequestBuilder) Sso()(*V1TenantsMeSsoRequestBuilder) {
     return NewV1TenantsMeSsoRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Zke the zke property
+// returns a *V1TenantsMeZkeRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) Zke()(*V1TenantsMeZkeRequestBuilder) {
+    return NewV1TenantsMeZkeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

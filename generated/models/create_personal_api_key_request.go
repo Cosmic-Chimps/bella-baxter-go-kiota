@@ -7,7 +7,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type CreateApiKeyRequest struct {
+type CreatePersonalApiKeyRequest struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The clientName property
@@ -16,46 +16,42 @@ type CreateApiKeyRequest struct {
     description *string
     // The expiresInDays property
     expiresInDays *int32
-    // The publicKey property
-    publicKey *string
-    // The role property
-    role *string
 }
-// NewCreateApiKeyRequest instantiates a new CreateApiKeyRequest and sets the default values.
-func NewCreateApiKeyRequest()(*CreateApiKeyRequest) {
-    m := &CreateApiKeyRequest{
+// NewCreatePersonalApiKeyRequest instantiates a new CreatePersonalApiKeyRequest and sets the default values.
+func NewCreatePersonalApiKeyRequest()(*CreatePersonalApiKeyRequest) {
+    m := &CreatePersonalApiKeyRequest{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateCreateApiKeyRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateCreatePersonalApiKeyRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateCreateApiKeyRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewCreateApiKeyRequest(), nil
+func CreateCreatePersonalApiKeyRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewCreatePersonalApiKeyRequest(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *CreateApiKeyRequest) GetAdditionalData()(map[string]any) {
+func (m *CreatePersonalApiKeyRequest) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetClientName gets the clientName property value. The clientName property
 // returns a *string when successful
-func (m *CreateApiKeyRequest) GetClientName()(*string) {
+func (m *CreatePersonalApiKeyRequest) GetClientName()(*string) {
     return m.clientName
 }
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
-func (m *CreateApiKeyRequest) GetDescription()(*string) {
+func (m *CreatePersonalApiKeyRequest) GetDescription()(*string) {
     return m.description
 }
 // GetExpiresInDays gets the expiresInDays property value. The expiresInDays property
 // returns a *int32 when successful
-func (m *CreateApiKeyRequest) GetExpiresInDays()(*int32) {
+func (m *CreatePersonalApiKeyRequest) GetExpiresInDays()(*int32) {
     return m.expiresInDays
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *CreateApiKeyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *CreatePersonalApiKeyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["clientName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
@@ -87,40 +83,10 @@ func (m *CreateApiKeyRequest) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
-    res["publicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPublicKey(val)
-        }
-        return nil
-    }
-    res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRole(val)
-        }
-        return nil
-    }
     return res
 }
-// GetPublicKey gets the publicKey property value. The publicKey property
-// returns a *string when successful
-func (m *CreateApiKeyRequest) GetPublicKey()(*string) {
-    return m.publicKey
-}
-// GetRole gets the role property value. The role property
-// returns a *string when successful
-func (m *CreateApiKeyRequest) GetRole()(*string) {
-    return m.role
-}
 // Serialize serializes information the current object
-func (m *CreateApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *CreatePersonalApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("clientName", m.GetClientName())
         if err != nil {
@@ -140,18 +106,6 @@ func (m *CreateApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteStringValue("publicKey", m.GetPublicKey())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("role", m.GetRole())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -160,40 +114,28 @@ func (m *CreateApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CreateApiKeyRequest) SetAdditionalData(value map[string]any)() {
+func (m *CreatePersonalApiKeyRequest) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetClientName sets the clientName property value. The clientName property
-func (m *CreateApiKeyRequest) SetClientName(value *string)() {
+func (m *CreatePersonalApiKeyRequest) SetClientName(value *string)() {
     m.clientName = value
 }
 // SetDescription sets the description property value. The description property
-func (m *CreateApiKeyRequest) SetDescription(value *string)() {
+func (m *CreatePersonalApiKeyRequest) SetDescription(value *string)() {
     m.description = value
 }
 // SetExpiresInDays sets the expiresInDays property value. The expiresInDays property
-func (m *CreateApiKeyRequest) SetExpiresInDays(value *int32)() {
+func (m *CreatePersonalApiKeyRequest) SetExpiresInDays(value *int32)() {
     m.expiresInDays = value
 }
-// SetPublicKey sets the publicKey property value. The publicKey property
-func (m *CreateApiKeyRequest) SetPublicKey(value *string)() {
-    m.publicKey = value
-}
-// SetRole sets the role property value. The role property
-func (m *CreateApiKeyRequest) SetRole(value *string)() {
-    m.role = value
-}
-type CreateApiKeyRequestable interface {
+type CreatePersonalApiKeyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClientName()(*string)
     GetDescription()(*string)
     GetExpiresInDays()(*int32)
-    GetPublicKey()(*string)
-    GetRole()(*string)
     SetClientName(value *string)()
     SetDescription(value *string)()
     SetExpiresInDays(value *int32)()
-    SetPublicKey(value *string)()
-    SetRole(value *string)()
 }

@@ -42,6 +42,11 @@ func (m *V1ProjectsItemRequestBuilder) Delete(ctx context.Context, requestConfig
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable), nil
 }
+// EncryptionKey the encryptionKey property
+// returns a *V1ProjectsItemEncryptionKeyRequestBuilder when successful
+func (m *V1ProjectsItemRequestBuilder) EncryptionKey()(*V1ProjectsItemEncryptionKeyRequestBuilder) {
+    return NewV1ProjectsItemEncryptionKeyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Environments the environments property
 // returns a *V1ProjectsItemEnvironmentsRequestBuilder when successful
 func (m *V1ProjectsItemRequestBuilder) Environments()(*V1ProjectsItemEnvironmentsRequestBuilder) {
