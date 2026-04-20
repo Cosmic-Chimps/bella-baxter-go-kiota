@@ -78,6 +78,11 @@ func (m *V1TenantsMeEncryptionKeyRequestBuilder) Recover()(*V1TenantsMeEncryptio
 func (m *V1TenantsMeEncryptionKeyRequestBuilder) RecoveryChallenge()(*V1TenantsMeEncryptionKeyRecoveryChallengeRequestBuilder) {
     return NewV1TenantsMeEncryptionKeyRecoveryChallengeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Reprovision the reprovision property
+// returns a *V1TenantsMeEncryptionKeyReprovisionRequestBuilder when successful
+func (m *V1TenantsMeEncryptionKeyRequestBuilder) Reprovision()(*V1TenantsMeEncryptionKeyReprovisionRequestBuilder) {
+    return NewV1TenantsMeEncryptionKeyReprovisionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToGetRequestInformation gET_api_v1_tenants_me_encryption_key
 // returns a *RequestInformation when successful
 func (m *V1TenantsMeEncryptionKeyRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

@@ -31,6 +31,11 @@ func (m *V1RequestBuilder) ApiKeys()(*V1ApiKeysRequestBuilder) {
 func (m *V1RequestBuilder) Auth()(*V1AuthRequestBuilder) {
     return NewV1AuthRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Billing the billing property
+// returns a *V1BillingRequestBuilder when successful
+func (m *V1RequestBuilder) Billing()(*V1BillingRequestBuilder) {
+    return NewV1BillingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1RequestBuilderInternal instantiates a new V1RequestBuilder and sets the default values.
 func NewV1RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1RequestBuilder) {
     m := &V1RequestBuilder{
@@ -103,6 +108,11 @@ func (m *V1RequestBuilder) Shares()(*V1SharesRequestBuilder) {
 // returns a *V1SshRequestBuilder when successful
 func (m *V1RequestBuilder) Ssh()(*V1SshRequestBuilder) {
     return NewV1SshRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Stripe the stripe property
+// returns a *V1StripeRequestBuilder when successful
+func (m *V1RequestBuilder) Stripe()(*V1StripeRequestBuilder) {
+    return NewV1StripeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // System the system property
 // returns a *V1SystemRequestBuilder when successful

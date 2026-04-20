@@ -15,6 +15,8 @@ type TenantEncryptionKeyStatusResponse struct {
     encryptionEnabled *bool
     // The enforceZke property
     enforceZke *bool
+    // The hasDek property
+    hasDek *bool
     // The masterKeyFingerprint property
     masterKeyFingerprint *string
     // The recoveryKeyFingerprint property
@@ -73,6 +75,16 @@ func (m *TenantEncryptionKeyStatusResponse) GetFieldDeserializers()(map[string]f
         }
         return nil
     }
+    res["hasDek"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHasDek(val)
+        }
+        return nil
+    }
     res["masterKeyFingerprint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -105,6 +117,11 @@ func (m *TenantEncryptionKeyStatusResponse) GetFieldDeserializers()(map[string]f
     }
     return res
 }
+// GetHasDek gets the hasDek property value. The hasDek property
+// returns a *bool when successful
+func (m *TenantEncryptionKeyStatusResponse) GetHasDek()(*bool) {
+    return m.hasDek
+}
 // GetMasterKeyFingerprint gets the masterKeyFingerprint property value. The masterKeyFingerprint property
 // returns a *string when successful
 func (m *TenantEncryptionKeyStatusResponse) GetMasterKeyFingerprint()(*string) {
@@ -130,6 +147,12 @@ func (m *TenantEncryptionKeyStatusResponse) Serialize(writer i878a80d2330e89d268
     }
     {
         err := writer.WriteBoolValue("enforceZke", m.GetEnforceZke())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("hasDek", m.GetHasDek())
         if err != nil {
             return err
         }
@@ -172,6 +195,10 @@ func (m *TenantEncryptionKeyStatusResponse) SetEncryptionEnabled(value *bool)() 
 func (m *TenantEncryptionKeyStatusResponse) SetEnforceZke(value *bool)() {
     m.enforceZke = value
 }
+// SetHasDek sets the hasDek property value. The hasDek property
+func (m *TenantEncryptionKeyStatusResponse) SetHasDek(value *bool)() {
+    m.hasDek = value
+}
 // SetMasterKeyFingerprint sets the masterKeyFingerprint property value. The masterKeyFingerprint property
 func (m *TenantEncryptionKeyStatusResponse) SetMasterKeyFingerprint(value *string)() {
     m.masterKeyFingerprint = value
@@ -189,11 +216,13 @@ type TenantEncryptionKeyStatusResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEncryptionEnabled()(*bool)
     GetEnforceZke()(*bool)
+    GetHasDek()(*bool)
     GetMasterKeyFingerprint()(*string)
     GetRecoveryKeyFingerprint()(*string)
     GetRegisteredAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetEncryptionEnabled(value *bool)()
     SetEnforceZke(value *bool)()
+    SetHasDek(value *bool)()
     SetMasterKeyFingerprint(value *string)()
     SetRecoveryKeyFingerprint(value *string)()
     SetRegisteredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()

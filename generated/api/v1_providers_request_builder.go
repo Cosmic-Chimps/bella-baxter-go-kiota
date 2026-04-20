@@ -6,6 +6,7 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
 )
 
@@ -13,17 +14,15 @@ import (
 type V1ProvidersRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// ByProviderSlug gets an item from the github.com/cosmic-chimps/bella-baxter-go-kiota/generated.api.v1.providers.item collection
-// returns a *V1ProvidersWithProviderSlugItemRequestBuilder when successful
-func (m *V1ProvidersRequestBuilder) ByProviderSlug(providerSlug string)(*V1ProvidersWithProviderSlugItemRequestBuilder) {
+// ById gets an item from the github.com/cosmic-chimps/bella-baxter-go-kiota/generated.api.v1.providers.item collection
+// returns a *V1ProvidersProvidersItemRequestBuilder when successful
+func (m *V1ProvidersRequestBuilder) ById(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1ProvidersProvidersItemRequestBuilder) {
     urlTplParams := make(map[string]string)
     for idx, item := range m.BaseRequestBuilder.PathParameters {
         urlTplParams[idx] = item
     }
-    if providerSlug != "" {
-        urlTplParams["providerSlug"] = providerSlug
-    }
-    return NewV1ProvidersWithProviderSlugItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+    urlTplParams["id"] = id.String()
+    return NewV1ProvidersProvidersItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
 }
 // Catalog the catalog property
 // returns a *V1ProvidersCatalogRequestBuilder when successful

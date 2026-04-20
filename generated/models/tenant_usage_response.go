@@ -16,6 +16,10 @@ type TenantUsageResponse struct {
     estimatedOverageCost *float64
     // The freeMonthlyQuota property
     freeMonthlyQuota *int32
+    // The hasActiveSubscription property
+    hasActiveSubscription *bool
+    // The isOperatorManaged property
+    isOperatorManaged *bool
     // The isUnlimited property
     isUnlimited *bool
     // The overageRatePerRequest property
@@ -88,6 +92,26 @@ func (m *TenantUsageResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["hasActiveSubscription"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHasActiveSubscription(val)
+        }
+        return nil
+    }
+    res["isOperatorManaged"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsOperatorManaged(val)
+        }
+        return nil
+    }
     res["isUnlimited"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -145,6 +169,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers()(map[string]func(i878a80d23
 func (m *TenantUsageResponse) GetFreeMonthlyQuota()(*int32) {
     return m.freeMonthlyQuota
 }
+// GetHasActiveSubscription gets the hasActiveSubscription property value. The hasActiveSubscription property
+// returns a *bool when successful
+func (m *TenantUsageResponse) GetHasActiveSubscription()(*bool) {
+    return m.hasActiveSubscription
+}
+// GetIsOperatorManaged gets the isOperatorManaged property value. The isOperatorManaged property
+// returns a *bool when successful
+func (m *TenantUsageResponse) GetIsOperatorManaged()(*bool) {
+    return m.isOperatorManaged
+}
 // GetIsUnlimited gets the isUnlimited property value. The isUnlimited property
 // returns a *bool when successful
 func (m *TenantUsageResponse) GetIsUnlimited()(*bool) {
@@ -186,6 +220,18 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteInt32Value("freeMonthlyQuota", m.GetFreeMonthlyQuota())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("hasActiveSubscription", m.GetHasActiveSubscription())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("isOperatorManaged", m.GetIsOperatorManaged())
         if err != nil {
             return err
         }
@@ -244,6 +290,14 @@ func (m *TenantUsageResponse) SetEstimatedOverageCost(value *float64)() {
 func (m *TenantUsageResponse) SetFreeMonthlyQuota(value *int32)() {
     m.freeMonthlyQuota = value
 }
+// SetHasActiveSubscription sets the hasActiveSubscription property value. The hasActiveSubscription property
+func (m *TenantUsageResponse) SetHasActiveSubscription(value *bool)() {
+    m.hasActiveSubscription = value
+}
+// SetIsOperatorManaged sets the isOperatorManaged property value. The isOperatorManaged property
+func (m *TenantUsageResponse) SetIsOperatorManaged(value *bool)() {
+    m.isOperatorManaged = value
+}
 // SetIsUnlimited sets the isUnlimited property value. The isUnlimited property
 func (m *TenantUsageResponse) SetIsUnlimited(value *bool)() {
     m.isUnlimited = value
@@ -270,6 +324,8 @@ type TenantUsageResponseable interface {
     GetCurrentMonth()(*string)
     GetEstimatedOverageCost()(*float64)
     GetFreeMonthlyQuota()(*int32)
+    GetHasActiveSubscription()(*bool)
+    GetIsOperatorManaged()(*bool)
     GetIsUnlimited()(*bool)
     GetOverageRatePerRequest()(*float64)
     GetPlan()(*string)
@@ -278,6 +334,8 @@ type TenantUsageResponseable interface {
     SetCurrentMonth(value *string)()
     SetEstimatedOverageCost(value *float64)()
     SetFreeMonthlyQuota(value *int32)()
+    SetHasActiveSubscription(value *bool)()
+    SetIsOperatorManaged(value *bool)()
     SetIsUnlimited(value *bool)()
     SetOverageRatePerRequest(value *float64)()
     SetPlan(value *string)()

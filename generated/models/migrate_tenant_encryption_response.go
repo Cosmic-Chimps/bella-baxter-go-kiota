@@ -14,14 +14,20 @@ type MigrateTenantEncryptionResponse struct {
     environmentsProcessed *int32
     // The message property
     message *string
+    // The notificationsEncrypted property
+    notificationsEncrypted *int32
     // The projectsProcessed property
     projectsProcessed *int32
+    // The providersEncrypted property
+    providersEncrypted *int32
     // The secretsEncrypted property
     secretsEncrypted *int32
     // The secretsSkipped property
     secretsSkipped *int32
     // The success property
     success *bool
+    // The webhooksEncrypted property
+    webhooksEncrypted *int32
 }
 // NewMigrateTenantEncryptionResponse instantiates a new MigrateTenantEncryptionResponse and sets the default values.
 func NewMigrateTenantEncryptionResponse()(*MigrateTenantEncryptionResponse) {
@@ -69,6 +75,16 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
         }
         return nil
     }
+    res["notificationsEncrypted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotificationsEncrypted(val)
+        }
+        return nil
+    }
     res["projectsProcessed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -76,6 +92,16 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
         }
         if val != nil {
             m.SetProjectsProcessed(val)
+        }
+        return nil
+    }
+    res["providersEncrypted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetProvidersEncrypted(val)
         }
         return nil
     }
@@ -109,6 +135,16 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
         }
         return nil
     }
+    res["webhooksEncrypted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWebhooksEncrypted(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMessage gets the message property value. The message property
@@ -116,10 +152,20 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
 func (m *MigrateTenantEncryptionResponse) GetMessage()(*string) {
     return m.message
 }
+// GetNotificationsEncrypted gets the notificationsEncrypted property value. The notificationsEncrypted property
+// returns a *int32 when successful
+func (m *MigrateTenantEncryptionResponse) GetNotificationsEncrypted()(*int32) {
+    return m.notificationsEncrypted
+}
 // GetProjectsProcessed gets the projectsProcessed property value. The projectsProcessed property
 // returns a *int32 when successful
 func (m *MigrateTenantEncryptionResponse) GetProjectsProcessed()(*int32) {
     return m.projectsProcessed
+}
+// GetProvidersEncrypted gets the providersEncrypted property value. The providersEncrypted property
+// returns a *int32 when successful
+func (m *MigrateTenantEncryptionResponse) GetProvidersEncrypted()(*int32) {
+    return m.providersEncrypted
 }
 // GetSecretsEncrypted gets the secretsEncrypted property value. The secretsEncrypted property
 // returns a *int32 when successful
@@ -136,6 +182,11 @@ func (m *MigrateTenantEncryptionResponse) GetSecretsSkipped()(*int32) {
 func (m *MigrateTenantEncryptionResponse) GetSuccess()(*bool) {
     return m.success
 }
+// GetWebhooksEncrypted gets the webhooksEncrypted property value. The webhooksEncrypted property
+// returns a *int32 when successful
+func (m *MigrateTenantEncryptionResponse) GetWebhooksEncrypted()(*int32) {
+    return m.webhooksEncrypted
+}
 // Serialize serializes information the current object
 func (m *MigrateTenantEncryptionResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
@@ -151,7 +202,19 @@ func (m *MigrateTenantEncryptionResponse) Serialize(writer i878a80d2330e89d26896
         }
     }
     {
+        err := writer.WriteInt32Value("notificationsEncrypted", m.GetNotificationsEncrypted())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteInt32Value("projectsProcessed", m.GetProjectsProcessed())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("providersEncrypted", m.GetProvidersEncrypted())
         if err != nil {
             return err
         }
@@ -170,6 +233,12 @@ func (m *MigrateTenantEncryptionResponse) Serialize(writer i878a80d2330e89d26896
     }
     {
         err := writer.WriteBoolValue("success", m.GetSuccess())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("webhooksEncrypted", m.GetWebhooksEncrypted())
         if err != nil {
             return err
         }
@@ -194,9 +263,17 @@ func (m *MigrateTenantEncryptionResponse) SetEnvironmentsProcessed(value *int32)
 func (m *MigrateTenantEncryptionResponse) SetMessage(value *string)() {
     m.message = value
 }
+// SetNotificationsEncrypted sets the notificationsEncrypted property value. The notificationsEncrypted property
+func (m *MigrateTenantEncryptionResponse) SetNotificationsEncrypted(value *int32)() {
+    m.notificationsEncrypted = value
+}
 // SetProjectsProcessed sets the projectsProcessed property value. The projectsProcessed property
 func (m *MigrateTenantEncryptionResponse) SetProjectsProcessed(value *int32)() {
     m.projectsProcessed = value
+}
+// SetProvidersEncrypted sets the providersEncrypted property value. The providersEncrypted property
+func (m *MigrateTenantEncryptionResponse) SetProvidersEncrypted(value *int32)() {
+    m.providersEncrypted = value
 }
 // SetSecretsEncrypted sets the secretsEncrypted property value. The secretsEncrypted property
 func (m *MigrateTenantEncryptionResponse) SetSecretsEncrypted(value *int32)() {
@@ -210,19 +287,29 @@ func (m *MigrateTenantEncryptionResponse) SetSecretsSkipped(value *int32)() {
 func (m *MigrateTenantEncryptionResponse) SetSuccess(value *bool)() {
     m.success = value
 }
+// SetWebhooksEncrypted sets the webhooksEncrypted property value. The webhooksEncrypted property
+func (m *MigrateTenantEncryptionResponse) SetWebhooksEncrypted(value *int32)() {
+    m.webhooksEncrypted = value
+}
 type MigrateTenantEncryptionResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEnvironmentsProcessed()(*int32)
     GetMessage()(*string)
+    GetNotificationsEncrypted()(*int32)
     GetProjectsProcessed()(*int32)
+    GetProvidersEncrypted()(*int32)
     GetSecretsEncrypted()(*int32)
     GetSecretsSkipped()(*int32)
     GetSuccess()(*bool)
+    GetWebhooksEncrypted()(*int32)
     SetEnvironmentsProcessed(value *int32)()
     SetMessage(value *string)()
+    SetNotificationsEncrypted(value *int32)()
     SetProjectsProcessed(value *int32)()
+    SetProvidersEncrypted(value *int32)()
     SetSecretsEncrypted(value *int32)()
     SetSecretsSkipped(value *int32)()
     SetSuccess(value *bool)()
+    SetWebhooksEncrypted(value *int32)()
 }
