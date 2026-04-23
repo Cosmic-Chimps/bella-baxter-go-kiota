@@ -78,6 +78,11 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) LeasePolicy()(
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Leases()(*V1ProjectsItemEnvironmentsItemLeasesRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemLeasesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Pki the pki property
+// returns a *V1ProjectsItemEnvironmentsItemPkiRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Pki()(*V1ProjectsItemEnvironmentsItemPkiRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemPkiRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Providers the providers property
 // returns a *V1ProjectsItemEnvironmentsItemProvidersRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Providers()(*V1ProjectsItemEnvironmentsItemProvidersRequestBuilder) {
