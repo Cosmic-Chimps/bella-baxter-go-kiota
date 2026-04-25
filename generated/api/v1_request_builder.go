@@ -94,6 +94,11 @@ func (m *V1RequestBuilder) Projects()(*V1ProjectsRequestBuilder) {
 func (m *V1RequestBuilder) Providers()(*V1ProvidersRequestBuilder) {
     return NewV1ProvidersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// RotatorDefinitions the rotatorDefinitions property
+// returns a *V1RotatorDefinitionsRequestBuilder when successful
+func (m *V1RequestBuilder) RotatorDefinitions()(*V1RotatorDefinitionsRequestBuilder) {
+    return NewV1RotatorDefinitionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Security the security property
 // returns a *V1SecurityRequestBuilder when successful
 func (m *V1RequestBuilder) Security()(*V1SecurityRequestBuilder) {

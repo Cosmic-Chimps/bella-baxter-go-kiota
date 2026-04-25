@@ -29,6 +29,11 @@ func NewV1SystemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
 func (m *V1SystemRequestBuilder) Health()(*V1SystemHealthRequestBuilder) {
     return NewV1SystemHealthRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// IntegrationInfo the integrationInfo property
+// returns a *V1SystemIntegrationInfoRequestBuilder when successful
+func (m *V1SystemRequestBuilder) IntegrationInfo()(*V1SystemIntegrationInfoRequestBuilder) {
+    return NewV1SystemIntegrationInfoRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // RateLimit the rateLimit property
 // returns a *V1SystemRateLimitRequestBuilder when successful
 func (m *V1SystemRequestBuilder) RateLimit()(*V1SystemRateLimitRequestBuilder) {

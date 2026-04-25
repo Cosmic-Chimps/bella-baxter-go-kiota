@@ -14,6 +14,14 @@ type SetRotationPolicyRequest struct {
     enabled *bool
     // The intervalDays property
     intervalDays *int32
+    // The revokePreviousAfterDays property
+    revokePreviousAfterDays *int32
+    // The rotationCredentials property
+    rotationCredentials SetRotationPolicyRequest_rotationCredentialsable
+    // The rotatorDefinitionId property
+    rotatorDefinitionId *string
+    // The staticParams property
+    staticParams SetRotationPolicyRequest_staticParamsable
 }
 // NewSetRotationPolicyRequest instantiates a new SetRotationPolicyRequest and sets the default values.
 func NewSetRotationPolicyRequest()(*SetRotationPolicyRequest) {
@@ -61,12 +69,72 @@ func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["revokePreviousAfterDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRevokePreviousAfterDays(val)
+        }
+        return nil
+    }
+    res["rotationCredentials"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSetRotationPolicyRequest_rotationCredentialsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRotationCredentials(val.(SetRotationPolicyRequest_rotationCredentialsable))
+        }
+        return nil
+    }
+    res["rotatorDefinitionId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRotatorDefinitionId(val)
+        }
+        return nil
+    }
+    res["staticParams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSetRotationPolicyRequest_staticParamsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStaticParams(val.(SetRotationPolicyRequest_staticParamsable))
+        }
+        return nil
+    }
     return res
 }
 // GetIntervalDays gets the intervalDays property value. The intervalDays property
 // returns a *int32 when successful
 func (m *SetRotationPolicyRequest) GetIntervalDays()(*int32) {
     return m.intervalDays
+}
+// GetRevokePreviousAfterDays gets the revokePreviousAfterDays property value. The revokePreviousAfterDays property
+// returns a *int32 when successful
+func (m *SetRotationPolicyRequest) GetRevokePreviousAfterDays()(*int32) {
+    return m.revokePreviousAfterDays
+}
+// GetRotationCredentials gets the rotationCredentials property value. The rotationCredentials property
+// returns a SetRotationPolicyRequest_rotationCredentialsable when successful
+func (m *SetRotationPolicyRequest) GetRotationCredentials()(SetRotationPolicyRequest_rotationCredentialsable) {
+    return m.rotationCredentials
+}
+// GetRotatorDefinitionId gets the rotatorDefinitionId property value. The rotatorDefinitionId property
+// returns a *string when successful
+func (m *SetRotationPolicyRequest) GetRotatorDefinitionId()(*string) {
+    return m.rotatorDefinitionId
+}
+// GetStaticParams gets the staticParams property value. The staticParams property
+// returns a SetRotationPolicyRequest_staticParamsable when successful
+func (m *SetRotationPolicyRequest) GetStaticParams()(SetRotationPolicyRequest_staticParamsable) {
+    return m.staticParams
 }
 // Serialize serializes information the current object
 func (m *SetRotationPolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -78,6 +146,30 @@ func (m *SetRotationPolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f4
     }
     {
         err := writer.WriteInt32Value("intervalDays", m.GetIntervalDays())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("revokePreviousAfterDays", m.GetRevokePreviousAfterDays())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("rotationCredentials", m.GetRotationCredentials())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("rotatorDefinitionId", m.GetRotatorDefinitionId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("staticParams", m.GetStaticParams())
         if err != nil {
             return err
         }
@@ -102,11 +194,35 @@ func (m *SetRotationPolicyRequest) SetEnabled(value *bool)() {
 func (m *SetRotationPolicyRequest) SetIntervalDays(value *int32)() {
     m.intervalDays = value
 }
+// SetRevokePreviousAfterDays sets the revokePreviousAfterDays property value. The revokePreviousAfterDays property
+func (m *SetRotationPolicyRequest) SetRevokePreviousAfterDays(value *int32)() {
+    m.revokePreviousAfterDays = value
+}
+// SetRotationCredentials sets the rotationCredentials property value. The rotationCredentials property
+func (m *SetRotationPolicyRequest) SetRotationCredentials(value SetRotationPolicyRequest_rotationCredentialsable)() {
+    m.rotationCredentials = value
+}
+// SetRotatorDefinitionId sets the rotatorDefinitionId property value. The rotatorDefinitionId property
+func (m *SetRotationPolicyRequest) SetRotatorDefinitionId(value *string)() {
+    m.rotatorDefinitionId = value
+}
+// SetStaticParams sets the staticParams property value. The staticParams property
+func (m *SetRotationPolicyRequest) SetStaticParams(value SetRotationPolicyRequest_staticParamsable)() {
+    m.staticParams = value
+}
 type SetRotationPolicyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEnabled()(*bool)
     GetIntervalDays()(*int32)
+    GetRevokePreviousAfterDays()(*int32)
+    GetRotationCredentials()(SetRotationPolicyRequest_rotationCredentialsable)
+    GetRotatorDefinitionId()(*string)
+    GetStaticParams()(SetRotationPolicyRequest_staticParamsable)
     SetEnabled(value *bool)()
     SetIntervalDays(value *int32)()
+    SetRevokePreviousAfterDays(value *int32)()
+    SetRotationCredentials(value SetRotationPolicyRequest_rotationCredentialsable)()
+    SetRotatorDefinitionId(value *string)()
+    SetStaticParams(value SetRotationPolicyRequest_staticParamsable)()
 }

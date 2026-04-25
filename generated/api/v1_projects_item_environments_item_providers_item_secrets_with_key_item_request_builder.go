@@ -100,6 +100,11 @@ func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsWithKeyItemRequestBui
 func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsWithKeyItemRequestBuilder) Rollback()(*V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRollbackRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRollbackRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Rotate the rotate property
+// returns a *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotateRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsWithKeyItemRequestBuilder) Rotate()(*V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotateRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // RotationPolicy the rotationPolicy property
 // returns a *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsWithKeyItemRequestBuilder) RotationPolicy()(*V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilder) {
