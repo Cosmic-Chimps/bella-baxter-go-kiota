@@ -16,6 +16,8 @@ type ExchangeOidcTokenBySlugCommand struct {
     oidcToken *string
     // The projectSlug property
     projectSlug *string
+    // The tenantSlug property
+    tenantSlug *string
 }
 // NewExchangeOidcTokenBySlugCommand instantiates a new ExchangeOidcTokenBySlugCommand and sets the default values.
 func NewExchangeOidcTokenBySlugCommand()(*ExchangeOidcTokenBySlugCommand) {
@@ -73,6 +75,16 @@ func (m *ExchangeOidcTokenBySlugCommand) GetFieldDeserializers()(map[string]func
         }
         return nil
     }
+    res["tenantSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTenantSlug(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOidcToken gets the oidcToken property value. The oidcToken property
@@ -84,6 +96,11 @@ func (m *ExchangeOidcTokenBySlugCommand) GetOidcToken()(*string) {
 // returns a *string when successful
 func (m *ExchangeOidcTokenBySlugCommand) GetProjectSlug()(*string) {
     return m.projectSlug
+}
+// GetTenantSlug gets the tenantSlug property value. The tenantSlug property
+// returns a *string when successful
+func (m *ExchangeOidcTokenBySlugCommand) GetTenantSlug()(*string) {
+    return m.tenantSlug
 }
 // Serialize serializes information the current object
 func (m *ExchangeOidcTokenBySlugCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -101,6 +118,12 @@ func (m *ExchangeOidcTokenBySlugCommand) Serialize(writer i878a80d2330e89d268963
     }
     {
         err := writer.WriteStringValue("projectSlug", m.GetProjectSlug())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("tenantSlug", m.GetTenantSlug())
         if err != nil {
             return err
         }
@@ -129,13 +152,19 @@ func (m *ExchangeOidcTokenBySlugCommand) SetOidcToken(value *string)() {
 func (m *ExchangeOidcTokenBySlugCommand) SetProjectSlug(value *string)() {
     m.projectSlug = value
 }
+// SetTenantSlug sets the tenantSlug property value. The tenantSlug property
+func (m *ExchangeOidcTokenBySlugCommand) SetTenantSlug(value *string)() {
+    m.tenantSlug = value
+}
 type ExchangeOidcTokenBySlugCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEnvironmentSlug()(*string)
     GetOidcToken()(*string)
     GetProjectSlug()(*string)
+    GetTenantSlug()(*string)
     SetEnvironmentSlug(value *string)()
     SetOidcToken(value *string)()
     SetProjectSlug(value *string)()
+    SetTenantSlug(value *string)()
 }
