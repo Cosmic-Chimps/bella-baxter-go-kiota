@@ -84,6 +84,11 @@ func (m *V1RequestBuilder) Me()(*V1MeRequestBuilder) {
 func (m *V1RequestBuilder) Notifications()(*V1NotificationsRequestBuilder) {
     return NewV1NotificationsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Pki the pki property
+// returns a *V1PkiRequestBuilder when successful
+func (m *V1RequestBuilder) Pki()(*V1PkiRequestBuilder) {
+    return NewV1PkiRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Projects the projects property
 // returns a *V1ProjectsRequestBuilder when successful
 func (m *V1RequestBuilder) Projects()(*V1ProjectsRequestBuilder) {
@@ -118,6 +123,11 @@ func (m *V1RequestBuilder) Ssh()(*V1SshRequestBuilder) {
 // returns a *V1StripeRequestBuilder when successful
 func (m *V1RequestBuilder) Stripe()(*V1StripeRequestBuilder) {
     return NewV1StripeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Superadmin the superadmin property
+// returns a *V1SuperadminRequestBuilder when successful
+func (m *V1RequestBuilder) Superadmin()(*V1SuperadminRequestBuilder) {
+    return NewV1SuperadminRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // System the system property
 // returns a *V1SystemRequestBuilder when successful

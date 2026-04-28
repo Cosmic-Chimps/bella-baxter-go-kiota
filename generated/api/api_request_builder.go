@@ -29,11 +29,6 @@ func NewApiRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c
 func (m *ApiRequestBuilder) Diagnostics()(*DiagnosticsRequestBuilder) {
     return NewDiagnosticsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Superadmin the superadmin property
-// returns a *SuperadminRequestBuilder when successful
-func (m *ApiRequestBuilder) Superadmin()(*SuperadminRequestBuilder) {
-    return NewSuperadminRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Tenants the tenants property
 // returns a *TenantsRequestBuilder when successful
 func (m *ApiRequestBuilder) Tenants()(*TenantsRequestBuilder) {
