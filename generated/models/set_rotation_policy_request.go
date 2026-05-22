@@ -10,24 +10,30 @@ import (
 type SetRotationPolicyRequest struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The apiKey property
+    apiKey *string
+    // The apiKeyHeader property
+    apiKeyHeader *string
     // The enabled property
     enabled *bool
+    // The endpoint property
+    endpoint *string
     // The intervalDays property
     intervalDays *int32
+    // The randomFormat property
+    randomFormat *string
     // The revokePreviousAfterDays property
     revokePreviousAfterDays *int32
-    // The rotationCredentials property
-    rotationCredentials SetRotationPolicyRequest_rotationCredentialsable
-    // The rotatorDefinitionId property
-    rotatorDefinitionId *string
-    // The staticParams property
-    staticParams SetRotationPolicyRequest_staticParamsable
+    // The strategy property
+    strategy *string
 }
 // NewSetRotationPolicyRequest instantiates a new SetRotationPolicyRequest and sets the default values.
 func NewSetRotationPolicyRequest()(*SetRotationPolicyRequest) {
     m := &SetRotationPolicyRequest{
     }
     m.SetAdditionalData(make(map[string]any))
+    strategyValue := "HttpWebhook"
+    m.SetStrategy(&strategyValue)
     return m
 }
 // CreateSetRotationPolicyRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -40,15 +46,50 @@ func CreateSetRotationPolicyRequestFromDiscriminatorValue(parseNode i878a80d2330
 func (m *SetRotationPolicyRequest) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetApiKey gets the apiKey property value. The apiKey property
+// returns a *string when successful
+func (m *SetRotationPolicyRequest) GetApiKey()(*string) {
+    return m.apiKey
+}
+// GetApiKeyHeader gets the apiKeyHeader property value. The apiKeyHeader property
+// returns a *string when successful
+func (m *SetRotationPolicyRequest) GetApiKeyHeader()(*string) {
+    return m.apiKeyHeader
+}
 // GetEnabled gets the enabled property value. The enabled property
 // returns a *bool when successful
 func (m *SetRotationPolicyRequest) GetEnabled()(*bool) {
     return m.enabled
 }
+// GetEndpoint gets the endpoint property value. The endpoint property
+// returns a *string when successful
+func (m *SetRotationPolicyRequest) GetEndpoint()(*string) {
+    return m.endpoint
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["apiKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApiKey(val)
+        }
+        return nil
+    }
+    res["apiKeyHeader"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApiKeyHeader(val)
+        }
+        return nil
+    }
     res["enabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -56,6 +97,16 @@ func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a
         }
         if val != nil {
             m.SetEnabled(val)
+        }
+        return nil
+    }
+    res["endpoint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndpoint(val)
         }
         return nil
     }
@@ -69,6 +120,16 @@ func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["randomFormat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRandomFormat(val)
+        }
+        return nil
+    }
     res["revokePreviousAfterDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -79,33 +140,13 @@ func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
-    res["rotationCredentials"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSetRotationPolicyRequest_rotationCredentialsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRotationCredentials(val.(SetRotationPolicyRequest_rotationCredentialsable))
-        }
-        return nil
-    }
-    res["rotatorDefinitionId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["strategy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetRotatorDefinitionId(val)
-        }
-        return nil
-    }
-    res["staticParams"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSetRotationPolicyRequest_staticParamsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStaticParams(val.(SetRotationPolicyRequest_staticParamsable))
+            m.SetStrategy(val)
         }
         return nil
     }
@@ -116,30 +157,43 @@ func (m *SetRotationPolicyRequest) GetFieldDeserializers()(map[string]func(i878a
 func (m *SetRotationPolicyRequest) GetIntervalDays()(*int32) {
     return m.intervalDays
 }
+// GetRandomFormat gets the randomFormat property value. The randomFormat property
+// returns a *string when successful
+func (m *SetRotationPolicyRequest) GetRandomFormat()(*string) {
+    return m.randomFormat
+}
 // GetRevokePreviousAfterDays gets the revokePreviousAfterDays property value. The revokePreviousAfterDays property
 // returns a *int32 when successful
 func (m *SetRotationPolicyRequest) GetRevokePreviousAfterDays()(*int32) {
     return m.revokePreviousAfterDays
 }
-// GetRotationCredentials gets the rotationCredentials property value. The rotationCredentials property
-// returns a SetRotationPolicyRequest_rotationCredentialsable when successful
-func (m *SetRotationPolicyRequest) GetRotationCredentials()(SetRotationPolicyRequest_rotationCredentialsable) {
-    return m.rotationCredentials
-}
-// GetRotatorDefinitionId gets the rotatorDefinitionId property value. The rotatorDefinitionId property
+// GetStrategy gets the strategy property value. The strategy property
 // returns a *string when successful
-func (m *SetRotationPolicyRequest) GetRotatorDefinitionId()(*string) {
-    return m.rotatorDefinitionId
-}
-// GetStaticParams gets the staticParams property value. The staticParams property
-// returns a SetRotationPolicyRequest_staticParamsable when successful
-func (m *SetRotationPolicyRequest) GetStaticParams()(SetRotationPolicyRequest_staticParamsable) {
-    return m.staticParams
+func (m *SetRotationPolicyRequest) GetStrategy()(*string) {
+    return m.strategy
 }
 // Serialize serializes information the current object
 func (m *SetRotationPolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteStringValue("apiKey", m.GetApiKey())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("apiKeyHeader", m.GetApiKeyHeader())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteBoolValue("enabled", m.GetEnabled())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("endpoint", m.GetEndpoint())
         if err != nil {
             return err
         }
@@ -151,25 +205,19 @@ func (m *SetRotationPolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f4
         }
     }
     {
+        err := writer.WriteStringValue("randomFormat", m.GetRandomFormat())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteInt32Value("revokePreviousAfterDays", m.GetRevokePreviousAfterDays())
         if err != nil {
             return err
         }
     }
     {
-        err := writer.WriteObjectValue("rotationCredentials", m.GetRotationCredentials())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("rotatorDefinitionId", m.GetRotatorDefinitionId())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("staticParams", m.GetStaticParams())
+        err := writer.WriteStringValue("strategy", m.GetStrategy())
         if err != nil {
             return err
         }
@@ -186,43 +234,55 @@ func (m *SetRotationPolicyRequest) Serialize(writer i878a80d2330e89d26896388a3f4
 func (m *SetRotationPolicyRequest) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetApiKey sets the apiKey property value. The apiKey property
+func (m *SetRotationPolicyRequest) SetApiKey(value *string)() {
+    m.apiKey = value
+}
+// SetApiKeyHeader sets the apiKeyHeader property value. The apiKeyHeader property
+func (m *SetRotationPolicyRequest) SetApiKeyHeader(value *string)() {
+    m.apiKeyHeader = value
+}
 // SetEnabled sets the enabled property value. The enabled property
 func (m *SetRotationPolicyRequest) SetEnabled(value *bool)() {
     m.enabled = value
+}
+// SetEndpoint sets the endpoint property value. The endpoint property
+func (m *SetRotationPolicyRequest) SetEndpoint(value *string)() {
+    m.endpoint = value
 }
 // SetIntervalDays sets the intervalDays property value. The intervalDays property
 func (m *SetRotationPolicyRequest) SetIntervalDays(value *int32)() {
     m.intervalDays = value
 }
+// SetRandomFormat sets the randomFormat property value. The randomFormat property
+func (m *SetRotationPolicyRequest) SetRandomFormat(value *string)() {
+    m.randomFormat = value
+}
 // SetRevokePreviousAfterDays sets the revokePreviousAfterDays property value. The revokePreviousAfterDays property
 func (m *SetRotationPolicyRequest) SetRevokePreviousAfterDays(value *int32)() {
     m.revokePreviousAfterDays = value
 }
-// SetRotationCredentials sets the rotationCredentials property value. The rotationCredentials property
-func (m *SetRotationPolicyRequest) SetRotationCredentials(value SetRotationPolicyRequest_rotationCredentialsable)() {
-    m.rotationCredentials = value
-}
-// SetRotatorDefinitionId sets the rotatorDefinitionId property value. The rotatorDefinitionId property
-func (m *SetRotationPolicyRequest) SetRotatorDefinitionId(value *string)() {
-    m.rotatorDefinitionId = value
-}
-// SetStaticParams sets the staticParams property value. The staticParams property
-func (m *SetRotationPolicyRequest) SetStaticParams(value SetRotationPolicyRequest_staticParamsable)() {
-    m.staticParams = value
+// SetStrategy sets the strategy property value. The strategy property
+func (m *SetRotationPolicyRequest) SetStrategy(value *string)() {
+    m.strategy = value
 }
 type SetRotationPolicyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetApiKey()(*string)
+    GetApiKeyHeader()(*string)
     GetEnabled()(*bool)
+    GetEndpoint()(*string)
     GetIntervalDays()(*int32)
+    GetRandomFormat()(*string)
     GetRevokePreviousAfterDays()(*int32)
-    GetRotationCredentials()(SetRotationPolicyRequest_rotationCredentialsable)
-    GetRotatorDefinitionId()(*string)
-    GetStaticParams()(SetRotationPolicyRequest_staticParamsable)
+    GetStrategy()(*string)
+    SetApiKey(value *string)()
+    SetApiKeyHeader(value *string)()
     SetEnabled(value *bool)()
+    SetEndpoint(value *string)()
     SetIntervalDays(value *int32)()
+    SetRandomFormat(value *string)()
     SetRevokePreviousAfterDays(value *int32)()
-    SetRotationCredentials(value SetRotationPolicyRequest_rotationCredentialsable)()
-    SetRotatorDefinitionId(value *string)()
-    SetStaticParams(value SetRotationPolicyRequest_staticParamsable)()
+    SetStrategy(value *string)()
 }

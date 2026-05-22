@@ -104,6 +104,11 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Put(ctx contex
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.EnvironmentOperationResponseable), nil
 }
+// Restore the restore property
+// returns a *V1ProjectsItemEnvironmentsItemRestoreRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Restore()(*V1ProjectsItemEnvironmentsItemRestoreRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemRestoreRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Secrets the secrets property
 // returns a *V1ProjectsItemEnvironmentsItemSecretsRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Secrets()(*V1ProjectsItemEnvironmentsItemSecretsRequestBuilder) {

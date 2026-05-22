@@ -16,6 +16,8 @@ type UpdateSecretRequest struct {
     ignoreInScan *bool
     // The key property
     key *string
+    // The tags property
+    tags UpdateSecretRequest_tagsable
     // The type property
     typeEscaped *string
     // The value property
@@ -77,6 +79,16 @@ func (m *UpdateSecretRequest) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["tags"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateUpdateSecretRequest_tagsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTags(val.(UpdateSecretRequest_tagsable))
+        }
+        return nil
+    }
     res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -109,6 +121,11 @@ func (m *UpdateSecretRequest) GetIgnoreInScan()(*bool) {
 func (m *UpdateSecretRequest) GetKey()(*string) {
     return m.key
 }
+// GetTags gets the tags property value. The tags property
+// returns a UpdateSecretRequest_tagsable when successful
+func (m *UpdateSecretRequest) GetTags()(UpdateSecretRequest_tagsable) {
+    return m.tags
+}
 // GetTypeEscaped gets the type property value. The type property
 // returns a *string when successful
 func (m *UpdateSecretRequest) GetTypeEscaped()(*string) {
@@ -135,6 +152,12 @@ func (m *UpdateSecretRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteStringValue("key", m.GetKey())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("tags", m.GetTags())
         if err != nil {
             return err
         }
@@ -175,6 +198,10 @@ func (m *UpdateSecretRequest) SetIgnoreInScan(value *bool)() {
 func (m *UpdateSecretRequest) SetKey(value *string)() {
     m.key = value
 }
+// SetTags sets the tags property value. The tags property
+func (m *UpdateSecretRequest) SetTags(value UpdateSecretRequest_tagsable)() {
+    m.tags = value
+}
 // SetTypeEscaped sets the type property value. The type property
 func (m *UpdateSecretRequest) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
@@ -189,11 +216,13 @@ type UpdateSecretRequestable interface {
     GetDescription()(*string)
     GetIgnoreInScan()(*bool)
     GetKey()(*string)
+    GetTags()(UpdateSecretRequest_tagsable)
     GetTypeEscaped()(*string)
     GetValue()(*string)
     SetDescription(value *string)()
     SetIgnoreInScan(value *bool)()
     SetKey(value *string)()
+    SetTags(value UpdateSecretRequest_tagsable)()
     SetTypeEscaped(value *string)()
     SetValue(value *string)()
 }

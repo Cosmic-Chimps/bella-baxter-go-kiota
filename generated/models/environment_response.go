@@ -37,6 +37,8 @@ type EnvironmentResponse struct {
     secretCount *int32
     // The slug property
     slug *string
+    // The status property
+    status *string
     // The updatedAt property
     updatedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
@@ -45,6 +47,8 @@ func NewEnvironmentResponse()(*EnvironmentResponse) {
     m := &EnvironmentResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    statusValue := "Active"
+    m.SetStatus(&statusValue)
     return m
 }
 // CreateEnvironmentResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -216,6 +220,16 @@ func (m *EnvironmentResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStatus(val)
+        }
+        return nil
+    }
     res["updatedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -267,6 +281,11 @@ func (m *EnvironmentResponse) GetSecretCount()(*int32) {
 // returns a *string when successful
 func (m *EnvironmentResponse) GetSlug()(*string) {
     return m.slug
+}
+// GetStatus gets the status property value. The status property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetStatus()(*string) {
+    return m.status
 }
 // GetUpdatedAt gets the updatedAt property value. The updatedAt property
 // returns a *Time when successful
@@ -354,6 +373,12 @@ func (m *EnvironmentResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteStringValue("status", m.GetStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteTimeValue("updatedAt", m.GetUpdatedAt())
         if err != nil {
             return err
@@ -423,6 +448,10 @@ func (m *EnvironmentResponse) SetSecretCount(value *int32)() {
 func (m *EnvironmentResponse) SetSlug(value *string)() {
     m.slug = value
 }
+// SetStatus sets the status property value. The status property
+func (m *EnvironmentResponse) SetStatus(value *string)() {
+    m.status = value
+}
 // SetUpdatedAt sets the updatedAt property value. The updatedAt property
 func (m *EnvironmentResponse) SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.updatedAt = value
@@ -443,6 +472,7 @@ type EnvironmentResponseable interface {
     GetProviderCount()(*int32)
     GetSecretCount()(*int32)
     GetSlug()(*string)
+    GetStatus()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCreatorId(value *string)()
@@ -457,5 +487,6 @@ type EnvironmentResponseable interface {
     SetProviderCount(value *int32)()
     SetSecretCount(value *int32)()
     SetSlug(value *string)()
+    SetStatus(value *string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
 }

@@ -7,35 +7,35 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type SetRotationPolicyRequest_rotationCredentials struct {
+type CreateSecretRequest_tags struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
 }
-// NewSetRotationPolicyRequest_rotationCredentials instantiates a new SetRotationPolicyRequest_rotationCredentials and sets the default values.
-func NewSetRotationPolicyRequest_rotationCredentials()(*SetRotationPolicyRequest_rotationCredentials) {
-    m := &SetRotationPolicyRequest_rotationCredentials{
+// NewCreateSecretRequest_tags instantiates a new CreateSecretRequest_tags and sets the default values.
+func NewCreateSecretRequest_tags()(*CreateSecretRequest_tags) {
+    m := &CreateSecretRequest_tags{
     }
     m.SetAdditionalData(make(map[string]any))
     return m
 }
-// CreateSetRotationPolicyRequest_rotationCredentialsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateCreateSecretRequest_tagsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSetRotationPolicyRequest_rotationCredentialsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSetRotationPolicyRequest_rotationCredentials(), nil
+func CreateCreateSecretRequest_tagsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewCreateSecretRequest_tags(), nil
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SetRotationPolicyRequest_rotationCredentials) GetAdditionalData()(map[string]any) {
+func (m *CreateSecretRequest_tags) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SetRotationPolicyRequest_rotationCredentials) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+func (m *CreateSecretRequest_tags) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     return res
 }
 // Serialize serializes information the current object
-func (m *SetRotationPolicyRequest_rotationCredentials) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+func (m *CreateSecretRequest_tags) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
@@ -45,10 +45,10 @@ func (m *SetRotationPolicyRequest_rotationCredentials) Serialize(writer i878a80d
     return nil
 }
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SetRotationPolicyRequest_rotationCredentials) SetAdditionalData(value map[string]any)() {
+func (m *CreateSecretRequest_tags) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-type SetRotationPolicyRequest_rotationCredentialsable interface {
+type CreateSecretRequest_tagsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

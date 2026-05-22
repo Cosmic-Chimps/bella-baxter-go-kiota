@@ -4,6 +4,7 @@
 package models
 
 import (
+    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,6 +13,10 @@ type UpdateSecretMetadataRequest struct {
     additionalData map[string]any
     // The description property
     description *string
+    // The expiresAt property
+    expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The expiryWarningDays property
+    expiryWarningDays *int32
     // The ignoreInScan property
     ignoreInScan *bool
     // The tags property
@@ -41,6 +46,16 @@ func (m *UpdateSecretMetadataRequest) GetAdditionalData()(map[string]any) {
 func (m *UpdateSecretMetadataRequest) GetDescription()(*string) {
     return m.description
 }
+// GetExpiresAt gets the expiresAt property value. The expiresAt property
+// returns a *Time when successful
+func (m *UpdateSecretMetadataRequest) GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.expiresAt
+}
+// GetExpiryWarningDays gets the expiryWarningDays property value. The expiryWarningDays property
+// returns a *int32 when successful
+func (m *UpdateSecretMetadataRequest) GetExpiryWarningDays()(*int32) {
+    return m.expiryWarningDays
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateSecretMetadataRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
@@ -52,6 +67,26 @@ func (m *UpdateSecretMetadataRequest) GetFieldDeserializers()(map[string]func(i8
         }
         if val != nil {
             m.SetDescription(val)
+        }
+        return nil
+    }
+    res["expiresAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExpiresAt(val)
+        }
+        return nil
+    }
+    res["expiryWarningDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExpiryWarningDays(val)
         }
         return nil
     }
@@ -111,6 +146,18 @@ func (m *UpdateSecretMetadataRequest) Serialize(writer i878a80d2330e89d26896388a
         }
     }
     {
+        err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("expiryWarningDays", m.GetExpiryWarningDays())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteBoolValue("ignoreInScan", m.GetIgnoreInScan())
         if err != nil {
             return err
@@ -144,6 +191,14 @@ func (m *UpdateSecretMetadataRequest) SetAdditionalData(value map[string]any)() 
 func (m *UpdateSecretMetadataRequest) SetDescription(value *string)() {
     m.description = value
 }
+// SetExpiresAt sets the expiresAt property value. The expiresAt property
+func (m *UpdateSecretMetadataRequest) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.expiresAt = value
+}
+// SetExpiryWarningDays sets the expiryWarningDays property value. The expiryWarningDays property
+func (m *UpdateSecretMetadataRequest) SetExpiryWarningDays(value *int32)() {
+    m.expiryWarningDays = value
+}
 // SetIgnoreInScan sets the ignoreInScan property value. The ignoreInScan property
 func (m *UpdateSecretMetadataRequest) SetIgnoreInScan(value *bool)() {
     m.ignoreInScan = value
@@ -160,10 +215,14 @@ type UpdateSecretMetadataRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDescription()(*string)
+    GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetExpiryWarningDays()(*int32)
     GetIgnoreInScan()(*bool)
     GetTags()(UpdateSecretMetadataRequest_tagsable)
     GetTypeEscaped()(*string)
     SetDescription(value *string)()
+    SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetExpiryWarningDays(value *int32)()
     SetIgnoreInScan(value *bool)()
     SetTags(value UpdateSecretMetadataRequest_tagsable)()
     SetTypeEscaped(value *string)()
