@@ -36,6 +36,11 @@ func (m *V1RequestBuilder) Auth()(*V1AuthRequestBuilder) {
 func (m *V1RequestBuilder) Billing()(*V1BillingRequestBuilder) {
     return NewV1BillingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// CertRotation the certRotation property
+// returns a *V1CertRotationRequestBuilder when successful
+func (m *V1RequestBuilder) CertRotation()(*V1CertRotationRequestBuilder) {
+    return NewV1CertRotationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1RequestBuilderInternal instantiates a new V1RequestBuilder and sets the default values.
 func NewV1RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1RequestBuilder) {
     m := &V1RequestBuilder{
@@ -108,6 +113,11 @@ func (m *V1RequestBuilder) Security()(*V1SecurityRequestBuilder) {
 // returns a *V1SharesRequestBuilder when successful
 func (m *V1RequestBuilder) Shares()(*V1SharesRequestBuilder) {
     return NewV1SharesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Spiffe the spiffe property
+// returns a *V1SpiffeRequestBuilder when successful
+func (m *V1RequestBuilder) Spiffe()(*V1SpiffeRequestBuilder) {
+    return NewV1SpiffeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Ssh the ssh property
 // returns a *V1SshRequestBuilder when successful

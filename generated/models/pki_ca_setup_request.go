@@ -4,6 +4,7 @@
 package models
 
 import (
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,6 +13,8 @@ type PkiCaSetupRequest struct {
     additionalData map[string]any
     // The commonName property
     commonName *string
+    // The confirmRebind property
+    confirmRebind *bool
     // The country property
     country *string
     // The keyBits property
@@ -22,6 +25,8 @@ type PkiCaSetupRequest struct {
     organization *string
     // The ttl property
     ttl *string
+    // The vaultProviderId property
+    vaultProviderId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
 // NewPkiCaSetupRequest instantiates a new PkiCaSetupRequest and sets the default values.
 func NewPkiCaSetupRequest()(*PkiCaSetupRequest) {
@@ -49,6 +54,11 @@ func (m *PkiCaSetupRequest) GetAdditionalData()(map[string]any) {
 func (m *PkiCaSetupRequest) GetCommonName()(*string) {
     return m.commonName
 }
+// GetConfirmRebind gets the confirmRebind property value. The confirmRebind property
+// returns a *bool when successful
+func (m *PkiCaSetupRequest) GetConfirmRebind()(*bool) {
+    return m.confirmRebind
+}
 // GetCountry gets the country property value. The country property
 // returns a *string when successful
 func (m *PkiCaSetupRequest) GetCountry()(*string) {
@@ -65,6 +75,16 @@ func (m *PkiCaSetupRequest) GetFieldDeserializers()(map[string]func(i878a80d2330
         }
         if val != nil {
             m.SetCommonName(val)
+        }
+        return nil
+    }
+    res["confirmRebind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConfirmRebind(val)
         }
         return nil
     }
@@ -118,6 +138,16 @@ func (m *PkiCaSetupRequest) GetFieldDeserializers()(map[string]func(i878a80d2330
         }
         return nil
     }
+    res["vaultProviderId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVaultProviderId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetKeyBits gets the keyBits property value. The keyBits property
@@ -140,10 +170,21 @@ func (m *PkiCaSetupRequest) GetOrganization()(*string) {
 func (m *PkiCaSetupRequest) GetTtl()(*string) {
     return m.ttl
 }
+// GetVaultProviderId gets the vaultProviderId property value. The vaultProviderId property
+// returns a *UUID when successful
+func (m *PkiCaSetupRequest) GetVaultProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.vaultProviderId
+}
 // Serialize serializes information the current object
 func (m *PkiCaSetupRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("commonName", m.GetCommonName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("confirmRebind", m.GetConfirmRebind())
         if err != nil {
             return err
         }
@@ -179,6 +220,12 @@ func (m *PkiCaSetupRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
+        err := writer.WriteUUIDValue("vaultProviderId", m.GetVaultProviderId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -193,6 +240,10 @@ func (m *PkiCaSetupRequest) SetAdditionalData(value map[string]any)() {
 // SetCommonName sets the commonName property value. The commonName property
 func (m *PkiCaSetupRequest) SetCommonName(value *string)() {
     m.commonName = value
+}
+// SetConfirmRebind sets the confirmRebind property value. The confirmRebind property
+func (m *PkiCaSetupRequest) SetConfirmRebind(value *bool)() {
+    m.confirmRebind = value
 }
 // SetCountry sets the country property value. The country property
 func (m *PkiCaSetupRequest) SetCountry(value *string)() {
@@ -214,19 +265,27 @@ func (m *PkiCaSetupRequest) SetOrganization(value *string)() {
 func (m *PkiCaSetupRequest) SetTtl(value *string)() {
     m.ttl = value
 }
+// SetVaultProviderId sets the vaultProviderId property value. The vaultProviderId property
+func (m *PkiCaSetupRequest) SetVaultProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.vaultProviderId = value
+}
 type PkiCaSetupRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCommonName()(*string)
+    GetConfirmRebind()(*bool)
     GetCountry()(*string)
     GetKeyBits()(*int32)
     GetKeyType()(*string)
     GetOrganization()(*string)
     GetTtl()(*string)
+    GetVaultProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetCommonName(value *string)()
+    SetConfirmRebind(value *bool)()
     SetCountry(value *string)()
     SetKeyBits(value *int32)()
     SetKeyType(value *string)()
     SetOrganization(value *string)()
     SetTtl(value *string)()
+    SetVaultProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
 }

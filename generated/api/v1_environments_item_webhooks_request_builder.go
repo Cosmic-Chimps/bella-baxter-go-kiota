@@ -27,20 +27,23 @@ func NewV1EnvironmentsItemWebhooksRequestBuilder(rawUrl string, requestAdapter i
     return NewV1EnvironmentsItemWebhooksRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Get gET_api_v1_environments_id_webhooks
-// returns a IResultable when successful
-func (m *V1EnvironmentsItemWebhooksRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable, error) {
+// returns a []WebhookResponseable when successful
+func (m *V1EnvironmentsItemWebhooksRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])([]i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.WebhookResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateIResultFromDiscriminatorValue, nil)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateWebhookResponseFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }
-    if res == nil {
-        return nil, nil
+    val := make([]i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.WebhookResponseable, len(res))
+    for i, v := range res {
+        if v != nil {
+            val[i] = v.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.WebhookResponseable)
+        }
     }
-    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable), nil
+    return val, nil
 }
 // ToGetRequestInformation gET_api_v1_environments_id_webhooks
 // returns a *RequestInformation when successful

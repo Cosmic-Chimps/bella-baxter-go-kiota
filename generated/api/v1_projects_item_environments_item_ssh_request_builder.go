@@ -11,6 +11,11 @@ import (
 type V1ProjectsItemEnvironmentsItemSshRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Ca the ca property
+// returns a *V1ProjectsItemEnvironmentsItemSshCaRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSshRequestBuilder) Ca()(*V1ProjectsItemEnvironmentsItemSshCaRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSshCaRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // CaPublicKey the caPublicKey property
 // returns a *V1ProjectsItemEnvironmentsItemSshCaPublicKeyRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemSshRequestBuilder) CaPublicKey()(*V1ProjectsItemEnvironmentsItemSshCaPublicKeyRequestBuilder) {

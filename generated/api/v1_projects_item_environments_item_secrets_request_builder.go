@@ -13,6 +13,11 @@ import (
 type V1ProjectsItemEnvironmentsItemSecretsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Certificates the certificates property
+// returns a *V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSecretsRequestBuilder) Certificates()(*V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1ProjectsItemEnvironmentsItemSecretsRequestBuilderInternal instantiates a new V1ProjectsItemEnvironmentsItemSecretsRequestBuilder and sets the default values.
 func NewV1ProjectsItemEnvironmentsItemSecretsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProjectsItemEnvironmentsItemSecretsRequestBuilder) {
     m := &V1ProjectsItemEnvironmentsItemSecretsRequestBuilder{

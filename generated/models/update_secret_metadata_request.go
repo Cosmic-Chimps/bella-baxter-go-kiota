@@ -11,6 +11,8 @@ import (
 type UpdateSecretMetadataRequest struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The clearExpiry property
+    clearExpiry *bool
     // The description property
     description *string
     // The expiresAt property
@@ -41,6 +43,11 @@ func CreateUpdateSecretMetadataRequestFromDiscriminatorValue(parseNode i878a80d2
 func (m *UpdateSecretMetadataRequest) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetClearExpiry gets the clearExpiry property value. The clearExpiry property
+// returns a *bool when successful
+func (m *UpdateSecretMetadataRequest) GetClearExpiry()(*bool) {
+    return m.clearExpiry
+}
 // GetDescription gets the description property value. The description property
 // returns a *string when successful
 func (m *UpdateSecretMetadataRequest) GetDescription()(*string) {
@@ -60,6 +67,16 @@ func (m *UpdateSecretMetadataRequest) GetExpiryWarningDays()(*int32) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateSecretMetadataRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["clearExpiry"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClearExpiry(val)
+        }
+        return nil
+    }
     res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -140,6 +157,12 @@ func (m *UpdateSecretMetadataRequest) GetTypeEscaped()(*string) {
 // Serialize serializes information the current object
 func (m *UpdateSecretMetadataRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteBoolValue("clearExpiry", m.GetClearExpiry())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
@@ -187,6 +210,10 @@ func (m *UpdateSecretMetadataRequest) Serialize(writer i878a80d2330e89d26896388a
 func (m *UpdateSecretMetadataRequest) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetClearExpiry sets the clearExpiry property value. The clearExpiry property
+func (m *UpdateSecretMetadataRequest) SetClearExpiry(value *bool)() {
+    m.clearExpiry = value
+}
 // SetDescription sets the description property value. The description property
 func (m *UpdateSecretMetadataRequest) SetDescription(value *string)() {
     m.description = value
@@ -214,12 +241,14 @@ func (m *UpdateSecretMetadataRequest) SetTypeEscaped(value *string)() {
 type UpdateSecretMetadataRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClearExpiry()(*bool)
     GetDescription()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetExpiryWarningDays()(*int32)
     GetIgnoreInScan()(*bool)
     GetTags()(UpdateSecretMetadataRequest_tagsable)
     GetTypeEscaped()(*string)
+    SetClearExpiry(value *bool)()
     SetDescription(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetExpiryWarningDays(value *int32)()

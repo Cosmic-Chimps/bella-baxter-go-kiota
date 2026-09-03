@@ -23,6 +23,8 @@ type ProviderResponse struct {
     description *string
     // The id property
     id *string
+    // The metaType property
+    metaType *string
     // The name property
     name *string
     // The slug property
@@ -142,6 +144,16 @@ func (m *ProviderResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["metaType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMetaType(val)
+        }
+        return nil
+    }
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -209,6 +221,11 @@ func (m *ProviderResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e
 func (m *ProviderResponse) GetId()(*string) {
     return m.id
 }
+// GetMetaType gets the metaType property value. The metaType property
+// returns a *string when successful
+func (m *ProviderResponse) GetMetaType()(*string) {
+    return m.metaType
+}
 // GetName gets the name property value. The name property
 // returns a *string when successful
 func (m *ProviderResponse) GetName()(*string) {
@@ -273,6 +290,12 @@ func (m *ProviderResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     }
     {
         err := writer.WriteStringValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("metaType", m.GetMetaType())
         if err != nil {
             return err
         }
@@ -349,6 +372,10 @@ func (m *ProviderResponse) SetDescription(value *string)() {
 func (m *ProviderResponse) SetId(value *string)() {
     m.id = value
 }
+// SetMetaType sets the metaType property value. The metaType property
+func (m *ProviderResponse) SetMetaType(value *string)() {
+    m.metaType = value
+}
 // SetName sets the name property value. The name property
 func (m *ProviderResponse) SetName(value *string)() {
     m.name = value
@@ -382,6 +409,7 @@ type ProviderResponseable interface {
     GetDeletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDescription()(*string)
     GetId()(*string)
+    GetMetaType()(*string)
     GetName()(*string)
     GetSlug()(*string)
     GetSource()(*string)
@@ -394,6 +422,7 @@ type ProviderResponseable interface {
     SetDeletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDescription(value *string)()
     SetId(value *string)()
+    SetMetaType(value *string)()
     SetName(value *string)()
     SetSlug(value *string)()
     SetSource(value *string)()

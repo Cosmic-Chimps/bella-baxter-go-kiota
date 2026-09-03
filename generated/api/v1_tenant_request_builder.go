@@ -29,6 +29,11 @@ func NewV1TenantRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     urlParams["request-raw-url"] = rawUrl
     return NewV1TenantRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Features the features property
+// returns a *V1TenantFeaturesRequestBuilder when successful
+func (m *V1TenantRequestBuilder) Features()(*V1TenantFeaturesRequestBuilder) {
+    return NewV1TenantFeaturesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Usage the usage property
 // returns a *V1TenantUsageRequestBuilder when successful
 func (m *V1TenantRequestBuilder) Usage()(*V1TenantUsageRequestBuilder) {

@@ -6,7 +6,6 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
 )
 
 // V1ProjectsItemEnvironmentsItemPkiRolesWithRoleNameItemRequestBuilder builds and executes requests for operations under \api\v1\projects\{-id}\environments\{envSlug}\pki\roles\{roleName}
@@ -27,20 +26,16 @@ func NewV1ProjectsItemEnvironmentsItemPkiRolesWithRoleNameItemRequestBuilder(raw
     return NewV1ProjectsItemEnvironmentsItemPkiRolesWithRoleNameItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Delete dELETE_api_v1_projects_projectRef_environments_envSlug_pki_roles_roleName
-// returns a IResultable when successful
-func (m *V1ProjectsItemEnvironmentsItemPkiRolesWithRoleNameItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable, error) {
+func (m *V1ProjectsItemEnvironmentsItemPkiRolesWithRoleNameItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
-        return nil, err
+        return err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateIResultFromDiscriminatorValue, nil)
+    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
     if err != nil {
-        return nil, err
+        return err
     }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable), nil
+    return nil
 }
 // ToDeleteRequestInformation dELETE_api_v1_projects_projectRef_environments_envSlug_pki_roles_roleName
 // returns a *RequestInformation when successful

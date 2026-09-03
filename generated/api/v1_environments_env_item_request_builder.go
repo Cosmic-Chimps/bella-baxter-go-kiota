@@ -34,6 +34,11 @@ func NewV1EnvironmentsEnvItemRequestBuilder(rawUrl string, requestAdapter i2ae41
 func (m *V1EnvironmentsEnvItemRequestBuilder) Drift()(*V1EnvironmentsItemDriftRequestBuilder) {
     return NewV1EnvironmentsItemDriftRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// JwtBundle the jwtBundle property
+// returns a *V1EnvironmentsItemJwtBundleRequestBuilder when successful
+func (m *V1EnvironmentsEnvItemRequestBuilder) JwtBundle()(*V1EnvironmentsItemJwtBundleRequestBuilder) {
+    return NewV1EnvironmentsItemJwtBundleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Notifications the notifications property
 // returns a *V1EnvironmentsItemNotificationsRequestBuilder when successful
 func (m *V1EnvironmentsEnvItemRequestBuilder) Notifications()(*V1EnvironmentsItemNotificationsRequestBuilder) {
@@ -49,6 +54,11 @@ func (m *V1EnvironmentsEnvItemRequestBuilder) SecretDriftSummary()(*V1Environmen
 func (m *V1EnvironmentsEnvItemRequestBuilder) Security()(*V1EnvironmentsItemSecurityRequestBuilder) {
     return NewV1EnvironmentsItemSecurityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Svid the svid property
+// returns a *V1EnvironmentsItemSvidRequestBuilder when successful
+func (m *V1EnvironmentsEnvItemRequestBuilder) Svid()(*V1EnvironmentsItemSvidRequestBuilder) {
+    return NewV1EnvironmentsItemSvidRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Token the token property
 // returns a *V1EnvironmentsItemTokenRequestBuilder when successful
 func (m *V1EnvironmentsEnvItemRequestBuilder) Token()(*V1EnvironmentsItemTokenRequestBuilder) {
@@ -59,6 +69,11 @@ func (m *V1EnvironmentsEnvItemRequestBuilder) Token()(*V1EnvironmentsItemTokenRe
 func (m *V1EnvironmentsEnvItemRequestBuilder) Tokens()(*V1EnvironmentsItemTokensRequestBuilder) {
     return NewV1EnvironmentsItemTokensRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// TrustBundle the trustBundle property
+// returns a *V1EnvironmentsItemTrustBundleRequestBuilder when successful
+func (m *V1EnvironmentsEnvItemRequestBuilder) TrustBundle()(*V1EnvironmentsItemTrustBundleRequestBuilder) {
+    return NewV1EnvironmentsItemTrustBundleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // TrustDomains the trustDomains property
 // returns a *V1EnvironmentsItemTrustDomainsRequestBuilder when successful
 func (m *V1EnvironmentsEnvItemRequestBuilder) TrustDomains()(*V1EnvironmentsItemTrustDomainsRequestBuilder) {
@@ -68,4 +83,9 @@ func (m *V1EnvironmentsEnvItemRequestBuilder) TrustDomains()(*V1EnvironmentsItem
 // returns a *V1EnvironmentsItemWebhooksRequestBuilder when successful
 func (m *V1EnvironmentsEnvItemRequestBuilder) Webhooks()(*V1EnvironmentsItemWebhooksRequestBuilder) {
     return NewV1EnvironmentsItemWebhooksRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// WorkloadIdentities the workloadIdentities property
+// returns a *V1EnvironmentsItemWorkloadIdentitiesRequestBuilder when successful
+func (m *V1EnvironmentsEnvItemRequestBuilder) WorkloadIdentities()(*V1EnvironmentsItemWorkloadIdentitiesRequestBuilder) {
+    return NewV1EnvironmentsItemWorkloadIdentitiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

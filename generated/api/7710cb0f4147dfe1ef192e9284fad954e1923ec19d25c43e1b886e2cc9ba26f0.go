@@ -27,10 +27,10 @@ func NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsWithVersio
     return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsWithVersionItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Delete dELETE_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_versions_version
-// returns a IResultable when successful
+// returns a SecretVersionOperationResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
 // returns a ProblemDetails error when the service returns a 501 status code
-func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsWithVersionItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable, error) {
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsWithVersionItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.SecretVersionOperationResponseable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -39,14 +39,14 @@ func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsWithVersi
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "501": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateIResultFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateSecretVersionOperationResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.IResultable), nil
+    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.SecretVersionOperationResponseable), nil
 }
 // Destroy the destroy property
 // returns a *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemVersionsItemDestroyRequestBuilder when successful

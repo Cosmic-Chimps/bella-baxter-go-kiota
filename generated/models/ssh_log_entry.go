@@ -28,6 +28,10 @@ type SshLogEntry struct {
     city *string
     // The country property
     country *string
+    // The denialDetail property
+    denialDetail *string
+    // The denialReason property
+    denialReason *string
     // The environmentId property
     environmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The environmentSlug property
@@ -111,6 +115,16 @@ func (m *SshLogEntry) GetCity()(*string) {
 // returns a *string when successful
 func (m *SshLogEntry) GetCountry()(*string) {
     return m.country
+}
+// GetDenialDetail gets the denialDetail property value. The denialDetail property
+// returns a *string when successful
+func (m *SshLogEntry) GetDenialDetail()(*string) {
+    return m.denialDetail
+}
+// GetDenialReason gets the denialReason property value. The denialReason property
+// returns a *string when successful
+func (m *SshLogEntry) GetDenialReason()(*string) {
+    return m.denialReason
 }
 // GetEnvironmentId gets the environmentId property value. The environmentId property
 // returns a *UUID when successful
@@ -203,6 +217,26 @@ func (m *SshLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         if val != nil {
             m.SetCountry(val)
+        }
+        return nil
+    }
+    res["denialDetail"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDenialDetail(val)
+        }
+        return nil
+    }
+    res["denialReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDenialReason(val)
         }
         return nil
     }
@@ -444,6 +478,18 @@ func (m *SshLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
+        err := writer.WriteStringValue("denialDetail", m.GetDenialDetail())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("denialReason", m.GetDenialReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("environmentId", m.GetEnvironmentId())
         if err != nil {
             return err
@@ -565,6 +611,14 @@ func (m *SshLogEntry) SetCity(value *string)() {
 func (m *SshLogEntry) SetCountry(value *string)() {
     m.country = value
 }
+// SetDenialDetail sets the denialDetail property value. The denialDetail property
+func (m *SshLogEntry) SetDenialDetail(value *string)() {
+    m.denialDetail = value
+}
+// SetDenialReason sets the denialReason property value. The denialReason property
+func (m *SshLogEntry) SetDenialReason(value *string)() {
+    m.denialReason = value
+}
 // SetEnvironmentId sets the environmentId property value. The environmentId property
 func (m *SshLogEntry) SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.environmentId = value
@@ -628,6 +682,8 @@ type SshLogEntryable interface {
     GetCertSerial()(*string)
     GetCity()(*string)
     GetCountry()(*string)
+    GetDenialDetail()(*string)
+    GetDenialReason()(*string)
     GetEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetEnvironmentSlug()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -649,6 +705,8 @@ type SshLogEntryable interface {
     SetCertSerial(value *string)()
     SetCity(value *string)()
     SetCountry(value *string)()
+    SetDenialDetail(value *string)()
+    SetDenialReason(value *string)()
     SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetEnvironmentSlug(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

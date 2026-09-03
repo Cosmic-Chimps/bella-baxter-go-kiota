@@ -26,6 +26,8 @@ type AccessLogEntry struct {
     city *string
     // The country property
     country *string
+    // The detail property
+    detail *string
     // The environmentId property
     environmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The environmentSlug property
@@ -102,6 +104,11 @@ func (m *AccessLogEntry) GetCity()(*string) {
 // returns a *string when successful
 func (m *AccessLogEntry) GetCountry()(*string) {
     return m.country
+}
+// GetDetail gets the detail property value. The detail property
+// returns a *string when successful
+func (m *AccessLogEntry) GetDetail()(*string) {
+    return m.detail
 }
 // GetEnvironmentId gets the environmentId property value. The environmentId property
 // returns a *UUID when successful
@@ -184,6 +191,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         if val != nil {
             m.SetCountry(val)
+        }
+        return nil
+    }
+    res["detail"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDetail(val)
         }
         return nil
     }
@@ -404,6 +421,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
+        err := writer.WriteStringValue("detail", m.GetDetail())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("environmentId", m.GetEnvironmentId())
         if err != nil {
             return err
@@ -515,6 +538,10 @@ func (m *AccessLogEntry) SetCity(value *string)() {
 func (m *AccessLogEntry) SetCountry(value *string)() {
     m.country = value
 }
+// SetDetail sets the detail property value. The detail property
+func (m *AccessLogEntry) SetDetail(value *string)() {
+    m.detail = value
+}
 // SetEnvironmentId sets the environmentId property value. The environmentId property
 func (m *AccessLogEntry) SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.environmentId = value
@@ -573,6 +600,7 @@ type AccessLogEntryable interface {
     GetAppClient()(*string)
     GetCity()(*string)
     GetCountry()(*string)
+    GetDetail()(*string)
     GetEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetEnvironmentSlug()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -592,6 +620,7 @@ type AccessLogEntryable interface {
     SetAppClient(value *string)()
     SetCity(value *string)()
     SetCountry(value *string)()
+    SetDetail(value *string)()
     SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetEnvironmentSlug(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

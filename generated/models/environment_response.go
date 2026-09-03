@@ -23,6 +23,8 @@ type EnvironmentResponse struct {
     description *string
     // The id property
     id *string
+    // The isTenantAdmin property
+    isTenantAdmin *bool
     // The memberCount property
     memberCount *int32
     // The name property
@@ -37,6 +39,8 @@ type EnvironmentResponse struct {
     secretCount *int32
     // The slug property
     slug *string
+    // The spiffeAttestationMode property
+    spiffeAttestationMode *string
     // The status property
     status *string
     // The updatedAt property
@@ -150,6 +154,16 @@ func (m *EnvironmentResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["isTenantAdmin"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsTenantAdmin(val)
+        }
+        return nil
+    }
     res["memberCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -220,6 +234,16 @@ func (m *EnvironmentResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["spiffeAttestationMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSpiffeAttestationMode(val)
+        }
+        return nil
+    }
     res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -246,6 +270,11 @@ func (m *EnvironmentResponse) GetFieldDeserializers()(map[string]func(i878a80d23
 // returns a *string when successful
 func (m *EnvironmentResponse) GetId()(*string) {
     return m.id
+}
+// GetIsTenantAdmin gets the isTenantAdmin property value. The isTenantAdmin property
+// returns a *bool when successful
+func (m *EnvironmentResponse) GetIsTenantAdmin()(*bool) {
+    return m.isTenantAdmin
 }
 // GetMemberCount gets the memberCount property value. The memberCount property
 // returns a *int32 when successful
@@ -281,6 +310,11 @@ func (m *EnvironmentResponse) GetSecretCount()(*int32) {
 // returns a *string when successful
 func (m *EnvironmentResponse) GetSlug()(*string) {
     return m.slug
+}
+// GetSpiffeAttestationMode gets the spiffeAttestationMode property value. The spiffeAttestationMode property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetSpiffeAttestationMode()(*string) {
+    return m.spiffeAttestationMode
 }
 // GetStatus gets the status property value. The status property
 // returns a *string when successful
@@ -331,6 +365,12 @@ func (m *EnvironmentResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteBoolValue("isTenantAdmin", m.GetIsTenantAdmin())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteInt32Value("memberCount", m.GetMemberCount())
         if err != nil {
             return err
@@ -368,6 +408,12 @@ func (m *EnvironmentResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteStringValue("slug", m.GetSlug())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("spiffeAttestationMode", m.GetSpiffeAttestationMode())
         if err != nil {
             return err
         }
@@ -420,6 +466,10 @@ func (m *EnvironmentResponse) SetDescription(value *string)() {
 func (m *EnvironmentResponse) SetId(value *string)() {
     m.id = value
 }
+// SetIsTenantAdmin sets the isTenantAdmin property value. The isTenantAdmin property
+func (m *EnvironmentResponse) SetIsTenantAdmin(value *bool)() {
+    m.isTenantAdmin = value
+}
 // SetMemberCount sets the memberCount property value. The memberCount property
 func (m *EnvironmentResponse) SetMemberCount(value *int32)() {
     m.memberCount = value
@@ -448,6 +498,10 @@ func (m *EnvironmentResponse) SetSecretCount(value *int32)() {
 func (m *EnvironmentResponse) SetSlug(value *string)() {
     m.slug = value
 }
+// SetSpiffeAttestationMode sets the spiffeAttestationMode property value. The spiffeAttestationMode property
+func (m *EnvironmentResponse) SetSpiffeAttestationMode(value *string)() {
+    m.spiffeAttestationMode = value
+}
 // SetStatus sets the status property value. The status property
 func (m *EnvironmentResponse) SetStatus(value *string)() {
     m.status = value
@@ -465,6 +519,7 @@ type EnvironmentResponseable interface {
     GetCurrentUserRole()(*string)
     GetDescription()(*string)
     GetId()(*string)
+    GetIsTenantAdmin()(*bool)
     GetMemberCount()(*int32)
     GetName()(*string)
     GetProjectId()(*string)
@@ -472,6 +527,7 @@ type EnvironmentResponseable interface {
     GetProviderCount()(*int32)
     GetSecretCount()(*int32)
     GetSlug()(*string)
+    GetSpiffeAttestationMode()(*string)
     GetStatus()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
@@ -480,6 +536,7 @@ type EnvironmentResponseable interface {
     SetCurrentUserRole(value *string)()
     SetDescription(value *string)()
     SetId(value *string)()
+    SetIsTenantAdmin(value *bool)()
     SetMemberCount(value *int32)()
     SetName(value *string)()
     SetProjectId(value *string)()
@@ -487,6 +544,7 @@ type EnvironmentResponseable interface {
     SetProviderCount(value *int32)()
     SetSecretCount(value *int32)()
     SetSlug(value *string)()
+    SetSpiffeAttestationMode(value *string)()
     SetStatus(value *string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
 }

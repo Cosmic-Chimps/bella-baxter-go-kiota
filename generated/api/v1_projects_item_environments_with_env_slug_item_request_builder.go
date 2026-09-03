@@ -13,6 +13,11 @@ import (
 type V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// CertRotation the certRotation property
+// returns a *V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) CertRotation()(*V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemCertRotationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilderInternal instantiates a new V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder and sets the default values.
 func NewV1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) {
     m := &V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder{
@@ -114,6 +119,11 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Restore()(*V1P
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Secrets()(*V1ProjectsItemEnvironmentsItemSecretsRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemSecretsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// SpiffeSettings the spiffeSettings property
+// returns a *V1ProjectsItemEnvironmentsItemSpiffeSettingsRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) SpiffeSettings()(*V1ProjectsItemEnvironmentsItemSpiffeSettingsRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSpiffeSettingsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Ssh the ssh property
 // returns a *V1ProjectsItemEnvironmentsItemSshRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Ssh()(*V1ProjectsItemEnvironmentsItemSshRequestBuilder) {
@@ -161,4 +171,9 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Users()(*V1Pro
 // returns a *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) WithUrl(rawUrl string)(*V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+}
+// WorkloadIdentities the workloadIdentities property
+// returns a *V1ProjectsItemEnvironmentsItemWorkloadIdentitiesRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) WorkloadIdentities()(*V1ProjectsItemEnvironmentsItemWorkloadIdentitiesRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemWorkloadIdentitiesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

@@ -19,6 +19,8 @@ type EnvironmentProviderResponse struct {
     providerDescription *string
     // The providerId property
     providerId *string
+    // The providerMetaType property
+    providerMetaType *string
     // The providerName property
     providerName *string
     // The providerSlug property
@@ -94,6 +96,16 @@ func (m *EnvironmentProviderResponse) GetFieldDeserializers()(map[string]func(i8
         }
         return nil
     }
+    res["providerMetaType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetProviderMetaType(val)
+        }
+        return nil
+    }
     res["providerName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -151,6 +163,11 @@ func (m *EnvironmentProviderResponse) GetProviderDescription()(*string) {
 func (m *EnvironmentProviderResponse) GetProviderId()(*string) {
     return m.providerId
 }
+// GetProviderMetaType gets the providerMetaType property value. The providerMetaType property
+// returns a *string when successful
+func (m *EnvironmentProviderResponse) GetProviderMetaType()(*string) {
+    return m.providerMetaType
+}
 // GetProviderName gets the providerName property value. The providerName property
 // returns a *string when successful
 func (m *EnvironmentProviderResponse) GetProviderName()(*string) {
@@ -193,6 +210,12 @@ func (m *EnvironmentProviderResponse) Serialize(writer i878a80d2330e89d26896388a
     }
     {
         err := writer.WriteStringValue("providerId", m.GetProviderId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("providerMetaType", m.GetProviderMetaType())
         if err != nil {
             return err
         }
@@ -249,6 +272,10 @@ func (m *EnvironmentProviderResponse) SetProviderDescription(value *string)() {
 func (m *EnvironmentProviderResponse) SetProviderId(value *string)() {
     m.providerId = value
 }
+// SetProviderMetaType sets the providerMetaType property value. The providerMetaType property
+func (m *EnvironmentProviderResponse) SetProviderMetaType(value *string)() {
+    m.providerMetaType = value
+}
 // SetProviderName sets the providerName property value. The providerName property
 func (m *EnvironmentProviderResponse) SetProviderName(value *string)() {
     m.providerName = value
@@ -272,6 +299,7 @@ type EnvironmentProviderResponseable interface {
     GetId()(*string)
     GetProviderDescription()(*string)
     GetProviderId()(*string)
+    GetProviderMetaType()(*string)
     GetProviderName()(*string)
     GetProviderSlug()(*string)
     GetProviderType()(*string)
@@ -280,6 +308,7 @@ type EnvironmentProviderResponseable interface {
     SetId(value *string)()
     SetProviderDescription(value *string)()
     SetProviderId(value *string)()
+    SetProviderMetaType(value *string)()
     SetProviderName(value *string)()
     SetProviderSlug(value *string)()
     SetProviderType(value *string)()
