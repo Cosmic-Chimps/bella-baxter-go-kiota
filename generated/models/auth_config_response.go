@@ -16,6 +16,10 @@ type AuthConfigResponse struct {
     issuer *string
     // The keycloakUrl property
     keycloakUrl *string
+    // The mcpConnectorAddress property
+    mcpConnectorAddress *string
+    // The mcpConnectorClientId property
+    mcpConnectorClientId *string
     // The realm property
     realm *string
     // The webAppClientId property
@@ -77,6 +81,26 @@ func (m *AuthConfigResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["mcpConnectorAddress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMcpConnectorAddress(val)
+        }
+        return nil
+    }
+    res["mcpConnectorClientId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMcpConnectorClientId(val)
+        }
+        return nil
+    }
     res["realm"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -109,6 +133,16 @@ func (m *AuthConfigResponse) GetIssuer()(*string) {
 func (m *AuthConfigResponse) GetKeycloakUrl()(*string) {
     return m.keycloakUrl
 }
+// GetMcpConnectorAddress gets the mcpConnectorAddress property value. The mcpConnectorAddress property
+// returns a *string when successful
+func (m *AuthConfigResponse) GetMcpConnectorAddress()(*string) {
+    return m.mcpConnectorAddress
+}
+// GetMcpConnectorClientId gets the mcpConnectorClientId property value. The mcpConnectorClientId property
+// returns a *string when successful
+func (m *AuthConfigResponse) GetMcpConnectorClientId()(*string) {
+    return m.mcpConnectorClientId
+}
 // GetRealm gets the realm property value. The realm property
 // returns a *string when successful
 func (m *AuthConfigResponse) GetRealm()(*string) {
@@ -135,6 +169,18 @@ func (m *AuthConfigResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     }
     {
         err := writer.WriteStringValue("keycloakUrl", m.GetKeycloakUrl())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("mcpConnectorAddress", m.GetMcpConnectorAddress())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("mcpConnectorClientId", m.GetMcpConnectorClientId())
         if err != nil {
             return err
         }
@@ -175,6 +221,14 @@ func (m *AuthConfigResponse) SetIssuer(value *string)() {
 func (m *AuthConfigResponse) SetKeycloakUrl(value *string)() {
     m.keycloakUrl = value
 }
+// SetMcpConnectorAddress sets the mcpConnectorAddress property value. The mcpConnectorAddress property
+func (m *AuthConfigResponse) SetMcpConnectorAddress(value *string)() {
+    m.mcpConnectorAddress = value
+}
+// SetMcpConnectorClientId sets the mcpConnectorClientId property value. The mcpConnectorClientId property
+func (m *AuthConfigResponse) SetMcpConnectorClientId(value *string)() {
+    m.mcpConnectorClientId = value
+}
 // SetRealm sets the realm property value. The realm property
 func (m *AuthConfigResponse) SetRealm(value *string)() {
     m.realm = value
@@ -189,11 +243,15 @@ type AuthConfigResponseable interface {
     GetCliClientId()(*string)
     GetIssuer()(*string)
     GetKeycloakUrl()(*string)
+    GetMcpConnectorAddress()(*string)
+    GetMcpConnectorClientId()(*string)
     GetRealm()(*string)
     GetWebAppClientId()(*string)
     SetCliClientId(value *string)()
     SetIssuer(value *string)()
     SetKeycloakUrl(value *string)()
+    SetMcpConnectorAddress(value *string)()
+    SetMcpConnectorClientId(value *string)()
     SetRealm(value *string)()
     SetWebAppClientId(value *string)()
 }

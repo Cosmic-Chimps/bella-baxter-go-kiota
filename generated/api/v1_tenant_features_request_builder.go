@@ -13,6 +13,18 @@ import (
 type V1TenantFeaturesRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// ByFeature gets an item from the github.com/cosmic-chimps/bella-baxter-go-kiota/generated.api.v1.tenant.features.item collection
+// returns a *V1TenantFeaturesWithFeatureItemRequestBuilder when successful
+func (m *V1TenantFeaturesRequestBuilder) ByFeature(feature string)(*V1TenantFeaturesWithFeatureItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.BaseRequestBuilder.PathParameters {
+        urlTplParams[idx] = item
+    }
+    if feature != "" {
+        urlTplParams["feature"] = feature
+    }
+    return NewV1TenantFeaturesWithFeatureItemRequestBuilderInternal(urlTplParams, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1TenantFeaturesRequestBuilderInternal instantiates a new V1TenantFeaturesRequestBuilder and sets the default values.
 func NewV1TenantFeaturesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1TenantFeaturesRequestBuilder) {
     m := &V1TenantFeaturesRequestBuilder{

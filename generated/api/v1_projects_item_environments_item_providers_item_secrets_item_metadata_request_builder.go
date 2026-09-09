@@ -26,6 +26,26 @@ func NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemMetadataRequestBui
     urlParams["request-raw-url"] = rawUrl
     return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemMetadataRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get gET_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_metadata
+// returns a SecretMetadataResponseable when successful
+// returns a ProblemDetails error when the service returns a 404 status code
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemMetadataRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.SecretMetadataResponseable, error) {
+    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateSecretMetadataResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.SecretMetadataResponseable), nil
+}
 // Patch pATCH_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_metadata
 // returns a OperationResponseable when successful
 // returns a ProblemDetails error when the service returns a 400 status code
@@ -47,6 +67,14 @@ func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemMetadataRequestBu
         return nil, nil
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable), nil
+}
+// ToGetRequestInformation gET_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_metadata
+// returns a *RequestInformation when successful
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemMetadataRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
 }
 // ToPatchRequestInformation pATCH_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_metadata
 // returns a *RequestInformation when successful

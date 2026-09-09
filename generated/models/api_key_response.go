@@ -23,6 +23,8 @@ type ApiKeyResponse struct {
     environmentId *string
     // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The hasRegisteredPublicKey property
+    hasRegisteredPublicKey *bool
     // The id property
     id *string
     // The isActive property
@@ -161,6 +163,16 @@ func (m *ApiKeyResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["hasRegisteredPublicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHasRegisteredPublicKey(val)
+        }
+        return nil
+    }
     res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -263,6 +275,11 @@ func (m *ApiKeyResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
     }
     return res
 }
+// GetHasRegisteredPublicKey gets the hasRegisteredPublicKey property value. The hasRegisteredPublicKey property
+// returns a *bool when successful
+func (m *ApiKeyResponse) GetHasRegisteredPublicKey()(*bool) {
+    return m.hasRegisteredPublicKey
+}
 // GetId gets the id property value. The id property
 // returns a *string when successful
 func (m *ApiKeyResponse) GetId()(*string) {
@@ -347,6 +364,12 @@ func (m *ApiKeyResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("hasRegisteredPublicKey", m.GetHasRegisteredPublicKey())
         if err != nil {
             return err
         }
@@ -447,6 +470,10 @@ func (m *ApiKeyResponse) SetEnvironmentId(value *string)() {
 func (m *ApiKeyResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
+// SetHasRegisteredPublicKey sets the hasRegisteredPublicKey property value. The hasRegisteredPublicKey property
+func (m *ApiKeyResponse) SetHasRegisteredPublicKey(value *bool)() {
+    m.hasRegisteredPublicKey = value
+}
 // SetId sets the id property value. The id property
 func (m *ApiKeyResponse) SetId(value *string)() {
     m.id = value
@@ -496,6 +523,7 @@ type ApiKeyResponseable interface {
     GetDescription()(*string)
     GetEnvironmentId()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetHasRegisteredPublicKey()(*bool)
     GetId()(*string)
     GetIsActive()(*bool)
     GetIsExpired()(*bool)
@@ -512,6 +540,7 @@ type ApiKeyResponseable interface {
     SetDescription(value *string)()
     SetEnvironmentId(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetHasRegisteredPublicKey(value *bool)()
     SetId(value *string)()
     SetIsActive(value *bool)()
     SetIsExpired(value *bool)()

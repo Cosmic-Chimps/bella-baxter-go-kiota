@@ -26,6 +26,11 @@ func (m *V1RequestBuilder) Admin()(*V1AdminRequestBuilder) {
 func (m *V1RequestBuilder) ApiKeys()(*V1ApiKeysRequestBuilder) {
     return NewV1ApiKeysRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// AuditStream the auditStream property
+// returns a *V1AuditStreamRequestBuilder when successful
+func (m *V1RequestBuilder) AuditStream()(*V1AuditStreamRequestBuilder) {
+    return NewV1AuditStreamRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Auth the auth property
 // returns a *V1AuthRequestBuilder when successful
 func (m *V1RequestBuilder) Auth()(*V1AuthRequestBuilder) {

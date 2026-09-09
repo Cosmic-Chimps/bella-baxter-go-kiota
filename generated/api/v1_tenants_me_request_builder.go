@@ -24,6 +24,11 @@ func NewV1TenantsMeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewV1TenantsMeRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Devices the devices property
+// returns a *V1TenantsMeDevicesRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) Devices()(*V1TenantsMeDevicesRequestBuilder) {
+    return NewV1TenantsMeDevicesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // EncryptionKey the encryptionKey property
 // returns a *V1TenantsMeEncryptionKeyRequestBuilder when successful
 func (m *V1TenantsMeRequestBuilder) EncryptionKey()(*V1TenantsMeEncryptionKeyRequestBuilder) {

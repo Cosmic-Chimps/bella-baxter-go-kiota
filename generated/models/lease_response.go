@@ -24,6 +24,8 @@ type LeaseResponse struct {
     holderName *string
     // The id property
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The kind property
+    kind *string
     // The revocationReason property
     revocationReason *string
     // The revokedAt property
@@ -36,12 +38,16 @@ type LeaseResponse struct {
     secretKeysSnapshot []string
     // The status property
     status *string
+    // The workloadIdentityId property
+    workloadIdentityId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
 // NewLeaseResponse instantiates a new LeaseResponse and sets the default values.
 func NewLeaseResponse()(*LeaseResponse) {
     m := &LeaseResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    kindValue := "secret"
+    m.SetKind(&kindValue)
     return m
 }
 // CreateLeaseResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -128,6 +134,16 @@ func (m *LeaseResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["kind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKind(val)
+        }
+        return nil
+    }
     res["revocationReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -194,6 +210,16 @@ func (m *LeaseResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["workloadIdentityId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWorkloadIdentityId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGrantedAt gets the grantedAt property value. The grantedAt property
@@ -215,6 +241,11 @@ func (m *LeaseResponse) GetHolderName()(*string) {
 // returns a *UUID when successful
 func (m *LeaseResponse) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
+}
+// GetKind gets the kind property value. The kind property
+// returns a *string when successful
+func (m *LeaseResponse) GetKind()(*string) {
+    return m.kind
 }
 // GetRevocationReason gets the revocationReason property value. The revocationReason property
 // returns a *string when successful
@@ -245,6 +276,11 @@ func (m *LeaseResponse) GetSecretKeysSnapshot()([]string) {
 // returns a *string when successful
 func (m *LeaseResponse) GetStatus()(*string) {
     return m.status
+}
+// GetWorkloadIdentityId gets the workloadIdentityId property value. The workloadIdentityId property
+// returns a *UUID when successful
+func (m *LeaseResponse) GetWorkloadIdentityId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.workloadIdentityId
 }
 // Serialize serializes information the current object
 func (m *LeaseResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -280,6 +316,12 @@ func (m *LeaseResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteUUIDValue("id", m.GetId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("kind", m.GetKind())
         if err != nil {
             return err
         }
@@ -321,6 +363,12 @@ func (m *LeaseResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
+        err := writer.WriteUUIDValue("workloadIdentityId", m.GetWorkloadIdentityId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -356,6 +404,10 @@ func (m *LeaseResponse) SetHolderName(value *string)() {
 func (m *LeaseResponse) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
+// SetKind sets the kind property value. The kind property
+func (m *LeaseResponse) SetKind(value *string)() {
+    m.kind = value
+}
 // SetRevocationReason sets the revocationReason property value. The revocationReason property
 func (m *LeaseResponse) SetRevocationReason(value *string)() {
     m.revocationReason = value
@@ -380,6 +432,10 @@ func (m *LeaseResponse) SetSecretKeysSnapshot(value []string)() {
 func (m *LeaseResponse) SetStatus(value *string)() {
     m.status = value
 }
+// SetWorkloadIdentityId sets the workloadIdentityId property value. The workloadIdentityId property
+func (m *LeaseResponse) SetWorkloadIdentityId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.workloadIdentityId = value
+}
 type LeaseResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -389,22 +445,26 @@ type LeaseResponseable interface {
     GetHolderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetHolderName()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetKind()(*string)
     GetRevocationReason()(*string)
     GetRevokedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetRevokedBy()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetSecretCount()(*int32)
     GetSecretKeysSnapshot()([]string)
     GetStatus()(*string)
+    GetWorkloadIdentityId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetExpiredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetGrantedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetHolderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetHolderName(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetKind(value *string)()
     SetRevocationReason(value *string)()
     SetRevokedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetRevokedBy(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetSecretCount(value *int32)()
     SetSecretKeysSnapshot(value []string)()
     SetStatus(value *string)()
+    SetWorkloadIdentityId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
 }

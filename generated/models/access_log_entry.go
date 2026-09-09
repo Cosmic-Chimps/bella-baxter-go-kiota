@@ -22,12 +22,16 @@ type AccessLogEntry struct {
     apiKeyName *string
     // The appClient property
     appClient *string
+    // The bellaClient property
+    bellaClient *string
     // The city property
     city *string
     // The country property
     country *string
     // The detail property
     detail *string
+    // The deviceFingerprint property
+    deviceFingerprint *string
     // The environmentId property
     environmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The environmentSlug property
@@ -95,6 +99,11 @@ func (m *AccessLogEntry) GetApiKeyName()(*string) {
 func (m *AccessLogEntry) GetAppClient()(*string) {
     return m.appClient
 }
+// GetBellaClient gets the bellaClient property value. The bellaClient property
+// returns a *string when successful
+func (m *AccessLogEntry) GetBellaClient()(*string) {
+    return m.bellaClient
+}
 // GetCity gets the city property value. The city property
 // returns a *string when successful
 func (m *AccessLogEntry) GetCity()(*string) {
@@ -109,6 +118,11 @@ func (m *AccessLogEntry) GetCountry()(*string) {
 // returns a *string when successful
 func (m *AccessLogEntry) GetDetail()(*string) {
     return m.detail
+}
+// GetDeviceFingerprint gets the deviceFingerprint property value. The deviceFingerprint property
+// returns a *string when successful
+func (m *AccessLogEntry) GetDeviceFingerprint()(*string) {
+    return m.deviceFingerprint
 }
 // GetEnvironmentId gets the environmentId property value. The environmentId property
 // returns a *UUID when successful
@@ -174,6 +188,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["bellaClient"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBellaClient(val)
+        }
+        return nil
+    }
     res["city"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -201,6 +225,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         if val != nil {
             m.SetDetail(val)
+        }
+        return nil
+    }
+    res["deviceFingerprint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeviceFingerprint(val)
         }
         return nil
     }
@@ -409,6 +443,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
+        err := writer.WriteStringValue("bellaClient", m.GetBellaClient())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("city", m.GetCity())
         if err != nil {
             return err
@@ -422,6 +462,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteStringValue("detail", m.GetDetail())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("deviceFingerprint", m.GetDeviceFingerprint())
         if err != nil {
             return err
         }
@@ -530,6 +576,10 @@ func (m *AccessLogEntry) SetApiKeyName(value *string)() {
 func (m *AccessLogEntry) SetAppClient(value *string)() {
     m.appClient = value
 }
+// SetBellaClient sets the bellaClient property value. The bellaClient property
+func (m *AccessLogEntry) SetBellaClient(value *string)() {
+    m.bellaClient = value
+}
 // SetCity sets the city property value. The city property
 func (m *AccessLogEntry) SetCity(value *string)() {
     m.city = value
@@ -541,6 +591,10 @@ func (m *AccessLogEntry) SetCountry(value *string)() {
 // SetDetail sets the detail property value. The detail property
 func (m *AccessLogEntry) SetDetail(value *string)() {
     m.detail = value
+}
+// SetDeviceFingerprint sets the deviceFingerprint property value. The deviceFingerprint property
+func (m *AccessLogEntry) SetDeviceFingerprint(value *string)() {
+    m.deviceFingerprint = value
 }
 // SetEnvironmentId sets the environmentId property value. The environmentId property
 func (m *AccessLogEntry) SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
@@ -598,9 +652,11 @@ type AccessLogEntryable interface {
     GetApiKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetApiKeyName()(*string)
     GetAppClient()(*string)
+    GetBellaClient()(*string)
     GetCity()(*string)
     GetCountry()(*string)
     GetDetail()(*string)
+    GetDeviceFingerprint()(*string)
     GetEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetEnvironmentSlug()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -618,9 +674,11 @@ type AccessLogEntryable interface {
     SetApiKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetApiKeyName(value *string)()
     SetAppClient(value *string)()
+    SetBellaClient(value *string)()
     SetCity(value *string)()
     SetCountry(value *string)()
     SetDetail(value *string)()
+    SetDeviceFingerprint(value *string)()
     SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetEnvironmentSlug(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

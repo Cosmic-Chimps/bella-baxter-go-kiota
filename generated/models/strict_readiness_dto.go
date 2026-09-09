@@ -10,6 +10,8 @@ import (
 type StrictReadinessDto struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The k8sOidcIssuerProblem property
+    k8sOidcIssuerProblem *string
     // The workloadsWithoutVerifiableConstraint property
     workloadsWithoutVerifiableConstraint []string
 }
@@ -34,6 +36,16 @@ func (m *StrictReadinessDto) GetAdditionalData()(map[string]any) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *StrictReadinessDto) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["k8sOidcIssuerProblem"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetK8sOidcIssuerProblem(val)
+        }
+        return nil
+    }
     res["workloadsWithoutVerifiableConstraint"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
@@ -52,6 +64,11 @@ func (m *StrictReadinessDto) GetFieldDeserializers()(map[string]func(i878a80d233
     }
     return res
 }
+// GetK8sOidcIssuerProblem gets the k8sOidcIssuerProblem property value. The k8sOidcIssuerProblem property
+// returns a *string when successful
+func (m *StrictReadinessDto) GetK8sOidcIssuerProblem()(*string) {
+    return m.k8sOidcIssuerProblem
+}
 // GetWorkloadsWithoutVerifiableConstraint gets the workloadsWithoutVerifiableConstraint property value. The workloadsWithoutVerifiableConstraint property
 // returns a []string when successful
 func (m *StrictReadinessDto) GetWorkloadsWithoutVerifiableConstraint()([]string) {
@@ -59,6 +76,12 @@ func (m *StrictReadinessDto) GetWorkloadsWithoutVerifiableConstraint()([]string)
 }
 // Serialize serializes information the current object
 func (m *StrictReadinessDto) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteStringValue("k8sOidcIssuerProblem", m.GetK8sOidcIssuerProblem())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetWorkloadsWithoutVerifiableConstraint() != nil {
         err := writer.WriteCollectionOfStringValues("workloadsWithoutVerifiableConstraint", m.GetWorkloadsWithoutVerifiableConstraint())
         if err != nil {
@@ -77,6 +100,10 @@ func (m *StrictReadinessDto) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *StrictReadinessDto) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetK8sOidcIssuerProblem sets the k8sOidcIssuerProblem property value. The k8sOidcIssuerProblem property
+func (m *StrictReadinessDto) SetK8sOidcIssuerProblem(value *string)() {
+    m.k8sOidcIssuerProblem = value
+}
 // SetWorkloadsWithoutVerifiableConstraint sets the workloadsWithoutVerifiableConstraint property value. The workloadsWithoutVerifiableConstraint property
 func (m *StrictReadinessDto) SetWorkloadsWithoutVerifiableConstraint(value []string)() {
     m.workloadsWithoutVerifiableConstraint = value
@@ -84,6 +111,8 @@ func (m *StrictReadinessDto) SetWorkloadsWithoutVerifiableConstraint(value []str
 type StrictReadinessDtoable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetK8sOidcIssuerProblem()(*string)
     GetWorkloadsWithoutVerifiableConstraint()([]string)
+    SetK8sOidcIssuerProblem(value *string)()
     SetWorkloadsWithoutVerifiableConstraint(value []string)()
 }

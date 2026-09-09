@@ -20,6 +20,7 @@ type V1AccessLogsRequestBuilderGetQueryParameters struct {
     Action *string `uriparametername:"action"`
     ActorType *string `uriparametername:"actorType"`
     ApiKeyId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"apiKeyId"`
+    DeviceFingerprint *string `uriparametername:"deviceFingerprint"`
     EnvironmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID `uriparametername:"environmentId"`
     From *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time `uriparametername:"from"`
     Page *int32 `uriparametername:"page"`
@@ -31,7 +32,7 @@ type V1AccessLogsRequestBuilderGetQueryParameters struct {
 // NewV1AccessLogsRequestBuilderInternal instantiates a new V1AccessLogsRequestBuilder and sets the default values.
 func NewV1AccessLogsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1AccessLogsRequestBuilder) {
     m := &V1AccessLogsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/access-logs{?action*,actorType*,apiKeyId*,environmentId*,from*,page*,projectSlug*,search*,size*,to*}", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/access-logs{?action*,actorType*,apiKeyId*,deviceFingerprint*,environmentId*,from*,page*,projectSlug*,search*,size*,to*}", pathParameters),
     }
     return m
 }

@@ -15,6 +15,8 @@ type RecordCertRotationAuditCommand struct {
     actorType *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The auditRecordId property
+    auditRecordId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The certStorageProviderId property
     certStorageProviderId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The environmentId property
@@ -73,6 +75,11 @@ func (m *RecordCertRotationAuditCommand) GetActorType()(*string) {
 func (m *RecordCertRotationAuditCommand) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetAuditRecordId gets the auditRecordId property value. The auditRecordId property
+// returns a *UUID when successful
+func (m *RecordCertRotationAuditCommand) GetAuditRecordId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.auditRecordId
+}
 // GetCertStorageProviderId gets the certStorageProviderId property value. The certStorageProviderId property
 // returns a *UUID when successful
 func (m *RecordCertRotationAuditCommand) GetCertStorageProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
@@ -114,6 +121,16 @@ func (m *RecordCertRotationAuditCommand) GetFieldDeserializers()(map[string]func
         }
         if val != nil {
             m.SetActorType(val)
+        }
+        return nil
+    }
+    res["auditRecordId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuditRecordId(val)
         }
         return nil
     }
@@ -324,6 +341,12 @@ func (m *RecordCertRotationAuditCommand) Serialize(writer i878a80d2330e89d268963
         }
     }
     {
+        err := writer.WriteUUIDValue("auditRecordId", m.GetAuditRecordId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("certStorageProviderId", m.GetCertStorageProviderId())
         if err != nil {
             return err
@@ -427,6 +450,10 @@ func (m *RecordCertRotationAuditCommand) SetActorType(value *string)() {
 func (m *RecordCertRotationAuditCommand) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetAuditRecordId sets the auditRecordId property value. The auditRecordId property
+func (m *RecordCertRotationAuditCommand) SetAuditRecordId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.auditRecordId = value
+}
 // SetCertStorageProviderId sets the certStorageProviderId property value. The certStorageProviderId property
 func (m *RecordCertRotationAuditCommand) SetCertStorageProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.certStorageProviderId = value
@@ -488,6 +515,7 @@ type RecordCertRotationAuditCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAction()(*string)
     GetActorType()(*string)
+    GetAuditRecordId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetCertStorageProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetErrorCategory()(*string)
@@ -504,6 +532,7 @@ type RecordCertRotationAuditCommandable interface {
     GetUserName()(*string)
     SetAction(value *string)()
     SetActorType(value *string)()
+    SetAuditRecordId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetCertStorageProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetErrorCategory(value *string)()

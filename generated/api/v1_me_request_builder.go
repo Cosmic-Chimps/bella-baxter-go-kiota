@@ -29,3 +29,8 @@ func NewV1MeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1
     urlParams["request-raw-url"] = rawUrl
     return NewV1MeRequestBuilderInternal(urlParams, requestAdapter)
 }
+// McpConnections the mcpConnections property
+// returns a *V1MeMcpConnectionsRequestBuilder when successful
+func (m *V1MeRequestBuilder) McpConnections()(*V1MeMcpConnectionsRequestBuilder) {
+    return NewV1MeMcpConnectionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
