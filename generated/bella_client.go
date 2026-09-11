@@ -36,7 +36,7 @@ func NewBellaClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83.NewTextParseNodeFactory() })
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RegisterDefaultDeserializer(func() i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNodeFactory { return i4bcdc892e61ac17e2afc10b5e2b536b29f4fd6c1ad30f4a5a68df47495db3347.NewFormParseNodeFactory() })
     if m.BaseRequestBuilder.RequestAdapter.GetBaseUrl() == "" {
-        m.BaseRequestBuilder.RequestAdapter.SetBaseUrl("http://localhost")
+        m.BaseRequestBuilder.RequestAdapter.SetBaseUrl("http://localhost:5522")
     }
     m.BaseRequestBuilder.PathParameters["baseurl"] = m.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
     return m

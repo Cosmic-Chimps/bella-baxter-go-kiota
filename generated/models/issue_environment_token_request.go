@@ -10,6 +10,8 @@ import (
 type IssueEnvironmentTokenRequest struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The publicKey property
+    publicKey *string
     // The reason property
     reason *string
     // The scopes property
@@ -38,6 +40,16 @@ func (m *IssueEnvironmentTokenRequest) GetAdditionalData()(map[string]any) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *IssueEnvironmentTokenRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["publicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublicKey(val)
+        }
+        return nil
+    }
     res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -76,6 +88,11 @@ func (m *IssueEnvironmentTokenRequest) GetFieldDeserializers()(map[string]func(i
     }
     return res
 }
+// GetPublicKey gets the publicKey property value. The publicKey property
+// returns a *string when successful
+func (m *IssueEnvironmentTokenRequest) GetPublicKey()(*string) {
+    return m.publicKey
+}
 // GetReason gets the reason property value. The reason property
 // returns a *string when successful
 func (m *IssueEnvironmentTokenRequest) GetReason()(*string) {
@@ -93,6 +110,12 @@ func (m *IssueEnvironmentTokenRequest) GetTtlMinutes()(*int32) {
 }
 // Serialize serializes information the current object
 func (m *IssueEnvironmentTokenRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteStringValue("publicKey", m.GetPublicKey())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("reason", m.GetReason())
         if err != nil {
@@ -123,6 +146,10 @@ func (m *IssueEnvironmentTokenRequest) Serialize(writer i878a80d2330e89d26896388
 func (m *IssueEnvironmentTokenRequest) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetPublicKey sets the publicKey property value. The publicKey property
+func (m *IssueEnvironmentTokenRequest) SetPublicKey(value *string)() {
+    m.publicKey = value
+}
 // SetReason sets the reason property value. The reason property
 func (m *IssueEnvironmentTokenRequest) SetReason(value *string)() {
     m.reason = value
@@ -138,9 +165,11 @@ func (m *IssueEnvironmentTokenRequest) SetTtlMinutes(value *int32)() {
 type IssueEnvironmentTokenRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPublicKey()(*string)
     GetReason()(*string)
     GetScopes()([]string)
     GetTtlMinutes()(*int32)
+    SetPublicKey(value *string)()
     SetReason(value *string)()
     SetScopes(value []string)()
     SetTtlMinutes(value *int32)()
