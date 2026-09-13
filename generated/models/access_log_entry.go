@@ -28,6 +28,8 @@ type AccessLogEntry struct {
     city *string
     // The country property
     country *string
+    // The countryCode property
+    countryCode *string
     // The detail property
     detail *string
     // The deviceFingerprint property
@@ -113,6 +115,11 @@ func (m *AccessLogEntry) GetCity()(*string) {
 // returns a *string when successful
 func (m *AccessLogEntry) GetCountry()(*string) {
     return m.country
+}
+// GetCountryCode gets the countryCode property value. The countryCode property
+// returns a *string when successful
+func (m *AccessLogEntry) GetCountryCode()(*string) {
+    return m.countryCode
 }
 // GetDetail gets the detail property value. The detail property
 // returns a *string when successful
@@ -215,6 +222,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         if val != nil {
             m.SetCountry(val)
+        }
+        return nil
+    }
+    res["countryCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCountryCode(val)
         }
         return nil
     }
@@ -461,6 +478,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
+        err := writer.WriteStringValue("countryCode", m.GetCountryCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("detail", m.GetDetail())
         if err != nil {
             return err
@@ -588,6 +611,10 @@ func (m *AccessLogEntry) SetCity(value *string)() {
 func (m *AccessLogEntry) SetCountry(value *string)() {
     m.country = value
 }
+// SetCountryCode sets the countryCode property value. The countryCode property
+func (m *AccessLogEntry) SetCountryCode(value *string)() {
+    m.countryCode = value
+}
 // SetDetail sets the detail property value. The detail property
 func (m *AccessLogEntry) SetDetail(value *string)() {
     m.detail = value
@@ -655,6 +682,7 @@ type AccessLogEntryable interface {
     GetBellaClient()(*string)
     GetCity()(*string)
     GetCountry()(*string)
+    GetCountryCode()(*string)
     GetDetail()(*string)
     GetDeviceFingerprint()(*string)
     GetEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -677,6 +705,7 @@ type AccessLogEntryable interface {
     SetBellaClient(value *string)()
     SetCity(value *string)()
     SetCountry(value *string)()
+    SetCountryCode(value *string)()
     SetDetail(value *string)()
     SetDeviceFingerprint(value *string)()
     SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
