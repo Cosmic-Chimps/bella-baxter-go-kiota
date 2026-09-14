@@ -12,10 +12,16 @@ type SecurityInsight struct {
     additionalData map[string]any
     // The detail property
     detail *string
+    // The detailCode property
+    detailCode *string
     // The matchedPattern property
     matchedPattern *string
+    // The messageParameters property
+    messageParameters SecurityInsight_messageParametersable
     // The recommendation property
     recommendation *string
+    // The recommendationCode property
+    recommendationCode *string
     // The secretKey property
     secretKey *string
     // The severity property
@@ -45,6 +51,11 @@ func (m *SecurityInsight) GetAdditionalData()(map[string]any) {
 func (m *SecurityInsight) GetDetail()(*string) {
     return m.detail
 }
+// GetDetailCode gets the detailCode property value. The detailCode property
+// returns a *string when successful
+func (m *SecurityInsight) GetDetailCode()(*string) {
+    return m.detailCode
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *SecurityInsight) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
@@ -59,6 +70,16 @@ func (m *SecurityInsight) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
+    res["detailCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDetailCode(val)
+        }
+        return nil
+    }
     res["matchedPattern"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -69,6 +90,16 @@ func (m *SecurityInsight) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
+    res["messageParameters"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSecurityInsight_messageParametersFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMessageParameters(val.(SecurityInsight_messageParametersable))
+        }
+        return nil
+    }
     res["recommendation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -76,6 +107,16 @@ func (m *SecurityInsight) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         if val != nil {
             m.SetRecommendation(val)
+        }
+        return nil
+    }
+    res["recommendationCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecommendationCode(val)
         }
         return nil
     }
@@ -116,10 +157,20 @@ func (m *SecurityInsight) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 func (m *SecurityInsight) GetMatchedPattern()(*string) {
     return m.matchedPattern
 }
+// GetMessageParameters gets the messageParameters property value. The messageParameters property
+// returns a SecurityInsight_messageParametersable when successful
+func (m *SecurityInsight) GetMessageParameters()(SecurityInsight_messageParametersable) {
+    return m.messageParameters
+}
 // GetRecommendation gets the recommendation property value. The recommendation property
 // returns a *string when successful
 func (m *SecurityInsight) GetRecommendation()(*string) {
     return m.recommendation
+}
+// GetRecommendationCode gets the recommendationCode property value. The recommendationCode property
+// returns a *string when successful
+func (m *SecurityInsight) GetRecommendationCode()(*string) {
+    return m.recommendationCode
 }
 // GetSecretKey gets the secretKey property value. The secretKey property
 // returns a *string when successful
@@ -145,13 +196,31 @@ func (m *SecurityInsight) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
+        err := writer.WriteStringValue("detailCode", m.GetDetailCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("matchedPattern", m.GetMatchedPattern())
         if err != nil {
             return err
         }
     }
     {
+        err := writer.WriteObjectValue("messageParameters", m.GetMessageParameters())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("recommendation", m.GetRecommendation())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("recommendationCode", m.GetRecommendationCode())
         if err != nil {
             return err
         }
@@ -192,13 +261,25 @@ func (m *SecurityInsight) SetAdditionalData(value map[string]any)() {
 func (m *SecurityInsight) SetDetail(value *string)() {
     m.detail = value
 }
+// SetDetailCode sets the detailCode property value. The detailCode property
+func (m *SecurityInsight) SetDetailCode(value *string)() {
+    m.detailCode = value
+}
 // SetMatchedPattern sets the matchedPattern property value. The matchedPattern property
 func (m *SecurityInsight) SetMatchedPattern(value *string)() {
     m.matchedPattern = value
 }
+// SetMessageParameters sets the messageParameters property value. The messageParameters property
+func (m *SecurityInsight) SetMessageParameters(value SecurityInsight_messageParametersable)() {
+    m.messageParameters = value
+}
 // SetRecommendation sets the recommendation property value. The recommendation property
 func (m *SecurityInsight) SetRecommendation(value *string)() {
     m.recommendation = value
+}
+// SetRecommendationCode sets the recommendationCode property value. The recommendationCode property
+func (m *SecurityInsight) SetRecommendationCode(value *string)() {
+    m.recommendationCode = value
 }
 // SetSecretKey sets the secretKey property value. The secretKey property
 func (m *SecurityInsight) SetSecretKey(value *string)() {
@@ -216,14 +297,20 @@ type SecurityInsightable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDetail()(*string)
+    GetDetailCode()(*string)
     GetMatchedPattern()(*string)
+    GetMessageParameters()(SecurityInsight_messageParametersable)
     GetRecommendation()(*string)
+    GetRecommendationCode()(*string)
     GetSecretKey()(*string)
     GetSeverity()(*SecurityRiskLevel)
     GetTypeEscaped()(*SecurityInsightType)
     SetDetail(value *string)()
+    SetDetailCode(value *string)()
     SetMatchedPattern(value *string)()
+    SetMessageParameters(value SecurityInsight_messageParametersable)()
     SetRecommendation(value *string)()
+    SetRecommendationCode(value *string)()
     SetSecretKey(value *string)()
     SetSeverity(value *SecurityRiskLevel)()
     SetTypeEscaped(value *SecurityInsightType)()
