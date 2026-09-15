@@ -29,3 +29,8 @@ func NewV1CertRotationRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     urlParams["request-raw-url"] = rawUrl
     return NewV1CertRotationRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Outcome the outcome property
+// returns a *V1CertRotationOutcomeRequestBuilder when successful
+func (m *V1CertRotationRequestBuilder) Outcome()(*V1CertRotationOutcomeRequestBuilder) {
+    return NewV1CertRotationOutcomeRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
