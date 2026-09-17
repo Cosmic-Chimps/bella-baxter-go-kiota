@@ -26,6 +26,26 @@ func NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequ
     urlParams["request-raw-url"] = rawUrl
     return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Get gET_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_rotation_policy
+// returns a RotationPolicyInfoable when successful
+// returns a ProblemDetails error when the service returns a 404 status code
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.RotationPolicyInfoable, error) {
+    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateRotationPolicyInfoFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.RotationPolicyInfoable), nil
+}
 // Put pUT_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_rotation_policy
 // returns a SetRotationPolicyResponseable when successful
 // returns a ProblemDetails error when the service returns a 400 status code
@@ -52,6 +72,14 @@ func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyReq
 // returns a *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRotateSigningSecretRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilder) RotateSigningSecret()(*V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRotateSigningSecretRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRotateSigningSecretRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// ToGetRequestInformation gET_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_rotation_policy
+// returns a *RequestInformation when successful
+func (m *V1ProjectsItemEnvironmentsItemProvidersItemSecretsItemRotationPolicyRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
+    requestInfo.Headers.TryAdd("Accept", "application/json")
+    return requestInfo, nil
 }
 // ToPutRequestInformation pUT_api_v1_projects_projectRef_environments_envSlug_providers_providerSlug_secrets_key_rotation_policy
 // returns a *RequestInformation when successful
