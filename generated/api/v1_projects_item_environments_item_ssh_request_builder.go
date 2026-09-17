@@ -11,6 +11,11 @@ import (
 type V1ProjectsItemEnvironmentsItemSshRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Authority the authority property
+// returns a *V1ProjectsItemEnvironmentsItemSshAuthorityRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSshRequestBuilder) Authority()(*V1ProjectsItemEnvironmentsItemSshAuthorityRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSshAuthorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Ca the ca property
 // returns a *V1ProjectsItemEnvironmentsItemSshCaRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemSshRequestBuilder) Ca()(*V1ProjectsItemEnvironmentsItemSshCaRequestBuilder) {
@@ -38,6 +43,11 @@ func NewV1ProjectsItemEnvironmentsItemSshRequestBuilder(rawUrl string, requestAd
     urlParams := make(map[string]string)
     urlParams["request-raw-url"] = rawUrl
     return NewV1ProjectsItemEnvironmentsItemSshRequestBuilderInternal(urlParams, requestAdapter)
+}
+// DeployAuthority the deployAuthority property
+// returns a *V1ProjectsItemEnvironmentsItemSshDeployAuthorityRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSshRequestBuilder) DeployAuthority()(*V1ProjectsItemEnvironmentsItemSshDeployAuthorityRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSshDeployAuthorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Roles the roles property
 // returns a *V1ProjectsItemEnvironmentsItemSshRolesRequestBuilder when successful

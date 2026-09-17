@@ -11,6 +11,11 @@ import (
 type V1ProjectsItemEnvironmentsItemPkiRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Authority the authority property
+// returns a *V1ProjectsItemEnvironmentsItemPkiAuthorityRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemPkiRequestBuilder) Authority()(*V1ProjectsItemEnvironmentsItemPkiAuthorityRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemPkiAuthorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Ca the ca property
 // returns a *V1ProjectsItemEnvironmentsItemPkiCaRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemPkiRequestBuilder) Ca()(*V1ProjectsItemEnvironmentsItemPkiCaRequestBuilder) {
@@ -38,6 +43,11 @@ func NewV1ProjectsItemEnvironmentsItemPkiRequestBuilder(rawUrl string, requestAd
 // returns a *V1ProjectsItemEnvironmentsItemPkiIssueRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsItemPkiRequestBuilder) Issue()(*V1ProjectsItemEnvironmentsItemPkiIssueRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemPkiIssueRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// JwtSigningKey the jwtSigningKey property
+// returns a *V1ProjectsItemEnvironmentsItemPkiJwtSigningKeyRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemPkiRequestBuilder) JwtSigningKey()(*V1ProjectsItemEnvironmentsItemPkiJwtSigningKeyRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemPkiJwtSigningKeyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // Revoke the revoke property
 // returns a *V1ProjectsItemEnvironmentsItemPkiRevokeRequestBuilder when successful
