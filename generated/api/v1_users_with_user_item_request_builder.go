@@ -30,6 +30,11 @@ func NewV1UsersWithUserItemRequestBuilder(rawUrl string, requestAdapter i2ae4187
     urlParams["request-raw-url"] = rawUrl
     return NewV1UsersWithUserItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// DeactivationImpact the deactivationImpact property
+// returns a *V1UsersItemDeactivationImpactRequestBuilder when successful
+func (m *V1UsersWithUserItemRequestBuilder) DeactivationImpact()(*V1UsersItemDeactivationImpactRequestBuilder) {
+    return NewV1UsersItemDeactivationImpactRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Delete dELETE_api_v1_users_userId
 // returns a OperationResponseable when successful
 func (m *V1UsersWithUserItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1UsersWithUserItemRequestBuilderDeleteQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable, error) {
