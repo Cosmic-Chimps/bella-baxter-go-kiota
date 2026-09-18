@@ -42,6 +42,11 @@ func (m *V1ApiKeysApiKeysItemRequestBuilder) Delete(ctx context.Context, request
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ApiKeyRevokedResponseable), nil
 }
+// Device the device property
+// returns a *V1ApiKeysItemDeviceRequestBuilder when successful
+func (m *V1ApiKeysApiKeysItemRequestBuilder) Device()(*V1ApiKeysItemDeviceRequestBuilder) {
+    return NewV1ApiKeysItemDeviceRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get gET_api_v1_api_keys_id
 // returns a ApiKeyResponseable when successful
 func (m *V1ApiKeysApiKeysItemRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ApiKeyResponseable, error) {

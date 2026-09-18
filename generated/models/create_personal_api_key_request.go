@@ -16,6 +16,8 @@ type CreatePersonalApiKeyRequest struct {
     description *string
     // The expiresInDays property
     expiresInDays *int32
+    // The publicKey property
+    publicKey *string
 }
 // NewCreatePersonalApiKeyRequest instantiates a new CreatePersonalApiKeyRequest and sets the default values.
 func NewCreatePersonalApiKeyRequest()(*CreatePersonalApiKeyRequest) {
@@ -83,7 +85,22 @@ func (m *CreatePersonalApiKeyRequest) GetFieldDeserializers()(map[string]func(i8
         }
         return nil
     }
+    res["publicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublicKey(val)
+        }
+        return nil
+    }
     return res
+}
+// GetPublicKey gets the publicKey property value. The publicKey property
+// returns a *string when successful
+func (m *CreatePersonalApiKeyRequest) GetPublicKey()(*string) {
+    return m.publicKey
 }
 // Serialize serializes information the current object
 func (m *CreatePersonalApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -101,6 +118,12 @@ func (m *CreatePersonalApiKeyRequest) Serialize(writer i878a80d2330e89d26896388a
     }
     {
         err := writer.WriteInt32Value("expiresInDays", m.GetExpiresInDays())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("publicKey", m.GetPublicKey())
         if err != nil {
             return err
         }
@@ -129,13 +152,19 @@ func (m *CreatePersonalApiKeyRequest) SetDescription(value *string)() {
 func (m *CreatePersonalApiKeyRequest) SetExpiresInDays(value *int32)() {
     m.expiresInDays = value
 }
+// SetPublicKey sets the publicKey property value. The publicKey property
+func (m *CreatePersonalApiKeyRequest) SetPublicKey(value *string)() {
+    m.publicKey = value
+}
 type CreatePersonalApiKeyRequestable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetClientName()(*string)
     GetDescription()(*string)
     GetExpiresInDays()(*int32)
+    GetPublicKey()(*string)
     SetClientName(value *string)()
     SetDescription(value *string)()
     SetExpiresInDays(value *int32)()
+    SetPublicKey(value *string)()
 }
