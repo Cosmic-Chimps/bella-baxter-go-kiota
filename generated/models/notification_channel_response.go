@@ -31,6 +31,10 @@ type NotificationChannelResponse struct {
     projectId *string
     // The publicConfiguration property
     publicConfiguration NotificationChannelResponse_publicConfigurationable
+    // The scopeRevokedAt property
+    scopeRevokedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The scopeRevokedReason property
+    scopeRevokedReason *string
     // The sensitiveKeys property
     sensitiveKeys []string
     // The updatedAt property
@@ -188,6 +192,26 @@ func (m *NotificationChannelResponse) GetFieldDeserializers()(map[string]func(i8
         }
         return nil
     }
+    res["scopeRevokedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRevokedAt(val)
+        }
+        return nil
+    }
+    res["scopeRevokedReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRevokedReason(val)
+        }
+        return nil
+    }
     res["sensitiveKeys"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
@@ -240,6 +264,16 @@ func (m *NotificationChannelResponse) GetProjectId()(*string) {
 // returns a NotificationChannelResponse_publicConfigurationable when successful
 func (m *NotificationChannelResponse) GetPublicConfiguration()(NotificationChannelResponse_publicConfigurationable) {
     return m.publicConfiguration
+}
+// GetScopeRevokedAt gets the scopeRevokedAt property value. The scopeRevokedAt property
+// returns a *Time when successful
+func (m *NotificationChannelResponse) GetScopeRevokedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.scopeRevokedAt
+}
+// GetScopeRevokedReason gets the scopeRevokedReason property value. The scopeRevokedReason property
+// returns a *string when successful
+func (m *NotificationChannelResponse) GetScopeRevokedReason()(*string) {
+    return m.scopeRevokedReason
 }
 // GetSensitiveKeys gets the sensitiveKeys property value. The sensitiveKeys property
 // returns a []string when successful
@@ -313,6 +347,18 @@ func (m *NotificationChannelResponse) Serialize(writer i878a80d2330e89d26896388a
             return err
         }
     }
+    {
+        err := writer.WriteTimeValue("scopeRevokedAt", m.GetScopeRevokedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeRevokedReason", m.GetScopeRevokedReason())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetSensitiveKeys() != nil {
         err := writer.WriteCollectionOfStringValues("sensitiveKeys", m.GetSensitiveKeys())
         if err != nil {
@@ -377,6 +423,14 @@ func (m *NotificationChannelResponse) SetProjectId(value *string)() {
 func (m *NotificationChannelResponse) SetPublicConfiguration(value NotificationChannelResponse_publicConfigurationable)() {
     m.publicConfiguration = value
 }
+// SetScopeRevokedAt sets the scopeRevokedAt property value. The scopeRevokedAt property
+func (m *NotificationChannelResponse) SetScopeRevokedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.scopeRevokedAt = value
+}
+// SetScopeRevokedReason sets the scopeRevokedReason property value. The scopeRevokedReason property
+func (m *NotificationChannelResponse) SetScopeRevokedReason(value *string)() {
+    m.scopeRevokedReason = value
+}
 // SetSensitiveKeys sets the sensitiveKeys property value. The sensitiveKeys property
 func (m *NotificationChannelResponse) SetSensitiveKeys(value []string)() {
     m.sensitiveKeys = value
@@ -398,6 +452,8 @@ type NotificationChannelResponseable interface {
     GetName()(*string)
     GetProjectId()(*string)
     GetPublicConfiguration()(NotificationChannelResponse_publicConfigurationable)
+    GetScopeRevokedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetScopeRevokedReason()(*string)
     GetSensitiveKeys()([]string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetChannelType(value *string)()
@@ -410,6 +466,8 @@ type NotificationChannelResponseable interface {
     SetName(value *string)()
     SetProjectId(value *string)()
     SetPublicConfiguration(value NotificationChannelResponse_publicConfigurationable)()
+    SetScopeRevokedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetScopeRevokedReason(value *string)()
     SetSensitiveKeys(value []string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
 }

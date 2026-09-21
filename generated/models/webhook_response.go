@@ -38,6 +38,10 @@ type WebhookResponse struct {
     nextRotationAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The projectId property
     projectId *string
+    // The scopeRevokedAt property
+    scopeRevokedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The scopeRevokedReason property
+    scopeRevokedReason *string
     // The targetUrl property
     targetUrl *string
     // The updatedAt property
@@ -225,6 +229,26 @@ func (m *WebhookResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
+    res["scopeRevokedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRevokedAt(val)
+        }
+        return nil
+    }
+    res["scopeRevokedReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRevokedReason(val)
+        }
+        return nil
+    }
     res["targetUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -286,6 +310,16 @@ func (m *WebhookResponse) GetNextRotationAt()(*i336074805fc853987abe6f7fe3ad97a6
 // returns a *string when successful
 func (m *WebhookResponse) GetProjectId()(*string) {
     return m.projectId
+}
+// GetScopeRevokedAt gets the scopeRevokedAt property value. The scopeRevokedAt property
+// returns a *Time when successful
+func (m *WebhookResponse) GetScopeRevokedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.scopeRevokedAt
+}
+// GetScopeRevokedReason gets the scopeRevokedReason property value. The scopeRevokedReason property
+// returns a *string when successful
+func (m *WebhookResponse) GetScopeRevokedReason()(*string) {
+    return m.scopeRevokedReason
 }
 // GetTargetUrl gets the targetUrl property value. The targetUrl property
 // returns a *string when successful
@@ -378,6 +412,18 @@ func (m *WebhookResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
+        err := writer.WriteTimeValue("scopeRevokedAt", m.GetScopeRevokedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeRevokedReason", m.GetScopeRevokedReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("targetUrl", m.GetTargetUrl())
         if err != nil {
             return err
@@ -453,6 +499,14 @@ func (m *WebhookResponse) SetNextRotationAt(value *i336074805fc853987abe6f7fe3ad
 func (m *WebhookResponse) SetProjectId(value *string)() {
     m.projectId = value
 }
+// SetScopeRevokedAt sets the scopeRevokedAt property value. The scopeRevokedAt property
+func (m *WebhookResponse) SetScopeRevokedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.scopeRevokedAt = value
+}
+// SetScopeRevokedReason sets the scopeRevokedReason property value. The scopeRevokedReason property
+func (m *WebhookResponse) SetScopeRevokedReason(value *string)() {
+    m.scopeRevokedReason = value
+}
 // SetTargetUrl sets the targetUrl property value. The targetUrl property
 func (m *WebhookResponse) SetTargetUrl(value *string)() {
     m.targetUrl = value
@@ -477,6 +531,8 @@ type WebhookResponseable interface {
     GetName()(*string)
     GetNextRotationAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetProjectId()(*string)
+    GetScopeRevokedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetScopeRevokedReason()(*string)
     GetTargetUrl()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetAutoRotateDays(value *int32)()
@@ -492,6 +548,8 @@ type WebhookResponseable interface {
     SetName(value *string)()
     SetNextRotationAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetProjectId(value *string)()
+    SetScopeRevokedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetScopeRevokedReason(value *string)()
     SetTargetUrl(value *string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
 }
