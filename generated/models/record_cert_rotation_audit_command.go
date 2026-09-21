@@ -4,6 +4,7 @@
 package models
 
 import (
+    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -35,6 +36,8 @@ type RecordCertRotationAuditCommand struct {
     newCertPemHash *string
     // The newCertSerial property
     newCertSerial *string
+    // The occurredAt property
+    occurredAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The oldCertSerial property
     oldCertSerial *string
     // The rotationJobId property
@@ -224,6 +227,16 @@ func (m *RecordCertRotationAuditCommand) GetFieldDeserializers()(map[string]func
         }
         return nil
     }
+    res["occurredAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOccurredAt(val)
+        }
+        return nil
+    }
     res["oldCertSerial"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -300,6 +313,11 @@ func (m *RecordCertRotationAuditCommand) GetNewCertPemHash()(*string) {
 // returns a *string when successful
 func (m *RecordCertRotationAuditCommand) GetNewCertSerial()(*string) {
     return m.newCertSerial
+}
+// GetOccurredAt gets the occurredAt property value. The occurredAt property
+// returns a *Time when successful
+func (m *RecordCertRotationAuditCommand) GetOccurredAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.occurredAt
 }
 // GetOldCertSerial gets the oldCertSerial property value. The oldCertSerial property
 // returns a *string when successful
@@ -401,6 +419,12 @@ func (m *RecordCertRotationAuditCommand) Serialize(writer i878a80d2330e89d268963
         }
     }
     {
+        err := writer.WriteTimeValue("occurredAt", m.GetOccurredAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("oldCertSerial", m.GetOldCertSerial())
         if err != nil {
             return err
@@ -490,6 +514,10 @@ func (m *RecordCertRotationAuditCommand) SetNewCertPemHash(value *string)() {
 func (m *RecordCertRotationAuditCommand) SetNewCertSerial(value *string)() {
     m.newCertSerial = value
 }
+// SetOccurredAt sets the occurredAt property value. The occurredAt property
+func (m *RecordCertRotationAuditCommand) SetOccurredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.occurredAt = value
+}
 // SetOldCertSerial sets the oldCertSerial property value. The oldCertSerial property
 func (m *RecordCertRotationAuditCommand) SetOldCertSerial(value *string)() {
     m.oldCertSerial = value
@@ -525,6 +553,7 @@ type RecordCertRotationAuditCommandable interface {
     GetKeyAlias()(*string)
     GetNewCertPemHash()(*string)
     GetNewCertSerial()(*string)
+    GetOccurredAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetOldCertSerial()(*string)
     GetRotationJobId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -542,6 +571,7 @@ type RecordCertRotationAuditCommandable interface {
     SetKeyAlias(value *string)()
     SetNewCertPemHash(value *string)()
     SetNewCertSerial(value *string)()
+    SetOccurredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetOldCertSerial(value *string)()
     SetRotationJobId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
