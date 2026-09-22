@@ -4,6 +4,7 @@
 package models
 
 import (
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -14,14 +15,24 @@ type CreateInviteCommand struct {
     email *string
     // The expiresInDays property
     expiresInDays *int32
+    // The name property
+    name *string
     // The role property
     role *TenantInviteRole
+    // The scopeId property
+    scopeId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The scopeKind property
+    scopeKind *TenantInviteScopeKind
+    // The scopeRole property
+    scopeRole *string
 }
 // NewCreateInviteCommand instantiates a new CreateInviteCommand and sets the default values.
 func NewCreateInviteCommand()(*CreateInviteCommand) {
     m := &CreateInviteCommand{
     }
     m.SetAdditionalData(make(map[string]any))
+    scopeKindValue := NONE_TENANTINVITESCOPEKIND
+    m.SetScopeKind(&scopeKindValue)
     return m
 }
 // CreateCreateInviteCommandFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -68,6 +79,16 @@ func (m *CreateInviteCommand) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
     res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetEnumValue(ParseTenantInviteRole)
         if err != nil {
@@ -78,12 +99,62 @@ func (m *CreateInviteCommand) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["scopeId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeId(val)
+        }
+        return nil
+    }
+    res["scopeKind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseTenantInviteScopeKind)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeKind(val.(*TenantInviteScopeKind))
+        }
+        return nil
+    }
+    res["scopeRole"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRole(val)
+        }
+        return nil
+    }
     return res
+}
+// GetName gets the name property value. The name property
+// returns a *string when successful
+func (m *CreateInviteCommand) GetName()(*string) {
+    return m.name
 }
 // GetRole gets the role property value. The role property
 // returns a *TenantInviteRole when successful
 func (m *CreateInviteCommand) GetRole()(*TenantInviteRole) {
     return m.role
+}
+// GetScopeId gets the scopeId property value. The scopeId property
+// returns a *UUID when successful
+func (m *CreateInviteCommand) GetScopeId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.scopeId
+}
+// GetScopeKind gets the scopeKind property value. The scopeKind property
+// returns a *TenantInviteScopeKind when successful
+func (m *CreateInviteCommand) GetScopeKind()(*TenantInviteScopeKind) {
+    return m.scopeKind
+}
+// GetScopeRole gets the scopeRole property value. The scopeRole property
+// returns a *string when successful
+func (m *CreateInviteCommand) GetScopeRole()(*string) {
+    return m.scopeRole
 }
 // Serialize serializes information the current object
 func (m *CreateInviteCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -99,9 +170,34 @@ func (m *CreateInviteCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef
             return err
         }
     }
+    {
+        err := writer.WriteStringValue("name", m.GetName())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetRole() != nil {
         cast := (*m.GetRole()).String()
         err := writer.WriteStringValue("role", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("scopeId", m.GetScopeId())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetScopeKind() != nil {
+        cast := (*m.GetScopeKind()).String()
+        err := writer.WriteStringValue("scopeKind", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeRole", m.GetScopeRole())
         if err != nil {
             return err
         }
@@ -126,17 +222,41 @@ func (m *CreateInviteCommand) SetEmail(value *string)() {
 func (m *CreateInviteCommand) SetExpiresInDays(value *int32)() {
     m.expiresInDays = value
 }
+// SetName sets the name property value. The name property
+func (m *CreateInviteCommand) SetName(value *string)() {
+    m.name = value
+}
 // SetRole sets the role property value. The role property
 func (m *CreateInviteCommand) SetRole(value *TenantInviteRole)() {
     m.role = value
+}
+// SetScopeId sets the scopeId property value. The scopeId property
+func (m *CreateInviteCommand) SetScopeId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.scopeId = value
+}
+// SetScopeKind sets the scopeKind property value. The scopeKind property
+func (m *CreateInviteCommand) SetScopeKind(value *TenantInviteScopeKind)() {
+    m.scopeKind = value
+}
+// SetScopeRole sets the scopeRole property value. The scopeRole property
+func (m *CreateInviteCommand) SetScopeRole(value *string)() {
+    m.scopeRole = value
 }
 type CreateInviteCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEmail()(*string)
     GetExpiresInDays()(*int32)
+    GetName()(*string)
     GetRole()(*TenantInviteRole)
+    GetScopeId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetScopeKind()(*TenantInviteScopeKind)
+    GetScopeRole()(*string)
     SetEmail(value *string)()
     SetExpiresInDays(value *int32)()
+    SetName(value *string)()
     SetRole(value *TenantInviteRole)()
+    SetScopeId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetScopeKind(value *TenantInviteScopeKind)()
+    SetScopeRole(value *string)()
 }

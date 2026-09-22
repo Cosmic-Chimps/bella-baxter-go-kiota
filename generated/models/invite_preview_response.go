@@ -12,6 +12,8 @@ type InvitePreviewResponse struct {
     additionalData map[string]any
     // The invitedEmail property
     invitedEmail *string
+    // The invitedName property
+    invitedName *string
     // The isValid property
     isValid *bool
     // The tenantName property
@@ -48,6 +50,16 @@ func (m *InvitePreviewResponse) GetFieldDeserializers()(map[string]func(i878a80d
         }
         return nil
     }
+    res["invitedName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInvitedName(val)
+        }
+        return nil
+    }
     res["isValid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -75,6 +87,11 @@ func (m *InvitePreviewResponse) GetFieldDeserializers()(map[string]func(i878a80d
 func (m *InvitePreviewResponse) GetInvitedEmail()(*string) {
     return m.invitedEmail
 }
+// GetInvitedName gets the invitedName property value. The invitedName property
+// returns a *string when successful
+func (m *InvitePreviewResponse) GetInvitedName()(*string) {
+    return m.invitedName
+}
 // GetIsValid gets the isValid property value. The isValid property
 // returns a *bool when successful
 func (m *InvitePreviewResponse) GetIsValid()(*bool) {
@@ -89,6 +106,12 @@ func (m *InvitePreviewResponse) GetTenantName()(*string) {
 func (m *InvitePreviewResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("invitedEmail", m.GetInvitedEmail())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("invitedName", m.GetInvitedName())
         if err != nil {
             return err
         }
@@ -121,6 +144,10 @@ func (m *InvitePreviewResponse) SetAdditionalData(value map[string]any)() {
 func (m *InvitePreviewResponse) SetInvitedEmail(value *string)() {
     m.invitedEmail = value
 }
+// SetInvitedName sets the invitedName property value. The invitedName property
+func (m *InvitePreviewResponse) SetInvitedName(value *string)() {
+    m.invitedName = value
+}
 // SetIsValid sets the isValid property value. The isValid property
 func (m *InvitePreviewResponse) SetIsValid(value *bool)() {
     m.isValid = value
@@ -133,9 +160,11 @@ type InvitePreviewResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetInvitedEmail()(*string)
+    GetInvitedName()(*string)
     GetIsValid()(*bool)
     GetTenantName()(*string)
     SetInvitedEmail(value *string)()
+    SetInvitedName(value *string)()
     SetIsValid(value *bool)()
     SetTenantName(value *string)()
 }
