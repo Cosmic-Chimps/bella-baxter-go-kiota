@@ -37,6 +37,11 @@ func (m *TenantsItemInvitesWithTokenItemRequestBuilder) Delete(ctx context.Conte
     }
     return nil
 }
+// Replacement the replacement property
+// returns a *TenantsItemInvitesItemReplacementRequestBuilder when successful
+func (m *TenantsItemInvitesWithTokenItemRequestBuilder) Replacement()(*TenantsItemInvitesItemReplacementRequestBuilder) {
+    return NewTenantsItemInvitesItemReplacementRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToDeleteRequestInformation dELETE_api_tenants_id_invites_token
 // returns a *RequestInformation when successful
 func (m *TenantsItemInvitesWithTokenItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

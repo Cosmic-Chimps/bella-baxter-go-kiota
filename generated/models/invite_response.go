@@ -16,6 +16,8 @@ type InviteResponse struct {
     email *string
     // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The joinUrl property
+    joinUrl *string
     // The role property
     role *TenantInviteRole
     // The tenantId property
@@ -76,6 +78,16 @@ func (m *InviteResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["joinUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJoinUrl(val)
+        }
+        return nil
+    }
     res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetEnumValue(ParseTenantInviteRole)
         if err != nil {
@@ -118,6 +130,11 @@ func (m *InviteResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89
     }
     return res
 }
+// GetJoinUrl gets the joinUrl property value. The joinUrl property
+// returns a *string when successful
+func (m *InviteResponse) GetJoinUrl()(*string) {
+    return m.joinUrl
+}
 // GetRole gets the role property value. The role property
 // returns a *TenantInviteRole when successful
 func (m *InviteResponse) GetRole()(*TenantInviteRole) {
@@ -148,6 +165,12 @@ func (m *InviteResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("joinUrl", m.GetJoinUrl())
         if err != nil {
             return err
         }
@@ -197,6 +220,10 @@ func (m *InviteResponse) SetEmail(value *string)() {
 func (m *InviteResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
+// SetJoinUrl sets the joinUrl property value. The joinUrl property
+func (m *InviteResponse) SetJoinUrl(value *string)() {
+    m.joinUrl = value
+}
 // SetRole sets the role property value. The role property
 func (m *InviteResponse) SetRole(value *TenantInviteRole)() {
     m.role = value
@@ -218,12 +245,14 @@ type InviteResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetEmail()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetJoinUrl()(*string)
     GetRole()(*TenantInviteRole)
     GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetTenantName()(*string)
     GetToken()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetJoinUrl(value *string)()
     SetRole(value *TenantInviteRole)()
     SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetTenantName(value *string)()

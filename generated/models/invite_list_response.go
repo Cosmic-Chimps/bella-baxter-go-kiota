@@ -18,12 +18,20 @@ type InviteListResponse struct {
     additionalData map[string]any
     // The createdAt property
     createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The deliveryFailureReason property
+    deliveryFailureReason *string
+    // The deliveryOutcome property
+    deliveryOutcome *InviteDeliveryOutcome
+    // The email property
+    email *string
     // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The isExpired property
     isExpired *bool
     // The isRevoked property
     isRevoked *bool
+    // The joinUrl property
+    joinUrl *string
     // The role property
     role *TenantInviteRole
     // The tenantId property
@@ -62,6 +70,21 @@ func (m *InviteListResponse) GetAdditionalData()(map[string]any) {
 // returns a *Time when successful
 func (m *InviteListResponse) GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdAt
+}
+// GetDeliveryFailureReason gets the deliveryFailureReason property value. The deliveryFailureReason property
+// returns a *string when successful
+func (m *InviteListResponse) GetDeliveryFailureReason()(*string) {
+    return m.deliveryFailureReason
+}
+// GetDeliveryOutcome gets the deliveryOutcome property value. The deliveryOutcome property
+// returns a *InviteDeliveryOutcome when successful
+func (m *InviteListResponse) GetDeliveryOutcome()(*InviteDeliveryOutcome) {
+    return m.deliveryOutcome
+}
+// GetEmail gets the email property value. The email property
+// returns a *string when successful
+func (m *InviteListResponse) GetEmail()(*string) {
+    return m.email
 }
 // GetExpiresAt gets the expiresAt property value. The expiresAt property
 // returns a *Time when successful
@@ -102,6 +125,36 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["deliveryFailureReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeliveryFailureReason(val)
+        }
+        return nil
+    }
+    res["deliveryOutcome"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseInviteDeliveryOutcome)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeliveryOutcome(val.(*InviteDeliveryOutcome))
+        }
+        return nil
+    }
+    res["email"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEmail(val)
+        }
+        return nil
+    }
     res["expiresAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -129,6 +182,16 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         if val != nil {
             m.SetIsRevoked(val)
+        }
+        return nil
+    }
+    res["joinUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJoinUrl(val)
         }
         return nil
     }
@@ -174,6 +237,11 @@ func (m *InviteListResponse) GetIsExpired()(*bool) {
 func (m *InviteListResponse) GetIsRevoked()(*bool) {
     return m.isRevoked
 }
+// GetJoinUrl gets the joinUrl property value. The joinUrl property
+// returns a *string when successful
+func (m *InviteListResponse) GetJoinUrl()(*string) {
+    return m.joinUrl
+}
 // GetRole gets the role property value. The role property
 // returns a *TenantInviteRole when successful
 func (m *InviteListResponse) GetRole()(*TenantInviteRole) {
@@ -210,6 +278,25 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
+        err := writer.WriteStringValue("deliveryFailureReason", m.GetDeliveryFailureReason())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetDeliveryOutcome() != nil {
+        cast := (*m.GetDeliveryOutcome()).String()
+        err := writer.WriteStringValue("deliveryOutcome", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("email", m.GetEmail())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
         if err != nil {
             return err
@@ -223,6 +310,12 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     }
     {
         err := writer.WriteBoolValue("isRevoked", m.GetIsRevoked())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("joinUrl", m.GetJoinUrl())
         if err != nil {
             return err
         }
@@ -270,6 +363,18 @@ func (m *InviteListResponse) SetAdditionalData(value map[string]any)() {
 func (m *InviteListResponse) SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdAt = value
 }
+// SetDeliveryFailureReason sets the deliveryFailureReason property value. The deliveryFailureReason property
+func (m *InviteListResponse) SetDeliveryFailureReason(value *string)() {
+    m.deliveryFailureReason = value
+}
+// SetDeliveryOutcome sets the deliveryOutcome property value. The deliveryOutcome property
+func (m *InviteListResponse) SetDeliveryOutcome(value *InviteDeliveryOutcome)() {
+    m.deliveryOutcome = value
+}
+// SetEmail sets the email property value. The email property
+func (m *InviteListResponse) SetEmail(value *string)() {
+    m.email = value
+}
 // SetExpiresAt sets the expiresAt property value. The expiresAt property
 func (m *InviteListResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
@@ -281,6 +386,10 @@ func (m *InviteListResponse) SetIsExpired(value *bool)() {
 // SetIsRevoked sets the isRevoked property value. The isRevoked property
 func (m *InviteListResponse) SetIsRevoked(value *bool)() {
     m.isRevoked = value
+}
+// SetJoinUrl sets the joinUrl property value. The joinUrl property
+func (m *InviteListResponse) SetJoinUrl(value *string)() {
+    m.joinUrl = value
 }
 // SetRole sets the role property value. The role property
 func (m *InviteListResponse) SetRole(value *TenantInviteRole)() {
@@ -300,18 +409,26 @@ type InviteListResponseable interface {
     GetAcceptedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetAcceptedByUserId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDeliveryFailureReason()(*string)
+    GetDeliveryOutcome()(*InviteDeliveryOutcome)
+    GetEmail()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetIsExpired()(*bool)
     GetIsRevoked()(*bool)
+    GetJoinUrl()(*string)
     GetRole()(*TenantInviteRole)
     GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetToken()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetAcceptedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetAcceptedByUserId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDeliveryFailureReason(value *string)()
+    SetDeliveryOutcome(value *InviteDeliveryOutcome)()
+    SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetIsExpired(value *bool)()
     SetIsRevoked(value *bool)()
+    SetJoinUrl(value *string)()
     SetRole(value *TenantInviteRole)()
     SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetToken(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

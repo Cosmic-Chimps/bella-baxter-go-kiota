@@ -46,6 +46,16 @@ func (m *V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder) Get(ct
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.EnvironmentCertificatesResponseable), nil
 }
+// ImportPlans the importPlans property
+// returns a *V1ProjectsItemEnvironmentsItemSecretsCertificatesImportPlansRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder) ImportPlans()(*V1ProjectsItemEnvironmentsItemSecretsCertificatesImportPlansRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSecretsCertificatesImportPlansRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Imports the imports property
+// returns a *V1ProjectsItemEnvironmentsItemSecretsCertificatesImportsRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder) Imports()(*V1ProjectsItemEnvironmentsItemSecretsCertificatesImportsRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemSecretsCertificatesImportsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ToGetRequestInformation gET_api_v1_projects_projectRef_environments_envSlug_secrets_certificates
 // returns a *RequestInformation when successful
 func (m *V1ProjectsItemEnvironmentsItemSecretsCertificatesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

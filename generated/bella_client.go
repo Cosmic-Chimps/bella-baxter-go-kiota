@@ -11,7 +11,6 @@ import (
     i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
     i4d5feba19df46e76da81fcde661b9fc3885093da0043802d86d4fc92a3088e74 "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/api"
-    ic565c82bc30b4a45d43e6050740f3c48f22bc4ad0af503f64146ed1bda5e0bef "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/internal"
 )
 
 // BellaClient the main entry point of the SDK, exposes the configuration and the fluent API.
@@ -40,9 +39,4 @@ func NewBellaClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529
     }
     m.BaseRequestBuilder.PathParameters["baseurl"] = m.BaseRequestBuilder.RequestAdapter.GetBaseUrl()
     return m
-}
-// Internal the internal property
-// returns a *InternalRequestBuilder when successful
-func (m *BellaClient) Internal()(*ic565c82bc30b4a45d43e6050740f3c48f22bc4ad0af503f64146ed1bda5e0bef.InternalRequestBuilder) {
-    return ic565c82bc30b4a45d43e6050740f3c48f22bc4ad0af503f64146ed1bda5e0bef.NewInternalRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
