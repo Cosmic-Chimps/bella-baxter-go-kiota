@@ -32,6 +32,12 @@ type InviteListResponse struct {
     isRevoked *bool
     // The joinUrl property
     joinUrl *string
+    // The lastRefusedAt property
+    lastRefusedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The lastRefusedReason property
+    lastRefusedReason *string
+    // The refusedAttemptCount property
+    refusedAttemptCount *int32
     // The role property
     role *TenantInviteRole
     // The tenantId property
@@ -195,6 +201,36 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["lastRefusedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastRefusedAt(val)
+        }
+        return nil
+    }
+    res["lastRefusedReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastRefusedReason(val)
+        }
+        return nil
+    }
+    res["refusedAttemptCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRefusedAttemptCount(val)
+        }
+        return nil
+    }
     res["role"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetEnumValue(ParseTenantInviteRole)
         if err != nil {
@@ -241,6 +277,21 @@ func (m *InviteListResponse) GetIsRevoked()(*bool) {
 // returns a *string when successful
 func (m *InviteListResponse) GetJoinUrl()(*string) {
     return m.joinUrl
+}
+// GetLastRefusedAt gets the lastRefusedAt property value. The lastRefusedAt property
+// returns a *Time when successful
+func (m *InviteListResponse) GetLastRefusedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.lastRefusedAt
+}
+// GetLastRefusedReason gets the lastRefusedReason property value. The lastRefusedReason property
+// returns a *string when successful
+func (m *InviteListResponse) GetLastRefusedReason()(*string) {
+    return m.lastRefusedReason
+}
+// GetRefusedAttemptCount gets the refusedAttemptCount property value. The refusedAttemptCount property
+// returns a *int32 when successful
+func (m *InviteListResponse) GetRefusedAttemptCount()(*int32) {
+    return m.refusedAttemptCount
 }
 // GetRole gets the role property value. The role property
 // returns a *TenantInviteRole when successful
@@ -320,6 +371,24 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
             return err
         }
     }
+    {
+        err := writer.WriteTimeValue("lastRefusedAt", m.GetLastRefusedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("lastRefusedReason", m.GetLastRefusedReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("refusedAttemptCount", m.GetRefusedAttemptCount())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetRole() != nil {
         cast := (*m.GetRole()).String()
         err := writer.WriteStringValue("role", &cast)
@@ -391,6 +460,18 @@ func (m *InviteListResponse) SetIsRevoked(value *bool)() {
 func (m *InviteListResponse) SetJoinUrl(value *string)() {
     m.joinUrl = value
 }
+// SetLastRefusedAt sets the lastRefusedAt property value. The lastRefusedAt property
+func (m *InviteListResponse) SetLastRefusedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.lastRefusedAt = value
+}
+// SetLastRefusedReason sets the lastRefusedReason property value. The lastRefusedReason property
+func (m *InviteListResponse) SetLastRefusedReason(value *string)() {
+    m.lastRefusedReason = value
+}
+// SetRefusedAttemptCount sets the refusedAttemptCount property value. The refusedAttemptCount property
+func (m *InviteListResponse) SetRefusedAttemptCount(value *int32)() {
+    m.refusedAttemptCount = value
+}
 // SetRole sets the role property value. The role property
 func (m *InviteListResponse) SetRole(value *TenantInviteRole)() {
     m.role = value
@@ -416,6 +497,9 @@ type InviteListResponseable interface {
     GetIsExpired()(*bool)
     GetIsRevoked()(*bool)
     GetJoinUrl()(*string)
+    GetLastRefusedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLastRefusedReason()(*string)
+    GetRefusedAttemptCount()(*int32)
     GetRole()(*TenantInviteRole)
     GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetToken()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -429,6 +513,9 @@ type InviteListResponseable interface {
     SetIsExpired(value *bool)()
     SetIsRevoked(value *bool)()
     SetJoinUrl(value *string)()
+    SetLastRefusedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLastRefusedReason(value *string)()
+    SetRefusedAttemptCount(value *int32)()
     SetRole(value *TenantInviteRole)()
     SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetToken(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()

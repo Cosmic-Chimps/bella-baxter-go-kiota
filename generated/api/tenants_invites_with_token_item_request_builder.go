@@ -16,6 +16,11 @@ type TenantsInvitesWithTokenItemRequestBuilder struct {
 func (m *TenantsInvitesWithTokenItemRequestBuilder) Accept()(*TenantsInvitesItemAcceptRequestBuilder) {
     return NewTenantsInvitesItemAcceptRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// AddressVerification the addressVerification property
+// returns a *TenantsInvitesItemAddressVerificationRequestBuilder when successful
+func (m *TenantsInvitesWithTokenItemRequestBuilder) AddressVerification()(*TenantsInvitesItemAddressVerificationRequestBuilder) {
+    return NewTenantsInvitesItemAddressVerificationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewTenantsInvitesWithTokenItemRequestBuilderInternal instantiates a new TenantsInvitesWithTokenItemRequestBuilder and sets the default values.
 func NewTenantsInvitesWithTokenItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TenantsInvitesWithTokenItemRequestBuilder) {
     m := &TenantsInvitesWithTokenItemRequestBuilder{
