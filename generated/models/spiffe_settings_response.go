@@ -12,14 +12,24 @@ type SpiffeSettingsResponse struct {
     additionalData map[string]any
     // The attestationMode property
     attestationMode *string
+    // The audienceNotice property
+    audienceNotice *string
     // The awsIidAllowedAccounts property
     awsIidAllowedAccounts []string
     // The awsIidAllowedAccountsNotice property
     awsIidAllowedAccountsNotice *string
     // The defaultSvidTtlMinutes property
     defaultSvidTtlMinutes *int32
+    // The k8sAudienceEnforced property
+    k8sAudienceEnforced *bool
+    // The k8sAudienceIsDefault property
+    k8sAudienceIsDefault *bool
+    // The k8sExpectedAudience property
+    k8sExpectedAudience *string
     // The k8sOidcDiscoveryUrl property
     k8sOidcDiscoveryUrl *string
+    // The k8sRecommendedAudience property
+    k8sRecommendedAudience *string
     // The modeMeaning property
     modeMeaning ModeMeaningDtoable
     // The strictReadiness property
@@ -47,6 +57,11 @@ func (m *SpiffeSettingsResponse) GetAdditionalData()(map[string]any) {
 func (m *SpiffeSettingsResponse) GetAttestationMode()(*string) {
     return m.attestationMode
 }
+// GetAudienceNotice gets the audienceNotice property value. The audienceNotice property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetAudienceNotice()(*string) {
+    return m.audienceNotice
+}
 // GetAwsIidAllowedAccounts gets the awsIidAllowedAccounts property value. The awsIidAllowedAccounts property
 // returns a []string when successful
 func (m *SpiffeSettingsResponse) GetAwsIidAllowedAccounts()([]string) {
@@ -73,6 +88,16 @@ func (m *SpiffeSettingsResponse) GetFieldDeserializers()(map[string]func(i878a80
         }
         if val != nil {
             m.SetAttestationMode(val)
+        }
+        return nil
+    }
+    res["audienceNotice"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceNotice(val)
         }
         return nil
     }
@@ -112,6 +137,36 @@ func (m *SpiffeSettingsResponse) GetFieldDeserializers()(map[string]func(i878a80
         }
         return nil
     }
+    res["k8sAudienceEnforced"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetK8sAudienceEnforced(val)
+        }
+        return nil
+    }
+    res["k8sAudienceIsDefault"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetK8sAudienceIsDefault(val)
+        }
+        return nil
+    }
+    res["k8sExpectedAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetK8sExpectedAudience(val)
+        }
+        return nil
+    }
     res["k8sOidcDiscoveryUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -119,6 +174,16 @@ func (m *SpiffeSettingsResponse) GetFieldDeserializers()(map[string]func(i878a80
         }
         if val != nil {
             m.SetK8sOidcDiscoveryUrl(val)
+        }
+        return nil
+    }
+    res["k8sRecommendedAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetK8sRecommendedAudience(val)
         }
         return nil
     }
@@ -144,10 +209,30 @@ func (m *SpiffeSettingsResponse) GetFieldDeserializers()(map[string]func(i878a80
     }
     return res
 }
+// GetK8sAudienceEnforced gets the k8sAudienceEnforced property value. The k8sAudienceEnforced property
+// returns a *bool when successful
+func (m *SpiffeSettingsResponse) GetK8sAudienceEnforced()(*bool) {
+    return m.k8sAudienceEnforced
+}
+// GetK8sAudienceIsDefault gets the k8sAudienceIsDefault property value. The k8sAudienceIsDefault property
+// returns a *bool when successful
+func (m *SpiffeSettingsResponse) GetK8sAudienceIsDefault()(*bool) {
+    return m.k8sAudienceIsDefault
+}
+// GetK8sExpectedAudience gets the k8sExpectedAudience property value. The k8sExpectedAudience property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetK8sExpectedAudience()(*string) {
+    return m.k8sExpectedAudience
+}
 // GetK8sOidcDiscoveryUrl gets the k8sOidcDiscoveryUrl property value. The k8sOidcDiscoveryUrl property
 // returns a *string when successful
 func (m *SpiffeSettingsResponse) GetK8sOidcDiscoveryUrl()(*string) {
     return m.k8sOidcDiscoveryUrl
+}
+// GetK8sRecommendedAudience gets the k8sRecommendedAudience property value. The k8sRecommendedAudience property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetK8sRecommendedAudience()(*string) {
+    return m.k8sRecommendedAudience
 }
 // GetModeMeaning gets the modeMeaning property value. The modeMeaning property
 // returns a ModeMeaningDtoable when successful
@@ -163,6 +248,12 @@ func (m *SpiffeSettingsResponse) GetStrictReadiness()(StrictReadinessDtoable) {
 func (m *SpiffeSettingsResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("attestationMode", m.GetAttestationMode())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("audienceNotice", m.GetAudienceNotice())
         if err != nil {
             return err
         }
@@ -186,7 +277,31 @@ func (m *SpiffeSettingsResponse) Serialize(writer i878a80d2330e89d26896388a3f487
         }
     }
     {
+        err := writer.WriteBoolValue("k8sAudienceEnforced", m.GetK8sAudienceEnforced())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("k8sAudienceIsDefault", m.GetK8sAudienceIsDefault())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("k8sExpectedAudience", m.GetK8sExpectedAudience())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("k8sOidcDiscoveryUrl", m.GetK8sOidcDiscoveryUrl())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("k8sRecommendedAudience", m.GetK8sRecommendedAudience())
         if err != nil {
             return err
         }
@@ -219,6 +334,10 @@ func (m *SpiffeSettingsResponse) SetAdditionalData(value map[string]any)() {
 func (m *SpiffeSettingsResponse) SetAttestationMode(value *string)() {
     m.attestationMode = value
 }
+// SetAudienceNotice sets the audienceNotice property value. The audienceNotice property
+func (m *SpiffeSettingsResponse) SetAudienceNotice(value *string)() {
+    m.audienceNotice = value
+}
 // SetAwsIidAllowedAccounts sets the awsIidAllowedAccounts property value. The awsIidAllowedAccounts property
 func (m *SpiffeSettingsResponse) SetAwsIidAllowedAccounts(value []string)() {
     m.awsIidAllowedAccounts = value
@@ -231,9 +350,25 @@ func (m *SpiffeSettingsResponse) SetAwsIidAllowedAccountsNotice(value *string)()
 func (m *SpiffeSettingsResponse) SetDefaultSvidTtlMinutes(value *int32)() {
     m.defaultSvidTtlMinutes = value
 }
+// SetK8sAudienceEnforced sets the k8sAudienceEnforced property value. The k8sAudienceEnforced property
+func (m *SpiffeSettingsResponse) SetK8sAudienceEnforced(value *bool)() {
+    m.k8sAudienceEnforced = value
+}
+// SetK8sAudienceIsDefault sets the k8sAudienceIsDefault property value. The k8sAudienceIsDefault property
+func (m *SpiffeSettingsResponse) SetK8sAudienceIsDefault(value *bool)() {
+    m.k8sAudienceIsDefault = value
+}
+// SetK8sExpectedAudience sets the k8sExpectedAudience property value. The k8sExpectedAudience property
+func (m *SpiffeSettingsResponse) SetK8sExpectedAudience(value *string)() {
+    m.k8sExpectedAudience = value
+}
 // SetK8sOidcDiscoveryUrl sets the k8sOidcDiscoveryUrl property value. The k8sOidcDiscoveryUrl property
 func (m *SpiffeSettingsResponse) SetK8sOidcDiscoveryUrl(value *string)() {
     m.k8sOidcDiscoveryUrl = value
+}
+// SetK8sRecommendedAudience sets the k8sRecommendedAudience property value. The k8sRecommendedAudience property
+func (m *SpiffeSettingsResponse) SetK8sRecommendedAudience(value *string)() {
+    m.k8sRecommendedAudience = value
 }
 // SetModeMeaning sets the modeMeaning property value. The modeMeaning property
 func (m *SpiffeSettingsResponse) SetModeMeaning(value ModeMeaningDtoable)() {
@@ -247,17 +382,27 @@ type SpiffeSettingsResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAttestationMode()(*string)
+    GetAudienceNotice()(*string)
     GetAwsIidAllowedAccounts()([]string)
     GetAwsIidAllowedAccountsNotice()(*string)
     GetDefaultSvidTtlMinutes()(*int32)
+    GetK8sAudienceEnforced()(*bool)
+    GetK8sAudienceIsDefault()(*bool)
+    GetK8sExpectedAudience()(*string)
     GetK8sOidcDiscoveryUrl()(*string)
+    GetK8sRecommendedAudience()(*string)
     GetModeMeaning()(ModeMeaningDtoable)
     GetStrictReadiness()(StrictReadinessDtoable)
     SetAttestationMode(value *string)()
+    SetAudienceNotice(value *string)()
     SetAwsIidAllowedAccounts(value []string)()
     SetAwsIidAllowedAccountsNotice(value *string)()
     SetDefaultSvidTtlMinutes(value *int32)()
+    SetK8sAudienceEnforced(value *bool)()
+    SetK8sAudienceIsDefault(value *bool)()
+    SetK8sExpectedAudience(value *string)()
     SetK8sOidcDiscoveryUrl(value *string)()
+    SetK8sRecommendedAudience(value *string)()
     SetModeMeaning(value ModeMeaningDtoable)()
     SetStrictReadiness(value StrictReadinessDtoable)()
 }

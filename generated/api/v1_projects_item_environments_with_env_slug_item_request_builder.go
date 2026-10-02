@@ -13,6 +13,11 @@ import (
 type V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// AudienceReadiness the audienceReadiness property
+// returns a *V1ProjectsItemEnvironmentsItemAudienceReadinessRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) AudienceReadiness()(*V1ProjectsItemEnvironmentsItemAudienceReadinessRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemAudienceReadinessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // CertRotation the certRotation property
 // returns a *V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) CertRotation()(*V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder) {

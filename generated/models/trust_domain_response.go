@@ -10,8 +10,14 @@ import (
 )
 
 type TrustDomainResponse struct {
+    // The acceptedAudiences property
+    acceptedAudiences []string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The audienceEnforced property
+    audienceEnforced *bool
+    // The audienceIsDefault property
+    audienceIsDefault *bool
     // The claimRules property
     claimRules []ClaimRuleable
     // The createdAt property
@@ -34,8 +40,12 @@ type TrustDomainResponse struct {
     oidcIssuerUrl *string
     // The oidcJwksUri property
     oidcJwksUri *string
+    // The recommendedAudience property
+    recommendedAudience *string
     // The updatedAt property
     updatedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The warnings property
+    warnings []string
 }
 // NewTrustDomainResponse instantiates a new TrustDomainResponse and sets the default values.
 func NewTrustDomainResponse()(*TrustDomainResponse) {
@@ -49,10 +59,25 @@ func NewTrustDomainResponse()(*TrustDomainResponse) {
 func CreateTrustDomainResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewTrustDomainResponse(), nil
 }
+// GetAcceptedAudiences gets the acceptedAudiences property value. The acceptedAudiences property
+// returns a []string when successful
+func (m *TrustDomainResponse) GetAcceptedAudiences()([]string) {
+    return m.acceptedAudiences
+}
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *TrustDomainResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
+}
+// GetAudienceEnforced gets the audienceEnforced property value. The audienceEnforced property
+// returns a *bool when successful
+func (m *TrustDomainResponse) GetAudienceEnforced()(*bool) {
+    return m.audienceEnforced
+}
+// GetAudienceIsDefault gets the audienceIsDefault property value. The audienceIsDefault property
+// returns a *bool when successful
+func (m *TrustDomainResponse) GetAudienceIsDefault()(*bool) {
+    return m.audienceIsDefault
 }
 // GetClaimRules gets the claimRules property value. The claimRules property
 // returns a []ClaimRuleable when successful
@@ -78,6 +103,42 @@ func (m *TrustDomainResponse) GetEnvironmentId()(*i561e97a8befe7661a44c8f5460099
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *TrustDomainResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["acceptedAudiences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetAcceptedAudiences(res)
+        }
+        return nil
+    }
+    res["audienceEnforced"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceEnforced(val)
+        }
+        return nil
+    }
+    res["audienceIsDefault"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceIsDefault(val)
+        }
+        return nil
+    }
     res["claimRules"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateClaimRuleFromDiscriminatorValue)
         if err != nil {
@@ -194,6 +255,16 @@ func (m *TrustDomainResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["recommendedAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecommendedAudience(val)
+        }
+        return nil
+    }
     res["updatedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -201,6 +272,22 @@ func (m *TrustDomainResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         if val != nil {
             m.SetUpdatedAt(val)
+        }
+        return nil
+    }
+    res["warnings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetWarnings(res)
         }
         return nil
     }
@@ -241,13 +328,41 @@ func (m *TrustDomainResponse) GetOidcIssuerUrl()(*string) {
 func (m *TrustDomainResponse) GetOidcJwksUri()(*string) {
     return m.oidcJwksUri
 }
+// GetRecommendedAudience gets the recommendedAudience property value. The recommendedAudience property
+// returns a *string when successful
+func (m *TrustDomainResponse) GetRecommendedAudience()(*string) {
+    return m.recommendedAudience
+}
 // GetUpdatedAt gets the updatedAt property value. The updatedAt property
 // returns a *Time when successful
 func (m *TrustDomainResponse) GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.updatedAt
 }
+// GetWarnings gets the warnings property value. The warnings property
+// returns a []string when successful
+func (m *TrustDomainResponse) GetWarnings()([]string) {
+    return m.warnings
+}
 // Serialize serializes information the current object
 func (m *TrustDomainResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetAcceptedAudiences() != nil {
+        err := writer.WriteCollectionOfStringValues("acceptedAudiences", m.GetAcceptedAudiences())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("audienceEnforced", m.GetAudienceEnforced())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("audienceIsDefault", m.GetAudienceIsDefault())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetClaimRules() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClaimRules()))
         for i, v := range m.GetClaimRules() {
@@ -321,7 +436,19 @@ func (m *TrustDomainResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteStringValue("recommendedAudience", m.GetRecommendedAudience())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteTimeValue("updatedAt", m.GetUpdatedAt())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetWarnings() != nil {
+        err := writer.WriteCollectionOfStringValues("warnings", m.GetWarnings())
         if err != nil {
             return err
         }
@@ -334,9 +461,21 @@ func (m *TrustDomainResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
+// SetAcceptedAudiences sets the acceptedAudiences property value. The acceptedAudiences property
+func (m *TrustDomainResponse) SetAcceptedAudiences(value []string)() {
+    m.acceptedAudiences = value
+}
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *TrustDomainResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
+}
+// SetAudienceEnforced sets the audienceEnforced property value. The audienceEnforced property
+func (m *TrustDomainResponse) SetAudienceEnforced(value *bool)() {
+    m.audienceEnforced = value
+}
+// SetAudienceIsDefault sets the audienceIsDefault property value. The audienceIsDefault property
+func (m *TrustDomainResponse) SetAudienceIsDefault(value *bool)() {
+    m.audienceIsDefault = value
 }
 // SetClaimRules sets the claimRules property value. The claimRules property
 func (m *TrustDomainResponse) SetClaimRules(value []ClaimRuleable)() {
@@ -382,13 +521,24 @@ func (m *TrustDomainResponse) SetOidcIssuerUrl(value *string)() {
 func (m *TrustDomainResponse) SetOidcJwksUri(value *string)() {
     m.oidcJwksUri = value
 }
+// SetRecommendedAudience sets the recommendedAudience property value. The recommendedAudience property
+func (m *TrustDomainResponse) SetRecommendedAudience(value *string)() {
+    m.recommendedAudience = value
+}
 // SetUpdatedAt sets the updatedAt property value. The updatedAt property
 func (m *TrustDomainResponse) SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.updatedAt = value
 }
+// SetWarnings sets the warnings property value. The warnings property
+func (m *TrustDomainResponse) SetWarnings(value []string)() {
+    m.warnings = value
+}
 type TrustDomainResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAcceptedAudiences()([]string)
+    GetAudienceEnforced()(*bool)
+    GetAudienceIsDefault()(*bool)
     GetClaimRules()([]ClaimRuleable)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDescription()(*string)
@@ -400,7 +550,12 @@ type TrustDomainResponseable interface {
     GetName()(*string)
     GetOidcIssuerUrl()(*string)
     GetOidcJwksUri()(*string)
+    GetRecommendedAudience()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetWarnings()([]string)
+    SetAcceptedAudiences(value []string)()
+    SetAudienceEnforced(value *bool)()
+    SetAudienceIsDefault(value *bool)()
     SetClaimRules(value []ClaimRuleable)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDescription(value *string)()
@@ -412,5 +567,7 @@ type TrustDomainResponseable interface {
     SetName(value *string)()
     SetOidcIssuerUrl(value *string)()
     SetOidcJwksUri(value *string)()
+    SetRecommendedAudience(value *string)()
     SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetWarnings(value []string)()
 }

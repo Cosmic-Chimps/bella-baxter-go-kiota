@@ -8,8 +8,14 @@ import (
 )
 
 type UpdateTrustDomainCommand struct {
+    // The acceptedAudiences property
+    acceptedAudiences []string
+    // The acknowledgeAudienceRefusals property
+    acknowledgeAudienceRefusals *bool
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The audienceEnforced property
+    audienceEnforced *bool
     // The claimRules property
     claimRules []ClaimRuleable
     // The description property
@@ -39,10 +45,25 @@ func NewUpdateTrustDomainCommand()(*UpdateTrustDomainCommand) {
 func CreateUpdateTrustDomainCommandFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewUpdateTrustDomainCommand(), nil
 }
+// GetAcceptedAudiences gets the acceptedAudiences property value. The acceptedAudiences property
+// returns a []string when successful
+func (m *UpdateTrustDomainCommand) GetAcceptedAudiences()([]string) {
+    return m.acceptedAudiences
+}
+// GetAcknowledgeAudienceRefusals gets the acknowledgeAudienceRefusals property value. The acknowledgeAudienceRefusals property
+// returns a *bool when successful
+func (m *UpdateTrustDomainCommand) GetAcknowledgeAudienceRefusals()(*bool) {
+    return m.acknowledgeAudienceRefusals
+}
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *UpdateTrustDomainCommand) GetAdditionalData()(map[string]any) {
     return m.additionalData
+}
+// GetAudienceEnforced gets the audienceEnforced property value. The audienceEnforced property
+// returns a *bool when successful
+func (m *UpdateTrustDomainCommand) GetAudienceEnforced()(*bool) {
+    return m.audienceEnforced
 }
 // GetClaimRules gets the claimRules property value. The claimRules property
 // returns a []ClaimRuleable when successful
@@ -58,6 +79,42 @@ func (m *UpdateTrustDomainCommand) GetDescription()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["acceptedAudiences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetAcceptedAudiences(res)
+        }
+        return nil
+    }
+    res["acknowledgeAudienceRefusals"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAcknowledgeAudienceRefusals(val)
+        }
+        return nil
+    }
+    res["audienceEnforced"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceEnforced(val)
+        }
+        return nil
+    }
     res["claimRules"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateClaimRuleFromDiscriminatorValue)
         if err != nil {
@@ -178,6 +235,24 @@ func (m *UpdateTrustDomainCommand) GetOidcJwksUri()(*string) {
 }
 // Serialize serializes information the current object
 func (m *UpdateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetAcceptedAudiences() != nil {
+        err := writer.WriteCollectionOfStringValues("acceptedAudiences", m.GetAcceptedAudiences())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("acknowledgeAudienceRefusals", m.GetAcknowledgeAudienceRefusals())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("audienceEnforced", m.GetAudienceEnforced())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetClaimRules() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClaimRules()))
         for i, v := range m.GetClaimRules() {
@@ -240,9 +315,21 @@ func (m *UpdateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f4
     }
     return nil
 }
+// SetAcceptedAudiences sets the acceptedAudiences property value. The acceptedAudiences property
+func (m *UpdateTrustDomainCommand) SetAcceptedAudiences(value []string)() {
+    m.acceptedAudiences = value
+}
+// SetAcknowledgeAudienceRefusals sets the acknowledgeAudienceRefusals property value. The acknowledgeAudienceRefusals property
+func (m *UpdateTrustDomainCommand) SetAcknowledgeAudienceRefusals(value *bool)() {
+    m.acknowledgeAudienceRefusals = value
+}
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UpdateTrustDomainCommand) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
+}
+// SetAudienceEnforced sets the audienceEnforced property value. The audienceEnforced property
+func (m *UpdateTrustDomainCommand) SetAudienceEnforced(value *bool)() {
+    m.audienceEnforced = value
 }
 // SetClaimRules sets the claimRules property value. The claimRules property
 func (m *UpdateTrustDomainCommand) SetClaimRules(value []ClaimRuleable)() {
@@ -279,6 +366,9 @@ func (m *UpdateTrustDomainCommand) SetOidcJwksUri(value *string)() {
 type UpdateTrustDomainCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAcceptedAudiences()([]string)
+    GetAcknowledgeAudienceRefusals()(*bool)
+    GetAudienceEnforced()(*bool)
     GetClaimRules()([]ClaimRuleable)
     GetDescription()(*string)
     GetGrantedRole()(*string)
@@ -287,6 +377,9 @@ type UpdateTrustDomainCommandable interface {
     GetName()(*string)
     GetOidcIssuerUrl()(*string)
     GetOidcJwksUri()(*string)
+    SetAcceptedAudiences(value []string)()
+    SetAcknowledgeAudienceRefusals(value *bool)()
+    SetAudienceEnforced(value *bool)()
     SetClaimRules(value []ClaimRuleable)()
     SetDescription(value *string)()
     SetGrantedRole(value *string)()

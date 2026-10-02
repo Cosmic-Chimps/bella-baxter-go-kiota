@@ -22,6 +22,8 @@ type AccessLogEntry struct {
     apiKeyName *string
     // The appClient property
     appClient *string
+    // The audienceMatched property
+    audienceMatched *bool
     // The bellaClient property
     bellaClient *string
     // The city property
@@ -42,6 +44,8 @@ type AccessLogEntry struct {
     id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The ipAddress property
     ipAddress *string
+    // The presentedAudiences property
+    presentedAudiences []string
     // The projectId property
     projectId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The projectSlug property
@@ -52,6 +56,8 @@ type AccessLogEntry struct {
     secretKey *string
     // The timestamp property
     timestamp *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The trustDomainId property
+    trustDomainId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The userAgent property
     userAgent *string
     // The userId property
@@ -100,6 +106,11 @@ func (m *AccessLogEntry) GetApiKeyName()(*string) {
 // returns a *string when successful
 func (m *AccessLogEntry) GetAppClient()(*string) {
     return m.appClient
+}
+// GetAudienceMatched gets the audienceMatched property value. The audienceMatched property
+// returns a *bool when successful
+func (m *AccessLogEntry) GetAudienceMatched()(*bool) {
+    return m.audienceMatched
 }
 // GetBellaClient gets the bellaClient property value. The bellaClient property
 // returns a *string when successful
@@ -192,6 +203,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         if val != nil {
             m.SetAppClient(val)
+        }
+        return nil
+    }
+    res["audienceMatched"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceMatched(val)
         }
         return nil
     }
@@ -295,6 +316,22 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["presentedAudiences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetPresentedAudiences(res)
+        }
+        return nil
+    }
     res["projectId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -345,6 +382,16 @@ func (m *AccessLogEntry) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         }
         return nil
     }
+    res["trustDomainId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTrustDomainId(val)
+        }
+        return nil
+    }
     res["userAgent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -387,6 +434,11 @@ func (m *AccessLogEntry) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770
 func (m *AccessLogEntry) GetIpAddress()(*string) {
     return m.ipAddress
 }
+// GetPresentedAudiences gets the presentedAudiences property value. The presentedAudiences property
+// returns a []string when successful
+func (m *AccessLogEntry) GetPresentedAudiences()([]string) {
+    return m.presentedAudiences
+}
 // GetProjectId gets the projectId property value. The projectId property
 // returns a *UUID when successful
 func (m *AccessLogEntry) GetProjectId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
@@ -411,6 +463,11 @@ func (m *AccessLogEntry) GetSecretKey()(*string) {
 // returns a *Time when successful
 func (m *AccessLogEntry) GetTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.timestamp
+}
+// GetTrustDomainId gets the trustDomainId property value. The trustDomainId property
+// returns a *UUID when successful
+func (m *AccessLogEntry) GetTrustDomainId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.trustDomainId
 }
 // GetUserAgent gets the userAgent property value. The userAgent property
 // returns a *string when successful
@@ -455,6 +512,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteStringValue("appClient", m.GetAppClient())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("audienceMatched", m.GetAudienceMatched())
         if err != nil {
             return err
         }
@@ -519,6 +582,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
             return err
         }
     }
+    if m.GetPresentedAudiences() != nil {
+        err := writer.WriteCollectionOfStringValues("presentedAudiences", m.GetPresentedAudiences())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteUUIDValue("projectId", m.GetProjectId())
         if err != nil {
@@ -545,6 +614,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     {
         err := writer.WriteTimeValue("timestamp", m.GetTimestamp())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteUUIDValue("trustDomainId", m.GetTrustDomainId())
         if err != nil {
             return err
         }
@@ -599,6 +674,10 @@ func (m *AccessLogEntry) SetApiKeyName(value *string)() {
 func (m *AccessLogEntry) SetAppClient(value *string)() {
     m.appClient = value
 }
+// SetAudienceMatched sets the audienceMatched property value. The audienceMatched property
+func (m *AccessLogEntry) SetAudienceMatched(value *bool)() {
+    m.audienceMatched = value
+}
 // SetBellaClient sets the bellaClient property value. The bellaClient property
 func (m *AccessLogEntry) SetBellaClient(value *string)() {
     m.bellaClient = value
@@ -639,6 +718,10 @@ func (m *AccessLogEntry) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf
 func (m *AccessLogEntry) SetIpAddress(value *string)() {
     m.ipAddress = value
 }
+// SetPresentedAudiences sets the presentedAudiences property value. The presentedAudiences property
+func (m *AccessLogEntry) SetPresentedAudiences(value []string)() {
+    m.presentedAudiences = value
+}
 // SetProjectId sets the projectId property value. The projectId property
 func (m *AccessLogEntry) SetProjectId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.projectId = value
@@ -658,6 +741,10 @@ func (m *AccessLogEntry) SetSecretKey(value *string)() {
 // SetTimestamp sets the timestamp property value. The timestamp property
 func (m *AccessLogEntry) SetTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.timestamp = value
+}
+// SetTrustDomainId sets the trustDomainId property value. The trustDomainId property
+func (m *AccessLogEntry) SetTrustDomainId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.trustDomainId = value
 }
 // SetUserAgent sets the userAgent property value. The userAgent property
 func (m *AccessLogEntry) SetUserAgent(value *string)() {
@@ -679,6 +766,7 @@ type AccessLogEntryable interface {
     GetApiKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetApiKeyName()(*string)
     GetAppClient()(*string)
+    GetAudienceMatched()(*bool)
     GetBellaClient()(*string)
     GetCity()(*string)
     GetCountry()(*string)
@@ -689,11 +777,13 @@ type AccessLogEntryable interface {
     GetEnvironmentSlug()(*string)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetIpAddress()(*string)
+    GetPresentedAudiences()([]string)
     GetProjectId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetProjectSlug()(*string)
     GetProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetSecretKey()(*string)
     GetTimestamp()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetTrustDomainId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetUserAgent()(*string)
     GetUserId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetUserName()(*string)
@@ -702,6 +792,7 @@ type AccessLogEntryable interface {
     SetApiKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetApiKeyName(value *string)()
     SetAppClient(value *string)()
+    SetAudienceMatched(value *bool)()
     SetBellaClient(value *string)()
     SetCity(value *string)()
     SetCountry(value *string)()
@@ -712,11 +803,13 @@ type AccessLogEntryable interface {
     SetEnvironmentSlug(value *string)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetIpAddress(value *string)()
+    SetPresentedAudiences(value []string)()
     SetProjectId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetProjectSlug(value *string)()
     SetProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetSecretKey(value *string)()
     SetTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetTrustDomainId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetUserAgent(value *string)()
     SetUserId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetUserName(value *string)()

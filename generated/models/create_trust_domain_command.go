@@ -8,6 +8,8 @@ import (
 )
 
 type CreateTrustDomainCommand struct {
+    // The acceptedAudiences property
+    acceptedAudiences []string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The claimRules property
@@ -37,6 +39,11 @@ func NewCreateTrustDomainCommand()(*CreateTrustDomainCommand) {
 func CreateCreateTrustDomainCommandFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewCreateTrustDomainCommand(), nil
 }
+// GetAcceptedAudiences gets the acceptedAudiences property value. The acceptedAudiences property
+// returns a []string when successful
+func (m *CreateTrustDomainCommand) GetAcceptedAudiences()([]string) {
+    return m.acceptedAudiences
+}
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *CreateTrustDomainCommand) GetAdditionalData()(map[string]any) {
@@ -56,6 +63,22 @@ func (m *CreateTrustDomainCommand) GetDescription()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *CreateTrustDomainCommand) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["acceptedAudiences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetAcceptedAudiences(res)
+        }
+        return nil
+    }
     res["claimRules"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateClaimRuleFromDiscriminatorValue)
         if err != nil {
@@ -161,6 +184,12 @@ func (m *CreateTrustDomainCommand) GetOidcJwksUri()(*string) {
 }
 // Serialize serializes information the current object
 func (m *CreateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetAcceptedAudiences() != nil {
+        err := writer.WriteCollectionOfStringValues("acceptedAudiences", m.GetAcceptedAudiences())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetClaimRules() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClaimRules()))
         for i, v := range m.GetClaimRules() {
@@ -217,6 +246,10 @@ func (m *CreateTrustDomainCommand) Serialize(writer i878a80d2330e89d26896388a3f4
     }
     return nil
 }
+// SetAcceptedAudiences sets the acceptedAudiences property value. The acceptedAudiences property
+func (m *CreateTrustDomainCommand) SetAcceptedAudiences(value []string)() {
+    m.acceptedAudiences = value
+}
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CreateTrustDomainCommand) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
@@ -252,6 +285,7 @@ func (m *CreateTrustDomainCommand) SetOidcJwksUri(value *string)() {
 type CreateTrustDomainCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAcceptedAudiences()([]string)
     GetClaimRules()([]ClaimRuleable)
     GetDescription()(*string)
     GetGrantedRole()(*string)
@@ -259,6 +293,7 @@ type CreateTrustDomainCommandable interface {
     GetName()(*string)
     GetOidcIssuerUrl()(*string)
     GetOidcJwksUri()(*string)
+    SetAcceptedAudiences(value []string)()
     SetClaimRules(value []ClaimRuleable)()
     SetDescription(value *string)()
     SetGrantedRole(value *string)()
