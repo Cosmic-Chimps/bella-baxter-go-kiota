@@ -24,11 +24,6 @@ func NewApiRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c
     urlParams["request-raw-url"] = rawUrl
     return NewApiRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Diagnostics the diagnostics property
-// returns a *DiagnosticsRequestBuilder when successful
-func (m *ApiRequestBuilder) Diagnostics()(*DiagnosticsRequestBuilder) {
-    return NewDiagnosticsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Tenants the tenants property
 // returns a *TenantsRequestBuilder when successful
 func (m *ApiRequestBuilder) Tenants()(*TenantsRequestBuilder) {
