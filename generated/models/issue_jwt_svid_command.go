@@ -18,6 +18,8 @@ type IssueJwtSvidCommand struct {
     bootstrapToken *string
     // The nodeAttestationToken property
     nodeAttestationToken *string
+    // The nodeReattestationCredential property
+    nodeReattestationCredential *string
     // The nodeType property
     nodeType *string
     // The workloadName property
@@ -99,6 +101,16 @@ func (m *IssueJwtSvidCommand) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["nodeReattestationCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodeReattestationCredential(val)
+        }
+        return nil
+    }
     res["nodeType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -125,6 +137,11 @@ func (m *IssueJwtSvidCommand) GetFieldDeserializers()(map[string]func(i878a80d23
 // returns a *string when successful
 func (m *IssueJwtSvidCommand) GetNodeAttestationToken()(*string) {
     return m.nodeAttestationToken
+}
+// GetNodeReattestationCredential gets the nodeReattestationCredential property value. The nodeReattestationCredential property
+// returns a *string when successful
+func (m *IssueJwtSvidCommand) GetNodeReattestationCredential()(*string) {
+    return m.nodeReattestationCredential
 }
 // GetNodeType gets the nodeType property value. The nodeType property
 // returns a *string when successful
@@ -158,6 +175,12 @@ func (m *IssueJwtSvidCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     {
         err := writer.WriteStringValue("nodeAttestationToken", m.GetNodeAttestationToken())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("nodeReattestationCredential", m.GetNodeReattestationCredential())
         if err != nil {
             return err
         }
@@ -202,6 +225,10 @@ func (m *IssueJwtSvidCommand) SetBootstrapToken(value *string)() {
 func (m *IssueJwtSvidCommand) SetNodeAttestationToken(value *string)() {
     m.nodeAttestationToken = value
 }
+// SetNodeReattestationCredential sets the nodeReattestationCredential property value. The nodeReattestationCredential property
+func (m *IssueJwtSvidCommand) SetNodeReattestationCredential(value *string)() {
+    m.nodeReattestationCredential = value
+}
 // SetNodeType sets the nodeType property value. The nodeType property
 func (m *IssueJwtSvidCommand) SetNodeType(value *string)() {
     m.nodeType = value
@@ -217,12 +244,14 @@ type IssueJwtSvidCommandable interface {
     GetAudience()(*string)
     GetBootstrapToken()(*string)
     GetNodeAttestationToken()(*string)
+    GetNodeReattestationCredential()(*string)
     GetNodeType()(*string)
     GetWorkloadName()(*string)
     SetAttestationClaims(value IssueJwtSvidCommand_attestationClaimsable)()
     SetAudience(value *string)()
     SetBootstrapToken(value *string)()
     SetNodeAttestationToken(value *string)()
+    SetNodeReattestationCredential(value *string)()
     SetNodeType(value *string)()
     SetWorkloadName(value *string)()
 }

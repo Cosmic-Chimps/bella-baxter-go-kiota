@@ -15,6 +15,8 @@ type AttestWorkloadIdentityResponse struct {
     certificate *string
     // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The nodeReattestationCredential property
+    nodeReattestationCredential *string
     // The privateKey property
     privateKey *string
     // The spiffeId property
@@ -73,6 +75,16 @@ func (m *AttestWorkloadIdentityResponse) GetFieldDeserializers()(map[string]func
         }
         return nil
     }
+    res["nodeReattestationCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodeReattestationCredential(val)
+        }
+        return nil
+    }
     res["privateKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -105,6 +117,11 @@ func (m *AttestWorkloadIdentityResponse) GetFieldDeserializers()(map[string]func
     }
     return res
 }
+// GetNodeReattestationCredential gets the nodeReattestationCredential property value. The nodeReattestationCredential property
+// returns a *string when successful
+func (m *AttestWorkloadIdentityResponse) GetNodeReattestationCredential()(*string) {
+    return m.nodeReattestationCredential
+}
 // GetPrivateKey gets the privateKey property value. The privateKey property
 // returns a *string when successful
 func (m *AttestWorkloadIdentityResponse) GetPrivateKey()(*string) {
@@ -130,6 +147,12 @@ func (m *AttestWorkloadIdentityResponse) Serialize(writer i878a80d2330e89d268963
     }
     {
         err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("nodeReattestationCredential", m.GetNodeReattestationCredential())
         if err != nil {
             return err
         }
@@ -172,6 +195,10 @@ func (m *AttestWorkloadIdentityResponse) SetCertificate(value *string)() {
 func (m *AttestWorkloadIdentityResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
 }
+// SetNodeReattestationCredential sets the nodeReattestationCredential property value. The nodeReattestationCredential property
+func (m *AttestWorkloadIdentityResponse) SetNodeReattestationCredential(value *string)() {
+    m.nodeReattestationCredential = value
+}
 // SetPrivateKey sets the privateKey property value. The privateKey property
 func (m *AttestWorkloadIdentityResponse) SetPrivateKey(value *string)() {
     m.privateKey = value
@@ -189,11 +216,13 @@ type AttestWorkloadIdentityResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCertificate()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetNodeReattestationCredential()(*string)
     GetPrivateKey()(*string)
     GetSpiffeId()(*string)
     GetTrustBundle()(*string)
     SetCertificate(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetNodeReattestationCredential(value *string)()
     SetPrivateKey(value *string)()
     SetSpiffeId(value *string)()
     SetTrustBundle(value *string)()

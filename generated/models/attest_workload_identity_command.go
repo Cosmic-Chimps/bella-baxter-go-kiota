@@ -16,6 +16,8 @@ type AttestWorkloadIdentityCommand struct {
     bootstrapToken *string
     // The nodeAttestationToken property
     nodeAttestationToken *string
+    // The nodeReattestationCredential property
+    nodeReattestationCredential *string
     // The nodeType property
     nodeType *string
     // The workloadName property
@@ -82,6 +84,16 @@ func (m *AttestWorkloadIdentityCommand) GetFieldDeserializers()(map[string]func(
         }
         return nil
     }
+    res["nodeReattestationCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodeReattestationCredential(val)
+        }
+        return nil
+    }
     res["nodeType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -109,6 +121,11 @@ func (m *AttestWorkloadIdentityCommand) GetFieldDeserializers()(map[string]func(
 func (m *AttestWorkloadIdentityCommand) GetNodeAttestationToken()(*string) {
     return m.nodeAttestationToken
 }
+// GetNodeReattestationCredential gets the nodeReattestationCredential property value. The nodeReattestationCredential property
+// returns a *string when successful
+func (m *AttestWorkloadIdentityCommand) GetNodeReattestationCredential()(*string) {
+    return m.nodeReattestationCredential
+}
 // GetNodeType gets the nodeType property value. The nodeType property
 // returns a *string when successful
 func (m *AttestWorkloadIdentityCommand) GetNodeType()(*string) {
@@ -135,6 +152,12 @@ func (m *AttestWorkloadIdentityCommand) Serialize(writer i878a80d2330e89d2689638
     }
     {
         err := writer.WriteStringValue("nodeAttestationToken", m.GetNodeAttestationToken())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("nodeReattestationCredential", m.GetNodeReattestationCredential())
         if err != nil {
             return err
         }
@@ -175,6 +198,10 @@ func (m *AttestWorkloadIdentityCommand) SetBootstrapToken(value *string)() {
 func (m *AttestWorkloadIdentityCommand) SetNodeAttestationToken(value *string)() {
     m.nodeAttestationToken = value
 }
+// SetNodeReattestationCredential sets the nodeReattestationCredential property value. The nodeReattestationCredential property
+func (m *AttestWorkloadIdentityCommand) SetNodeReattestationCredential(value *string)() {
+    m.nodeReattestationCredential = value
+}
 // SetNodeType sets the nodeType property value. The nodeType property
 func (m *AttestWorkloadIdentityCommand) SetNodeType(value *string)() {
     m.nodeType = value
@@ -189,11 +216,13 @@ type AttestWorkloadIdentityCommandable interface {
     GetAttestationClaims()(AttestWorkloadIdentityCommand_attestationClaimsable)
     GetBootstrapToken()(*string)
     GetNodeAttestationToken()(*string)
+    GetNodeReattestationCredential()(*string)
     GetNodeType()(*string)
     GetWorkloadName()(*string)
     SetAttestationClaims(value AttestWorkloadIdentityCommand_attestationClaimsable)()
     SetBootstrapToken(value *string)()
     SetNodeAttestationToken(value *string)()
+    SetNodeReattestationCredential(value *string)()
     SetNodeType(value *string)()
     SetWorkloadName(value *string)()
 }

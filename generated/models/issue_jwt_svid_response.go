@@ -15,6 +15,8 @@ type IssueJwtSvidResponse struct {
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The jwtSvid property
     jwtSvid *string
+    // The nodeReattestationCredential property
+    nodeReattestationCredential *string
     // The spiffeId property
     spiffeId *string
 }
@@ -64,6 +66,16 @@ func (m *IssueJwtSvidResponse) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         return nil
     }
+    res["nodeReattestationCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNodeReattestationCredential(val)
+        }
+        return nil
+    }
     res["spiffeId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -81,6 +93,11 @@ func (m *IssueJwtSvidResponse) GetFieldDeserializers()(map[string]func(i878a80d2
 func (m *IssueJwtSvidResponse) GetJwtSvid()(*string) {
     return m.jwtSvid
 }
+// GetNodeReattestationCredential gets the nodeReattestationCredential property value. The nodeReattestationCredential property
+// returns a *string when successful
+func (m *IssueJwtSvidResponse) GetNodeReattestationCredential()(*string) {
+    return m.nodeReattestationCredential
+}
 // GetSpiffeId gets the spiffeId property value. The spiffeId property
 // returns a *string when successful
 func (m *IssueJwtSvidResponse) GetSpiffeId()(*string) {
@@ -96,6 +113,12 @@ func (m *IssueJwtSvidResponse) Serialize(writer i878a80d2330e89d26896388a3f487ee
     }
     {
         err := writer.WriteStringValue("jwtSvid", m.GetJwtSvid())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("nodeReattestationCredential", m.GetNodeReattestationCredential())
         if err != nil {
             return err
         }
@@ -126,6 +149,10 @@ func (m *IssueJwtSvidResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad
 func (m *IssueJwtSvidResponse) SetJwtSvid(value *string)() {
     m.jwtSvid = value
 }
+// SetNodeReattestationCredential sets the nodeReattestationCredential property value. The nodeReattestationCredential property
+func (m *IssueJwtSvidResponse) SetNodeReattestationCredential(value *string)() {
+    m.nodeReattestationCredential = value
+}
 // SetSpiffeId sets the spiffeId property value. The spiffeId property
 func (m *IssueJwtSvidResponse) SetSpiffeId(value *string)() {
     m.spiffeId = value
@@ -135,8 +162,10 @@ type IssueJwtSvidResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetJwtSvid()(*string)
+    GetNodeReattestationCredential()(*string)
     GetSpiffeId()(*string)
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetJwtSvid(value *string)()
+    SetNodeReattestationCredential(value *string)()
     SetSpiffeId(value *string)()
 }
