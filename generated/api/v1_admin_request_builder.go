@@ -39,11 +39,6 @@ func (m *V1AdminRequestBuilder) Notifications()(*V1AdminNotificationsRequestBuil
 func (m *V1AdminRequestBuilder) Roles()(*V1AdminRolesRequestBuilder) {
     return NewV1AdminRolesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Tenants the tenants property
-// returns a *V1AdminTenantsRequestBuilder when successful
-func (m *V1AdminRequestBuilder) Tenants()(*V1AdminTenantsRequestBuilder) {
-    return NewV1AdminTenantsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Users the users property
 // returns a *V1AdminUsersRequestBuilder when successful
 func (m *V1AdminRequestBuilder) Users()(*V1AdminUsersRequestBuilder) {

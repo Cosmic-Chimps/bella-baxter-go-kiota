@@ -27,12 +27,16 @@ func NewV1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder(rawUrl stri
     return NewV1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Delete dELETE_api_v1_environments_environmentId_trust_domains_id
+// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return err
     }
-    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    err = m.BaseRequestBuilder.RequestAdapter.SendNoContent(ctx, requestInfo, errorMapping)
     if err != nil {
         return err
     }
@@ -40,12 +44,16 @@ func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Delete(ct
 }
 // Get gET_api_v1_environments_environmentId_trust_domains_id
 // returns a TrustDomainResponseable when successful
+// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.TrustDomainResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateTrustDomainResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateTrustDomainResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -56,6 +64,8 @@ func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Get(ctx c
 }
 // Put pUT_api_v1_environments_environmentId_trust_domains_id
 // returns a TrustDomainResponseable when successful
+// returns a ProblemDetails error when the service returns a 400 status code
+// returns a ProblemDetails error when the service returns a 404 status code
 // returns a ProblemDetails error when the service returns a 409 status code
 // returns a ProblemDetails error when the service returns a 503 status code
 func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Put(ctx context.Context, body i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.UpdateTrustDomainCommandable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.TrustDomainResponseable, error) {
@@ -64,6 +74,8 @@ func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Put(ctx c
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "409": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "503": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
@@ -81,7 +93,7 @@ func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) Put(ctx c
 func (m *V1EnvironmentsItemTrustDomainsTrustDomainsItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
-    requestInfo.Headers.TryAdd("Accept", "application/json")
+    requestInfo.Headers.TryAdd("Accept", "application/json, application/problem+json")
     return requestInfo, nil
 }
 // ToGetRequestInformation gET_api_v1_environments_environmentId_trust_domains_id

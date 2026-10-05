@@ -16,8 +16,12 @@ type MigrateTenantEncryptionResponse struct {
     message *string
     // The notificationsEncrypted property
     notificationsEncrypted *int32
+    // The notMigrated property
+    notMigrated []MigrationNotMigratedable
     // The projectsProcessed property
     projectsProcessed *int32
+    // The projectsSkipped property
+    projectsSkipped *int32
     // The providersEncrypted property
     providersEncrypted *int32
     // The secretsEncrypted property
@@ -85,6 +89,22 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
         }
         return nil
     }
+    res["notMigrated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateMigrationNotMigratedFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]MigrationNotMigratedable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(MigrationNotMigratedable)
+                }
+            }
+            m.SetNotMigrated(res)
+        }
+        return nil
+    }
     res["projectsProcessed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -92,6 +112,16 @@ func (m *MigrateTenantEncryptionResponse) GetFieldDeserializers()(map[string]fun
         }
         if val != nil {
             m.SetProjectsProcessed(val)
+        }
+        return nil
+    }
+    res["projectsSkipped"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetProjectsSkipped(val)
         }
         return nil
     }
@@ -157,10 +187,20 @@ func (m *MigrateTenantEncryptionResponse) GetMessage()(*string) {
 func (m *MigrateTenantEncryptionResponse) GetNotificationsEncrypted()(*int32) {
     return m.notificationsEncrypted
 }
+// GetNotMigrated gets the notMigrated property value. The notMigrated property
+// returns a []MigrationNotMigratedable when successful
+func (m *MigrateTenantEncryptionResponse) GetNotMigrated()([]MigrationNotMigratedable) {
+    return m.notMigrated
+}
 // GetProjectsProcessed gets the projectsProcessed property value. The projectsProcessed property
 // returns a *int32 when successful
 func (m *MigrateTenantEncryptionResponse) GetProjectsProcessed()(*int32) {
     return m.projectsProcessed
+}
+// GetProjectsSkipped gets the projectsSkipped property value. The projectsSkipped property
+// returns a *int32 when successful
+func (m *MigrateTenantEncryptionResponse) GetProjectsSkipped()(*int32) {
+    return m.projectsSkipped
 }
 // GetProvidersEncrypted gets the providersEncrypted property value. The providersEncrypted property
 // returns a *int32 when successful
@@ -207,8 +247,26 @@ func (m *MigrateTenantEncryptionResponse) Serialize(writer i878a80d2330e89d26896
             return err
         }
     }
+    if m.GetNotMigrated() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetNotMigrated()))
+        for i, v := range m.GetNotMigrated() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err := writer.WriteCollectionOfObjectValues("notMigrated", cast)
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteInt32Value("projectsProcessed", m.GetProjectsProcessed())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteInt32Value("projectsSkipped", m.GetProjectsSkipped())
         if err != nil {
             return err
         }
@@ -267,9 +325,17 @@ func (m *MigrateTenantEncryptionResponse) SetMessage(value *string)() {
 func (m *MigrateTenantEncryptionResponse) SetNotificationsEncrypted(value *int32)() {
     m.notificationsEncrypted = value
 }
+// SetNotMigrated sets the notMigrated property value. The notMigrated property
+func (m *MigrateTenantEncryptionResponse) SetNotMigrated(value []MigrationNotMigratedable)() {
+    m.notMigrated = value
+}
 // SetProjectsProcessed sets the projectsProcessed property value. The projectsProcessed property
 func (m *MigrateTenantEncryptionResponse) SetProjectsProcessed(value *int32)() {
     m.projectsProcessed = value
+}
+// SetProjectsSkipped sets the projectsSkipped property value. The projectsSkipped property
+func (m *MigrateTenantEncryptionResponse) SetProjectsSkipped(value *int32)() {
+    m.projectsSkipped = value
 }
 // SetProvidersEncrypted sets the providersEncrypted property value. The providersEncrypted property
 func (m *MigrateTenantEncryptionResponse) SetProvidersEncrypted(value *int32)() {
@@ -297,7 +363,9 @@ type MigrateTenantEncryptionResponseable interface {
     GetEnvironmentsProcessed()(*int32)
     GetMessage()(*string)
     GetNotificationsEncrypted()(*int32)
+    GetNotMigrated()([]MigrationNotMigratedable)
     GetProjectsProcessed()(*int32)
+    GetProjectsSkipped()(*int32)
     GetProvidersEncrypted()(*int32)
     GetSecretsEncrypted()(*int32)
     GetSecretsSkipped()(*int32)
@@ -306,7 +374,9 @@ type MigrateTenantEncryptionResponseable interface {
     SetEnvironmentsProcessed(value *int32)()
     SetMessage(value *string)()
     SetNotificationsEncrypted(value *int32)()
+    SetNotMigrated(value []MigrationNotMigratedable)()
     SetProjectsProcessed(value *int32)()
+    SetProjectsSkipped(value *int32)()
     SetProvidersEncrypted(value *int32)()
     SetSecretsEncrypted(value *int32)()
     SetSecretsSkipped(value *int32)()

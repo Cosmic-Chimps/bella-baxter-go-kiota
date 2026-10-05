@@ -12,6 +12,8 @@ import (
 type BillingStatementResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The certificatesIssued property
+    certificatesIssued *int64
     // The finalizedAt property
     finalizedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The freeQuota property
@@ -34,6 +36,8 @@ type BillingStatementResponse struct {
     plan *string
     // The requestsUsed property
     requestsUsed *int64
+    // The svidsIssued property
+    svidsIssued *int64
 }
 // NewBillingStatementResponse instantiates a new BillingStatementResponse and sets the default values.
 func NewBillingStatementResponse()(*BillingStatementResponse) {
@@ -52,10 +56,25 @@ func CreateBillingStatementResponseFromDiscriminatorValue(parseNode i878a80d2330
 func (m *BillingStatementResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCertificatesIssued gets the certificatesIssued property value. The certificatesIssued property
+// returns a *int64 when successful
+func (m *BillingStatementResponse) GetCertificatesIssued()(*int64) {
+    return m.certificatesIssued
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *BillingStatementResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["certificatesIssued"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertificatesIssued(val)
+        }
+        return nil
+    }
     res["finalizedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -166,6 +185,16 @@ func (m *BillingStatementResponse) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["svidsIssued"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSvidsIssued(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFinalizedAt gets the finalizedAt property value. The finalizedAt property
@@ -223,8 +252,19 @@ func (m *BillingStatementResponse) GetPlan()(*string) {
 func (m *BillingStatementResponse) GetRequestsUsed()(*int64) {
     return m.requestsUsed
 }
+// GetSvidsIssued gets the svidsIssued property value. The svidsIssued property
+// returns a *int64 when successful
+func (m *BillingStatementResponse) GetSvidsIssued()(*int64) {
+    return m.svidsIssued
+}
 // Serialize serializes information the current object
 func (m *BillingStatementResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteInt64Value("certificatesIssued", m.GetCertificatesIssued())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteTimeValue("finalizedAt", m.GetFinalizedAt())
         if err != nil {
@@ -292,6 +332,12 @@ func (m *BillingStatementResponse) Serialize(writer i878a80d2330e89d26896388a3f4
         }
     }
     {
+        err := writer.WriteInt64Value("svidsIssued", m.GetSvidsIssued())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -302,6 +348,10 @@ func (m *BillingStatementResponse) Serialize(writer i878a80d2330e89d26896388a3f4
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *BillingStatementResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
+}
+// SetCertificatesIssued sets the certificatesIssued property value. The certificatesIssued property
+func (m *BillingStatementResponse) SetCertificatesIssued(value *int64)() {
+    m.certificatesIssued = value
 }
 // SetFinalizedAt sets the finalizedAt property value. The finalizedAt property
 func (m *BillingStatementResponse) SetFinalizedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
@@ -347,9 +397,14 @@ func (m *BillingStatementResponse) SetPlan(value *string)() {
 func (m *BillingStatementResponse) SetRequestsUsed(value *int64)() {
     m.requestsUsed = value
 }
+// SetSvidsIssued sets the svidsIssued property value. The svidsIssued property
+func (m *BillingStatementResponse) SetSvidsIssued(value *int64)() {
+    m.svidsIssued = value
+}
 type BillingStatementResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCertificatesIssued()(*int64)
     GetFinalizedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetFreeQuota()(*int32)
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
@@ -361,6 +416,8 @@ type BillingStatementResponseable interface {
     GetOverageRequests()(*int64)
     GetPlan()(*string)
     GetRequestsUsed()(*int64)
+    GetSvidsIssued()(*int64)
+    SetCertificatesIssued(value *int64)()
     SetFinalizedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetFreeQuota(value *int32)()
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
@@ -372,4 +429,5 @@ type BillingStatementResponseable interface {
     SetOverageRequests(value *int64)()
     SetPlan(value *string)()
     SetRequestsUsed(value *int64)()
+    SetSvidsIssued(value *int64)()
 }

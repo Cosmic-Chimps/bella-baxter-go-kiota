@@ -10,6 +10,8 @@ import (
 type TenantUsageResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The certificatesIssued property
+    certificatesIssued *int64
     // The currentMonth property
     currentMonth *string
     // The estimatedOverageCost property
@@ -30,6 +32,8 @@ type TenantUsageResponse struct {
     requestsRemaining *int64
     // The requestsUsed property
     requestsUsed *int64
+    // The svidsIssued property
+    svidsIssued *int64
 }
 // NewTenantUsageResponse instantiates a new TenantUsageResponse and sets the default values.
 func NewTenantUsageResponse()(*TenantUsageResponse) {
@@ -48,6 +52,11 @@ func CreateTenantUsageResponseFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *TenantUsageResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCertificatesIssued gets the certificatesIssued property value. The certificatesIssued property
+// returns a *int64 when successful
+func (m *TenantUsageResponse) GetCertificatesIssued()(*int64) {
+    return m.certificatesIssued
+}
 // GetCurrentMonth gets the currentMonth property value. The currentMonth property
 // returns a *string when successful
 func (m *TenantUsageResponse) GetCurrentMonth()(*string) {
@@ -62,6 +71,16 @@ func (m *TenantUsageResponse) GetEstimatedOverageCost()(*float64) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *TenantUsageResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["certificatesIssued"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertificatesIssued(val)
+        }
+        return nil
+    }
     res["currentMonth"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -162,6 +181,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         return nil
     }
+    res["svidsIssued"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSvidsIssued(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFreeMonthlyQuota gets the freeMonthlyQuota property value. The freeMonthlyQuota property
@@ -204,8 +233,19 @@ func (m *TenantUsageResponse) GetRequestsRemaining()(*int64) {
 func (m *TenantUsageResponse) GetRequestsUsed()(*int64) {
     return m.requestsUsed
 }
+// GetSvidsIssued gets the svidsIssued property value. The svidsIssued property
+// returns a *int64 when successful
+func (m *TenantUsageResponse) GetSvidsIssued()(*int64) {
+    return m.svidsIssued
+}
 // Serialize serializes information the current object
 func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteInt64Value("certificatesIssued", m.GetCertificatesIssued())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteStringValue("currentMonth", m.GetCurrentMonth())
         if err != nil {
@@ -267,6 +307,12 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteInt64Value("svidsIssued", m.GetSvidsIssued())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -277,6 +323,10 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *TenantUsageResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
+}
+// SetCertificatesIssued sets the certificatesIssued property value. The certificatesIssued property
+func (m *TenantUsageResponse) SetCertificatesIssued(value *int64)() {
+    m.certificatesIssued = value
 }
 // SetCurrentMonth sets the currentMonth property value. The currentMonth property
 func (m *TenantUsageResponse) SetCurrentMonth(value *string)() {
@@ -318,9 +368,14 @@ func (m *TenantUsageResponse) SetRequestsRemaining(value *int64)() {
 func (m *TenantUsageResponse) SetRequestsUsed(value *int64)() {
     m.requestsUsed = value
 }
+// SetSvidsIssued sets the svidsIssued property value. The svidsIssued property
+func (m *TenantUsageResponse) SetSvidsIssued(value *int64)() {
+    m.svidsIssued = value
+}
 type TenantUsageResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCertificatesIssued()(*int64)
     GetCurrentMonth()(*string)
     GetEstimatedOverageCost()(*float64)
     GetFreeMonthlyQuota()(*int32)
@@ -331,6 +386,8 @@ type TenantUsageResponseable interface {
     GetPlan()(*string)
     GetRequestsRemaining()(*int64)
     GetRequestsUsed()(*int64)
+    GetSvidsIssued()(*int64)
+    SetCertificatesIssued(value *int64)()
     SetCurrentMonth(value *string)()
     SetEstimatedOverageCost(value *float64)()
     SetFreeMonthlyQuota(value *int32)()
@@ -341,4 +398,5 @@ type TenantUsageResponseable interface {
     SetPlan(value *string)()
     SetRequestsRemaining(value *int64)()
     SetRequestsUsed(value *int64)()
+    SetSvidsIssued(value *int64)()
 }

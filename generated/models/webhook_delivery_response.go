@@ -15,6 +15,8 @@ type WebhookDeliveryResponse struct {
     attemptedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The durationMs property
     durationMs *float64
+    // The errorCode property
+    errorCode *string
     // The errorMessage property
     errorMessage *string
     // The eventType property
@@ -55,6 +57,11 @@ func (m *WebhookDeliveryResponse) GetAttemptedAt()(*i336074805fc853987abe6f7fe3a
 func (m *WebhookDeliveryResponse) GetDurationMs()(*float64) {
     return m.durationMs
 }
+// GetErrorCode gets the errorCode property value. The errorCode property
+// returns a *string when successful
+func (m *WebhookDeliveryResponse) GetErrorCode()(*string) {
+    return m.errorCode
+}
 // GetErrorMessage gets the errorMessage property value. The errorMessage property
 // returns a *string when successful
 func (m *WebhookDeliveryResponse) GetErrorMessage()(*string) {
@@ -86,6 +93,16 @@ func (m *WebhookDeliveryResponse) GetFieldDeserializers()(map[string]func(i878a8
         }
         if val != nil {
             m.SetDurationMs(val)
+        }
+        return nil
+    }
+    res["errorCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetErrorCode(val)
         }
         return nil
     }
@@ -186,6 +203,12 @@ func (m *WebhookDeliveryResponse) Serialize(writer i878a80d2330e89d26896388a3f48
         }
     }
     {
+        err := writer.WriteStringValue("errorCode", m.GetErrorCode())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("errorMessage", m.GetErrorMessage())
         if err != nil {
             return err
@@ -241,6 +264,10 @@ func (m *WebhookDeliveryResponse) SetAttemptedAt(value *i336074805fc853987abe6f7
 func (m *WebhookDeliveryResponse) SetDurationMs(value *float64)() {
     m.durationMs = value
 }
+// SetErrorCode sets the errorCode property value. The errorCode property
+func (m *WebhookDeliveryResponse) SetErrorCode(value *string)() {
+    m.errorCode = value
+}
 // SetErrorMessage sets the errorMessage property value. The errorMessage property
 func (m *WebhookDeliveryResponse) SetErrorMessage(value *string)() {
     m.errorMessage = value
@@ -270,6 +297,7 @@ type WebhookDeliveryResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAttemptedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDurationMs()(*float64)
+    GetErrorCode()(*string)
     GetErrorMessage()(*string)
     GetEventType()(*string)
     GetId()(*string)
@@ -278,6 +306,7 @@ type WebhookDeliveryResponseable interface {
     GetWebhookId()(*string)
     SetAttemptedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDurationMs(value *float64)()
+    SetErrorCode(value *string)()
     SetErrorMessage(value *string)()
     SetEventType(value *string)()
     SetId(value *string)()

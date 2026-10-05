@@ -19,6 +19,12 @@ type PkiCaPublicKeyResponse struct {
     certificate *string
     // The instructions property
     instructions *string
+    // The issuerRemedy property
+    issuerRemedy *string
+    // The issuerStatus property
+    issuerStatus *string
+    // The issuingAuthority property
+    issuingAuthority *string
     // The vaultProviderId property
     vaultProviderId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The vaultProviderName property
@@ -29,6 +35,10 @@ func NewPkiCaPublicKeyResponse()(*PkiCaPublicKeyResponse) {
     m := &PkiCaPublicKeyResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    issuerStatusValue := "unreadable"
+    m.SetIssuerStatus(&issuerStatusValue)
+    issuingAuthorityValue := "tenant"
+    m.SetIssuingAuthority(&issuingAuthorityValue)
     return m
 }
 // CreatePkiCaPublicKeyResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -100,6 +110,36 @@ func (m *PkiCaPublicKeyResponse) GetFieldDeserializers()(map[string]func(i878a80
         }
         return nil
     }
+    res["issuerRemedy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuerRemedy(val)
+        }
+        return nil
+    }
+    res["issuerStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuerStatus(val)
+        }
+        return nil
+    }
+    res["issuingAuthority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuingAuthority(val)
+        }
+        return nil
+    }
     res["vaultProviderId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -126,6 +166,21 @@ func (m *PkiCaPublicKeyResponse) GetFieldDeserializers()(map[string]func(i878a80
 // returns a *string when successful
 func (m *PkiCaPublicKeyResponse) GetInstructions()(*string) {
     return m.instructions
+}
+// GetIssuerRemedy gets the issuerRemedy property value. The issuerRemedy property
+// returns a *string when successful
+func (m *PkiCaPublicKeyResponse) GetIssuerRemedy()(*string) {
+    return m.issuerRemedy
+}
+// GetIssuerStatus gets the issuerStatus property value. The issuerStatus property
+// returns a *string when successful
+func (m *PkiCaPublicKeyResponse) GetIssuerStatus()(*string) {
+    return m.issuerStatus
+}
+// GetIssuingAuthority gets the issuingAuthority property value. The issuingAuthority property
+// returns a *string when successful
+func (m *PkiCaPublicKeyResponse) GetIssuingAuthority()(*string) {
+    return m.issuingAuthority
 }
 // GetVaultProviderId gets the vaultProviderId property value. The vaultProviderId property
 // returns a *UUID when successful
@@ -159,6 +214,24 @@ func (m *PkiCaPublicKeyResponse) Serialize(writer i878a80d2330e89d26896388a3f487
     }
     {
         err := writer.WriteStringValue("instructions", m.GetInstructions())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("issuerRemedy", m.GetIssuerRemedy())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("issuerStatus", m.GetIssuerStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("issuingAuthority", m.GetIssuingAuthority())
         if err != nil {
             return err
         }
@@ -203,6 +276,18 @@ func (m *PkiCaPublicKeyResponse) SetCertificate(value *string)() {
 func (m *PkiCaPublicKeyResponse) SetInstructions(value *string)() {
     m.instructions = value
 }
+// SetIssuerRemedy sets the issuerRemedy property value. The issuerRemedy property
+func (m *PkiCaPublicKeyResponse) SetIssuerRemedy(value *string)() {
+    m.issuerRemedy = value
+}
+// SetIssuerStatus sets the issuerStatus property value. The issuerStatus property
+func (m *PkiCaPublicKeyResponse) SetIssuerStatus(value *string)() {
+    m.issuerStatus = value
+}
+// SetIssuingAuthority sets the issuingAuthority property value. The issuingAuthority property
+func (m *PkiCaPublicKeyResponse) SetIssuingAuthority(value *string)() {
+    m.issuingAuthority = value
+}
 // SetVaultProviderId sets the vaultProviderId property value. The vaultProviderId property
 func (m *PkiCaPublicKeyResponse) SetVaultProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.vaultProviderId = value
@@ -218,12 +303,18 @@ type PkiCaPublicKeyResponseable interface {
     GetCaChain()(*string)
     GetCertificate()(*string)
     GetInstructions()(*string)
+    GetIssuerRemedy()(*string)
+    GetIssuerStatus()(*string)
+    GetIssuingAuthority()(*string)
     GetVaultProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetVaultProviderName()(*string)
     SetAcmeDirectoryUrl(value *string)()
     SetCaChain(value *string)()
     SetCertificate(value *string)()
     SetInstructions(value *string)()
+    SetIssuerRemedy(value *string)()
+    SetIssuerStatus(value *string)()
+    SetIssuingAuthority(value *string)()
     SetVaultProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetVaultProviderName(value *string)()
 }

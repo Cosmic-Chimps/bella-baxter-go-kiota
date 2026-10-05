@@ -44,12 +44,16 @@ func NewV1ProjectsItemEnvironmentsRequestBuilder(rawUrl string, requestAdapter i
 }
 // Get gET_api_v1_projects_projectRef_environments
 // returns a []EnvironmentResponseable when successful
+// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1ProjectsItemEnvironmentsRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsItemEnvironmentsRequestBuilderGetQueryParameters])([]i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.EnvironmentResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendCollection(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -65,6 +69,7 @@ func (m *V1ProjectsItemEnvironmentsRequestBuilder) Get(ctx context.Context, requ
 // returns a EnvironmentOperationResponseable when successful
 // returns a EnvironmentOperationResponse error when the service returns a 400 status code
 // returns a EnvironmentOperationResponse error when the service returns a 401 status code
+// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1ProjectsItemEnvironmentsRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentCommandable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.EnvironmentOperationResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -73,6 +78,7 @@ func (m *V1ProjectsItemEnvironmentsRequestBuilder) Post(ctx context.Context, bod
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue,
         "401": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue,
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue, errorMapping)
     if err != nil {

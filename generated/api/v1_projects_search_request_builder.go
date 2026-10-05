@@ -32,6 +32,7 @@ func NewV1ProjectsSearchRequestBuilder(rawUrl string, requestAdapter i2ae4187f7d
 }
 // Get gET_api_v1_projects_search
 // returns a []byte when successful
+// returns a ProblemDetails error when the service returns a 404 status code
 // returns a ProblemDetails error when the service returns a 501 status code
 func (m *V1ProjectsSearchRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsSearchRequestBuilderGetQueryParameters])([]byte, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -39,6 +40,7 @@ func (m *V1ProjectsSearchRequestBuilder) Get(ctx context.Context, requestConfigu
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "501": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
@@ -55,7 +57,7 @@ func (m *V1ProjectsSearchRequestBuilder) Get(ctx context.Context, requestConfigu
 func (m *V1ProjectsSearchRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsSearchRequestBuilderGetQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
-    requestInfo.Headers.TryAdd("Accept", "application/json, application/problem+json")
+    requestInfo.Headers.TryAdd("Accept", "application/problem+json")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

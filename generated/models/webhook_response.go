@@ -32,6 +32,8 @@ type WebhookResponse struct {
     linkedEnvironmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The linkedKeyName property
     linkedKeyName *string
+    // The linkedProviderId property
+    linkedProviderId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The name property
     name *string
     // The nextRotationAt property
@@ -199,6 +201,16 @@ func (m *WebhookResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         }
         return nil
     }
+    res["linkedProviderId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLinkedProviderId(val)
+        }
+        return nil
+    }
     res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -295,6 +307,11 @@ func (m *WebhookResponse) GetLinkedEnvironmentId()(*i561e97a8befe7661a44c8f54600
 // returns a *string when successful
 func (m *WebhookResponse) GetLinkedKeyName()(*string) {
     return m.linkedKeyName
+}
+// GetLinkedProviderId gets the linkedProviderId property value. The linkedProviderId property
+// returns a *UUID when successful
+func (m *WebhookResponse) GetLinkedProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.linkedProviderId
 }
 // GetName gets the name property value. The name property
 // returns a *string when successful
@@ -394,6 +411,12 @@ func (m *WebhookResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
         }
     }
     {
+        err := writer.WriteUUIDValue("linkedProviderId", m.GetLinkedProviderId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("name", m.GetName())
         if err != nil {
             return err
@@ -487,6 +510,10 @@ func (m *WebhookResponse) SetLinkedEnvironmentId(value *i561e97a8befe7661a44c8f5
 func (m *WebhookResponse) SetLinkedKeyName(value *string)() {
     m.linkedKeyName = value
 }
+// SetLinkedProviderId sets the linkedProviderId property value. The linkedProviderId property
+func (m *WebhookResponse) SetLinkedProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.linkedProviderId = value
+}
 // SetName sets the name property value. The name property
 func (m *WebhookResponse) SetName(value *string)() {
     m.name = value
@@ -528,6 +555,7 @@ type WebhookResponseable interface {
     GetKeyPrefix()(*string)
     GetLinkedEnvironmentId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetLinkedKeyName()(*string)
+    GetLinkedProviderId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetName()(*string)
     GetNextRotationAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetProjectId()(*string)
@@ -545,6 +573,7 @@ type WebhookResponseable interface {
     SetKeyPrefix(value *string)()
     SetLinkedEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetLinkedKeyName(value *string)()
+    SetLinkedProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetName(value *string)()
     SetNextRotationAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetProjectId(value *string)()

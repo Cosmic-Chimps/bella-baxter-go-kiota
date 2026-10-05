@@ -10,6 +10,8 @@ import (
 type UpdateProviderCommand struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The clearSensitiveKeys property
+    clearSensitiveKeys []string
     // The configuration property
     configuration UpdateProviderCommand_configurationable
     // The description property
@@ -34,6 +36,11 @@ func CreateUpdateProviderCommandFromDiscriminatorValue(parseNode i878a80d2330e89
 func (m *UpdateProviderCommand) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetClearSensitiveKeys gets the clearSensitiveKeys property value. The clearSensitiveKeys property
+// returns a []string when successful
+func (m *UpdateProviderCommand) GetClearSensitiveKeys()([]string) {
+    return m.clearSensitiveKeys
+}
 // GetConfiguration gets the configuration property value. The configuration property
 // returns a UpdateProviderCommand_configurationable when successful
 func (m *UpdateProviderCommand) GetConfiguration()(UpdateProviderCommand_configurationable) {
@@ -48,6 +55,22 @@ func (m *UpdateProviderCommand) GetDescription()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *UpdateProviderCommand) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["clearSensitiveKeys"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetClearSensitiveKeys(res)
+        }
+        return nil
+    }
     res["configuration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateUpdateProviderCommand_configurationFromDiscriminatorValue)
         if err != nil {
@@ -87,6 +110,12 @@ func (m *UpdateProviderCommand) GetName()(*string) {
 }
 // Serialize serializes information the current object
 func (m *UpdateProviderCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    if m.GetClearSensitiveKeys() != nil {
+        err := writer.WriteCollectionOfStringValues("clearSensitiveKeys", m.GetClearSensitiveKeys())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteObjectValue("configuration", m.GetConfiguration())
         if err != nil {
@@ -117,6 +146,10 @@ func (m *UpdateProviderCommand) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *UpdateProviderCommand) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetClearSensitiveKeys sets the clearSensitiveKeys property value. The clearSensitiveKeys property
+func (m *UpdateProviderCommand) SetClearSensitiveKeys(value []string)() {
+    m.clearSensitiveKeys = value
+}
 // SetConfiguration sets the configuration property value. The configuration property
 func (m *UpdateProviderCommand) SetConfiguration(value UpdateProviderCommand_configurationable)() {
     m.configuration = value
@@ -132,9 +165,11 @@ func (m *UpdateProviderCommand) SetName(value *string)() {
 type UpdateProviderCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClearSensitiveKeys()([]string)
     GetConfiguration()(UpdateProviderCommand_configurationable)
     GetDescription()(*string)
     GetName()(*string)
+    SetClearSensitiveKeys(value []string)()
     SetConfiguration(value UpdateProviderCommand_configurationable)()
     SetDescription(value *string)()
     SetName(value *string)()

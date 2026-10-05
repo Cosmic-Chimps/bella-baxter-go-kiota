@@ -9,14 +9,14 @@ import (
     i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
 )
 
-// TenantsItemSettingsRequestBuilder builds and executes requests for operations under \api\tenants\{identifier-id}\settings
+// TenantsItemSettingsRequestBuilder builds and executes requests for operations under \api\tenants\{-id}\settings
 type TenantsItemSettingsRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 // NewTenantsItemSettingsRequestBuilderInternal instantiates a new TenantsItemSettingsRequestBuilder and sets the default values.
 func NewTenantsItemSettingsRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*TenantsItemSettingsRequestBuilder) {
     m := &TenantsItemSettingsRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/tenants/{identifier%2Did}/settings", pathParameters),
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/tenants/{%2Did}/settings", pathParameters),
     }
     return m
 }
@@ -28,12 +28,18 @@ func NewTenantsItemSettingsRequestBuilder(rawUrl string, requestAdapter i2ae4187
 }
 // Get gET_api_tenants_tenantId_settings
 // returns a TenantSettingsResponseable when successful
+// returns a ProblemDetails error when the service returns a 403 status code
+// returns a ProblemDetails error when the service returns a 404 status code
 func (m *TenantsItemSettingsRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.TenantSettingsResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateTenantSettingsResponseFromDiscriminatorValue, nil)
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "403": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateTenantSettingsResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }

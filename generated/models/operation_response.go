@@ -4,10 +4,12 @@
 package models
 
 import (
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type OperationResponse struct {
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ApiError
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
     // The data property
@@ -20,6 +22,7 @@ type OperationResponse struct {
 // NewOperationResponse instantiates a new OperationResponse and sets the default values.
 func NewOperationResponse()(*OperationResponse) {
     m := &OperationResponse{
+        ApiError: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewApiError(),
     }
     m.SetAdditionalData(make(map[string]any))
     return m
@@ -28,6 +31,11 @@ func NewOperationResponse()(*OperationResponse) {
 // returns a Parsable when successful
 func CreateOperationResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewOperationResponse(), nil
+}
+// Error the primary error message.
+// returns a string when successful
+func (m *OperationResponse) Error()(string) {
+    return m.ApiError.Error()
 }
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
