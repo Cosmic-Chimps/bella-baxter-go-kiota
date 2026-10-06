@@ -6,7 +6,6 @@ package api
 import (
     "context"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
 )
 
 // V1EventsStreamRequestBuilder builds and executes requests for operations under \api\v1\events\stream
@@ -28,16 +27,12 @@ func NewV1EventsStreamRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
 }
 // Get gET_api_v1_events_stream
 // returns a []byte when successful
-// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1EventsStreamRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])([]byte, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.SendPrimitive(ctx, requestInfo, "[]byte", nil)
     if err != nil {
         return nil, err
     }
@@ -51,7 +46,7 @@ func (m *V1EventsStreamRequestBuilder) Get(ctx context.Context, requestConfigura
 func (m *V1EventsStreamRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
-    requestInfo.Headers.TryAdd("Accept", "text/event-stream, application/problem+json")
+    requestInfo.Headers.TryAdd("Accept", "text/event-stream")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

@@ -44,16 +44,12 @@ func NewV1PkiLogsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
 }
 // Get gET_api_v1_pki_logs
 // returns a PkiLogPageable when successful
-// returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1PkiLogsRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1PkiLogsRequestBuilderGetQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.PkiLogPageable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
     }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreatePkiLogPageFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreatePkiLogPageFromDiscriminatorValue, nil)
     if err != nil {
         return nil, err
     }

@@ -29,6 +29,7 @@ func NewV1TokenRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371
 // Post pOST_api_v1_token
 // returns a OidcTokenResponseable when successful
 // returns a ProblemDetails error when the service returns a 401 status code
+// returns a ProblemDetails error when the service returns a 403 status code
 // returns a ProblemDetails error when the service returns a 404 status code
 // returns a ProblemDetails error when the service returns a 422 status code
 // returns a ProblemDetails error when the service returns a 429 status code
@@ -39,6 +40,7 @@ func (m *V1TokenRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d526a
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "401": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "403": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "422": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "429": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
