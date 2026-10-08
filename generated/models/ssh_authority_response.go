@@ -4,6 +4,7 @@
 package models
 
 import (
+    i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,6 +13,14 @@ type SshAuthorityResponse struct {
     additionalData map[string]any
     // The adopted property
     adopted *bool
+    // The authorityDestroyAfter property
+    authorityDestroyAfter *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityDestroyedAt property
+    authorityDestroyedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityRetentionReason property
+    authorityRetentionReason *string
+    // The authorityRetentionState property
+    authorityRetentionState *string
     // The detail property
     detail *string
     // The mountPath property
@@ -24,6 +33,8 @@ func NewSshAuthorityResponse()(*SshAuthorityResponse) {
     m := &SshAuthorityResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    authorityRetentionStateValue := "not-deleted"
+    m.SetAuthorityRetentionState(&authorityRetentionStateValue)
     return m
 }
 // CreateSshAuthorityResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +52,26 @@ func (m *SshAuthorityResponse) GetAdditionalData()(map[string]any) {
 func (m *SshAuthorityResponse) GetAdopted()(*bool) {
     return m.adopted
 }
+// GetAuthorityDestroyAfter gets the authorityDestroyAfter property value. The authorityDestroyAfter property
+// returns a *Time when successful
+func (m *SshAuthorityResponse) GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyAfter
+}
+// GetAuthorityDestroyedAt gets the authorityDestroyedAt property value. The authorityDestroyedAt property
+// returns a *Time when successful
+func (m *SshAuthorityResponse) GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyedAt
+}
+// GetAuthorityRetentionReason gets the authorityRetentionReason property value. The authorityRetentionReason property
+// returns a *string when successful
+func (m *SshAuthorityResponse) GetAuthorityRetentionReason()(*string) {
+    return m.authorityRetentionReason
+}
+// GetAuthorityRetentionState gets the authorityRetentionState property value. The authorityRetentionState property
+// returns a *string when successful
+func (m *SshAuthorityResponse) GetAuthorityRetentionState()(*string) {
+    return m.authorityRetentionState
+}
 // GetDetail gets the detail property value. The detail property
 // returns a *string when successful
 func (m *SshAuthorityResponse) GetDetail()(*string) {
@@ -57,6 +88,46 @@ func (m *SshAuthorityResponse) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         if val != nil {
             m.SetAdopted(val)
+        }
+        return nil
+    }
+    res["authorityDestroyAfter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyAfter(val)
+        }
+        return nil
+    }
+    res["authorityDestroyedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyedAt(val)
+        }
+        return nil
+    }
+    res["authorityRetentionReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionReason(val)
+        }
+        return nil
+    }
+    res["authorityRetentionState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionState(val)
         }
         return nil
     }
@@ -111,6 +182,30 @@ func (m *SshAuthorityResponse) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
+        err := writer.WriteTimeValue("authorityDestroyAfter", m.GetAuthorityDestroyAfter())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("authorityDestroyedAt", m.GetAuthorityDestroyedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionReason", m.GetAuthorityRetentionReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionState", m.GetAuthorityRetentionState())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("detail", m.GetDetail())
         if err != nil {
             return err
@@ -144,6 +239,22 @@ func (m *SshAuthorityResponse) SetAdditionalData(value map[string]any)() {
 func (m *SshAuthorityResponse) SetAdopted(value *bool)() {
     m.adopted = value
 }
+// SetAuthorityDestroyAfter sets the authorityDestroyAfter property value. The authorityDestroyAfter property
+func (m *SshAuthorityResponse) SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyAfter = value
+}
+// SetAuthorityDestroyedAt sets the authorityDestroyedAt property value. The authorityDestroyedAt property
+func (m *SshAuthorityResponse) SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyedAt = value
+}
+// SetAuthorityRetentionReason sets the authorityRetentionReason property value. The authorityRetentionReason property
+func (m *SshAuthorityResponse) SetAuthorityRetentionReason(value *string)() {
+    m.authorityRetentionReason = value
+}
+// SetAuthorityRetentionState sets the authorityRetentionState property value. The authorityRetentionState property
+func (m *SshAuthorityResponse) SetAuthorityRetentionState(value *string)() {
+    m.authorityRetentionState = value
+}
 // SetDetail sets the detail property value. The detail property
 func (m *SshAuthorityResponse) SetDetail(value *string)() {
     m.detail = value
@@ -160,10 +271,18 @@ type SshAuthorityResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAdopted()(*bool)
+    GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityRetentionReason()(*string)
+    GetAuthorityRetentionState()(*string)
     GetDetail()(*string)
     GetMountPath()(*string)
     GetStatus()(*string)
     SetAdopted(value *bool)()
+    SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityRetentionReason(value *string)()
+    SetAuthorityRetentionState(value *string)()
     SetDetail(value *string)()
     SetMountPath(value *string)()
     SetStatus(value *string)()

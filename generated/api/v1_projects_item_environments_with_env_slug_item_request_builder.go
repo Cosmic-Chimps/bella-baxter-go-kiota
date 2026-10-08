@@ -18,6 +18,11 @@ type V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder struct {
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) AudienceReadiness()(*V1ProjectsItemEnvironmentsItemAudienceReadinessRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemAudienceReadinessRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Authority the authority property
+// returns a *V1ProjectsItemEnvironmentsItemAuthorityRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Authority()(*V1ProjectsItemEnvironmentsItemAuthorityRequestBuilder) {
+    return NewV1ProjectsItemEnvironmentsItemAuthorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // CertRotation the certRotation property
 // returns a *V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) CertRotation()(*V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder) {

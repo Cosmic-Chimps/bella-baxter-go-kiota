@@ -13,6 +13,18 @@ type PkiAuthorityResponse struct {
     additionalData map[string]any
     // The adopted property
     adopted *bool
+    // The authorityDestroyAfter property
+    authorityDestroyAfter *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityDestroyedAt property
+    authorityDestroyedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityRetentionReason property
+    authorityRetentionReason *string
+    // The authorityRetentionState property
+    authorityRetentionState *string
+    // The authorityStoreReason property
+    authorityStoreReason *string
+    // The authorityStoreState property
+    authorityStoreState *string
     // The detail property
     detail *string
     // The mountPath property
@@ -31,6 +43,10 @@ func NewPkiAuthorityResponse()(*PkiAuthorityResponse) {
     m := &PkiAuthorityResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    authorityRetentionStateValue := "not-deleted"
+    m.SetAuthorityRetentionState(&authorityRetentionStateValue)
+    authorityStoreStateValue := "in-sync"
+    m.SetAuthorityStoreState(&authorityStoreStateValue)
     tokenSigningStatusValue := "tenant"
     m.SetTokenSigningStatus(&tokenSigningStatusValue)
     return m
@@ -50,6 +66,36 @@ func (m *PkiAuthorityResponse) GetAdditionalData()(map[string]any) {
 func (m *PkiAuthorityResponse) GetAdopted()(*bool) {
     return m.adopted
 }
+// GetAuthorityDestroyAfter gets the authorityDestroyAfter property value. The authorityDestroyAfter property
+// returns a *Time when successful
+func (m *PkiAuthorityResponse) GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyAfter
+}
+// GetAuthorityDestroyedAt gets the authorityDestroyedAt property value. The authorityDestroyedAt property
+// returns a *Time when successful
+func (m *PkiAuthorityResponse) GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyedAt
+}
+// GetAuthorityRetentionReason gets the authorityRetentionReason property value. The authorityRetentionReason property
+// returns a *string when successful
+func (m *PkiAuthorityResponse) GetAuthorityRetentionReason()(*string) {
+    return m.authorityRetentionReason
+}
+// GetAuthorityRetentionState gets the authorityRetentionState property value. The authorityRetentionState property
+// returns a *string when successful
+func (m *PkiAuthorityResponse) GetAuthorityRetentionState()(*string) {
+    return m.authorityRetentionState
+}
+// GetAuthorityStoreReason gets the authorityStoreReason property value. The authorityStoreReason property
+// returns a *string when successful
+func (m *PkiAuthorityResponse) GetAuthorityStoreReason()(*string) {
+    return m.authorityStoreReason
+}
+// GetAuthorityStoreState gets the authorityStoreState property value. The authorityStoreState property
+// returns a *string when successful
+func (m *PkiAuthorityResponse) GetAuthorityStoreState()(*string) {
+    return m.authorityStoreState
+}
 // GetDetail gets the detail property value. The detail property
 // returns a *string when successful
 func (m *PkiAuthorityResponse) GetDetail()(*string) {
@@ -66,6 +112,66 @@ func (m *PkiAuthorityResponse) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         if val != nil {
             m.SetAdopted(val)
+        }
+        return nil
+    }
+    res["authorityDestroyAfter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyAfter(val)
+        }
+        return nil
+    }
+    res["authorityDestroyedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyedAt(val)
+        }
+        return nil
+    }
+    res["authorityRetentionReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionReason(val)
+        }
+        return nil
+    }
+    res["authorityRetentionState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionState(val)
+        }
+        return nil
+    }
+    res["authorityStoreReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreReason(val)
+        }
+        return nil
+    }
+    res["authorityStoreState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreState(val)
         }
         return nil
     }
@@ -165,6 +271,42 @@ func (m *PkiAuthorityResponse) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
+        err := writer.WriteTimeValue("authorityDestroyAfter", m.GetAuthorityDestroyAfter())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("authorityDestroyedAt", m.GetAuthorityDestroyedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionReason", m.GetAuthorityRetentionReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionState", m.GetAuthorityRetentionState())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityStoreReason", m.GetAuthorityStoreReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityStoreState", m.GetAuthorityStoreState())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("detail", m.GetDetail())
         if err != nil {
             return err
@@ -216,6 +358,30 @@ func (m *PkiAuthorityResponse) SetAdditionalData(value map[string]any)() {
 func (m *PkiAuthorityResponse) SetAdopted(value *bool)() {
     m.adopted = value
 }
+// SetAuthorityDestroyAfter sets the authorityDestroyAfter property value. The authorityDestroyAfter property
+func (m *PkiAuthorityResponse) SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyAfter = value
+}
+// SetAuthorityDestroyedAt sets the authorityDestroyedAt property value. The authorityDestroyedAt property
+func (m *PkiAuthorityResponse) SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyedAt = value
+}
+// SetAuthorityRetentionReason sets the authorityRetentionReason property value. The authorityRetentionReason property
+func (m *PkiAuthorityResponse) SetAuthorityRetentionReason(value *string)() {
+    m.authorityRetentionReason = value
+}
+// SetAuthorityRetentionState sets the authorityRetentionState property value. The authorityRetentionState property
+func (m *PkiAuthorityResponse) SetAuthorityRetentionState(value *string)() {
+    m.authorityRetentionState = value
+}
+// SetAuthorityStoreReason sets the authorityStoreReason property value. The authorityStoreReason property
+func (m *PkiAuthorityResponse) SetAuthorityStoreReason(value *string)() {
+    m.authorityStoreReason = value
+}
+// SetAuthorityStoreState sets the authorityStoreState property value. The authorityStoreState property
+func (m *PkiAuthorityResponse) SetAuthorityStoreState(value *string)() {
+    m.authorityStoreState = value
+}
 // SetDetail sets the detail property value. The detail property
 func (m *PkiAuthorityResponse) SetDetail(value *string)() {
     m.detail = value
@@ -244,6 +410,12 @@ type PkiAuthorityResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAdopted()(*bool)
+    GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityRetentionReason()(*string)
+    GetAuthorityRetentionState()(*string)
+    GetAuthorityStoreReason()(*string)
+    GetAuthorityStoreState()(*string)
     GetDetail()(*string)
     GetMountPath()(*string)
     GetStatus()(*string)
@@ -251,6 +423,12 @@ type PkiAuthorityResponseable interface {
     GetTokenSigningSupersededKeyPublished()(*bool)
     GetTokenSigningSupersededKeyPublishedUntil()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     SetAdopted(value *bool)()
+    SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityRetentionReason(value *string)()
+    SetAuthorityRetentionState(value *string)()
+    SetAuthorityStoreReason(value *string)()
+    SetAuthorityStoreState(value *string)()
     SetDetail(value *string)()
     SetMountPath(value *string)()
     SetStatus(value *string)()

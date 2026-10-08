@@ -11,6 +11,18 @@ import (
 type EnvironmentResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The authorityDestroyAfter property
+    authorityDestroyAfter *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityDestroyedAt property
+    authorityDestroyedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The authorityRetentionReason property
+    authorityRetentionReason *string
+    // The authorityRetentionState property
+    authorityRetentionState *string
+    // The authorityStoreReason property
+    authorityStoreReason *string
+    // The authorityStoreState property
+    authorityStoreState *string
     // The createdAt property
     createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The creatorId property
@@ -51,6 +63,10 @@ func NewEnvironmentResponse()(*EnvironmentResponse) {
     m := &EnvironmentResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    authorityRetentionStateValue := "not-deleted"
+    m.SetAuthorityRetentionState(&authorityRetentionStateValue)
+    authorityStoreStateValue := "in-sync"
+    m.SetAuthorityStoreState(&authorityStoreStateValue)
     statusValue := "Active"
     m.SetStatus(&statusValue)
     return m
@@ -64,6 +80,36 @@ func CreateEnvironmentResponseFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // returns a map[string]any when successful
 func (m *EnvironmentResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
+}
+// GetAuthorityDestroyAfter gets the authorityDestroyAfter property value. The authorityDestroyAfter property
+// returns a *Time when successful
+func (m *EnvironmentResponse) GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyAfter
+}
+// GetAuthorityDestroyedAt gets the authorityDestroyedAt property value. The authorityDestroyedAt property
+// returns a *Time when successful
+func (m *EnvironmentResponse) GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.authorityDestroyedAt
+}
+// GetAuthorityRetentionReason gets the authorityRetentionReason property value. The authorityRetentionReason property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetAuthorityRetentionReason()(*string) {
+    return m.authorityRetentionReason
+}
+// GetAuthorityRetentionState gets the authorityRetentionState property value. The authorityRetentionState property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetAuthorityRetentionState()(*string) {
+    return m.authorityRetentionState
+}
+// GetAuthorityStoreReason gets the authorityStoreReason property value. The authorityStoreReason property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetAuthorityStoreReason()(*string) {
+    return m.authorityStoreReason
+}
+// GetAuthorityStoreState gets the authorityStoreState property value. The authorityStoreState property
+// returns a *string when successful
+func (m *EnvironmentResponse) GetAuthorityStoreState()(*string) {
+    return m.authorityStoreState
 }
 // GetCreatedAt gets the createdAt property value. The createdAt property
 // returns a *Time when successful
@@ -94,6 +140,66 @@ func (m *EnvironmentResponse) GetDescription()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *EnvironmentResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["authorityDestroyAfter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyAfter(val)
+        }
+        return nil
+    }
+    res["authorityDestroyedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityDestroyedAt(val)
+        }
+        return nil
+    }
+    res["authorityRetentionReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionReason(val)
+        }
+        return nil
+    }
+    res["authorityRetentionState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityRetentionState(val)
+        }
+        return nil
+    }
+    res["authorityStoreReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreReason(val)
+        }
+        return nil
+    }
+    res["authorityStoreState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreState(val)
+        }
+        return nil
+    }
     res["createdAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -329,6 +435,42 @@ func (m *EnvironmentResponse) GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a
 // Serialize serializes information the current object
 func (m *EnvironmentResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteTimeValue("authorityDestroyAfter", m.GetAuthorityDestroyAfter())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteTimeValue("authorityDestroyedAt", m.GetAuthorityDestroyedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionReason", m.GetAuthorityRetentionReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityRetentionState", m.GetAuthorityRetentionState())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityStoreReason", m.GetAuthorityStoreReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityStoreState", m.GetAuthorityStoreState())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteTimeValue("createdAt", m.GetCreatedAt())
         if err != nil {
             return err
@@ -442,6 +584,30 @@ func (m *EnvironmentResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *EnvironmentResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetAuthorityDestroyAfter sets the authorityDestroyAfter property value. The authorityDestroyAfter property
+func (m *EnvironmentResponse) SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyAfter = value
+}
+// SetAuthorityDestroyedAt sets the authorityDestroyedAt property value. The authorityDestroyedAt property
+func (m *EnvironmentResponse) SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.authorityDestroyedAt = value
+}
+// SetAuthorityRetentionReason sets the authorityRetentionReason property value. The authorityRetentionReason property
+func (m *EnvironmentResponse) SetAuthorityRetentionReason(value *string)() {
+    m.authorityRetentionReason = value
+}
+// SetAuthorityRetentionState sets the authorityRetentionState property value. The authorityRetentionState property
+func (m *EnvironmentResponse) SetAuthorityRetentionState(value *string)() {
+    m.authorityRetentionState = value
+}
+// SetAuthorityStoreReason sets the authorityStoreReason property value. The authorityStoreReason property
+func (m *EnvironmentResponse) SetAuthorityStoreReason(value *string)() {
+    m.authorityStoreReason = value
+}
+// SetAuthorityStoreState sets the authorityStoreState property value. The authorityStoreState property
+func (m *EnvironmentResponse) SetAuthorityStoreState(value *string)() {
+    m.authorityStoreState = value
+}
 // SetCreatedAt sets the createdAt property value. The createdAt property
 func (m *EnvironmentResponse) SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdAt = value
@@ -513,6 +679,12 @@ func (m *EnvironmentResponse) SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad9
 type EnvironmentResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAuthorityDestroyAfter()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetAuthorityRetentionReason()(*string)
+    GetAuthorityRetentionState()(*string)
+    GetAuthorityStoreReason()(*string)
+    GetAuthorityStoreState()(*string)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCreatorId()(*string)
     GetCreatorUsername()(*string)
@@ -530,6 +702,12 @@ type EnvironmentResponseable interface {
     GetSpiffeAttestationMode()(*string)
     GetStatus()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    SetAuthorityDestroyAfter(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetAuthorityRetentionReason(value *string)()
+    SetAuthorityRetentionState(value *string)()
+    SetAuthorityStoreReason(value *string)()
+    SetAuthorityStoreState(value *string)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCreatorId(value *string)()
     SetCreatorUsername(value *string)()
