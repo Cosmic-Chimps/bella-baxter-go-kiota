@@ -16,6 +16,8 @@ type TrustDomainResponse struct {
     additionalData map[string]any
     // The audienceEnforced property
     audienceEnforced *bool
+    // The audienceEnforcedFrom property
+    audienceEnforcedFrom *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The audienceIsDefault property
     audienceIsDefault *bool
     // The claimRules property
@@ -74,6 +76,11 @@ func (m *TrustDomainResponse) GetAdditionalData()(map[string]any) {
 func (m *TrustDomainResponse) GetAudienceEnforced()(*bool) {
     return m.audienceEnforced
 }
+// GetAudienceEnforcedFrom gets the audienceEnforcedFrom property value. The audienceEnforcedFrom property
+// returns a *Time when successful
+func (m *TrustDomainResponse) GetAudienceEnforcedFrom()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.audienceEnforcedFrom
+}
 // GetAudienceIsDefault gets the audienceIsDefault property value. The audienceIsDefault property
 // returns a *bool when successful
 func (m *TrustDomainResponse) GetAudienceIsDefault()(*bool) {
@@ -126,6 +133,16 @@ func (m *TrustDomainResponse) GetFieldDeserializers()(map[string]func(i878a80d23
         }
         if val != nil {
             m.SetAudienceEnforced(val)
+        }
+        return nil
+    }
+    res["audienceEnforcedFrom"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAudienceEnforcedFrom(val)
         }
         return nil
     }
@@ -358,6 +375,12 @@ func (m *TrustDomainResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
+        err := writer.WriteTimeValue("audienceEnforcedFrom", m.GetAudienceEnforcedFrom())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteBoolValue("audienceIsDefault", m.GetAudienceIsDefault())
         if err != nil {
             return err
@@ -473,6 +496,10 @@ func (m *TrustDomainResponse) SetAdditionalData(value map[string]any)() {
 func (m *TrustDomainResponse) SetAudienceEnforced(value *bool)() {
     m.audienceEnforced = value
 }
+// SetAudienceEnforcedFrom sets the audienceEnforcedFrom property value. The audienceEnforcedFrom property
+func (m *TrustDomainResponse) SetAudienceEnforcedFrom(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.audienceEnforcedFrom = value
+}
 // SetAudienceIsDefault sets the audienceIsDefault property value. The audienceIsDefault property
 func (m *TrustDomainResponse) SetAudienceIsDefault(value *bool)() {
     m.audienceIsDefault = value
@@ -538,6 +565,7 @@ type TrustDomainResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAcceptedAudiences()([]string)
     GetAudienceEnforced()(*bool)
+    GetAudienceEnforcedFrom()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetAudienceIsDefault()(*bool)
     GetClaimRules()([]ClaimRuleable)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
@@ -555,6 +583,7 @@ type TrustDomainResponseable interface {
     GetWarnings()([]string)
     SetAcceptedAudiences(value []string)()
     SetAudienceEnforced(value *bool)()
+    SetAudienceEnforcedFrom(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetAudienceIsDefault(value *bool)()
     SetClaimRules(value []ClaimRuleable)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()

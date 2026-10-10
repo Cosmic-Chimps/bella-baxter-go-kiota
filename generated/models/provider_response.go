@@ -11,6 +11,8 @@ import (
 type ProviderResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The awsExternalIdStatus property
+    awsExternalIdStatus AwsExternalIdStateable
     // The configuration property
     configuration ProviderResponse_configurationable
     // The createdAt property
@@ -55,6 +57,11 @@ func CreateProviderResponseFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *ProviderResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetAwsExternalIdStatus gets the awsExternalIdStatus property value. The awsExternalIdStatus property
+// returns a AwsExternalIdStateable when successful
+func (m *ProviderResponse) GetAwsExternalIdStatus()(AwsExternalIdStateable) {
+    return m.awsExternalIdStatus
+}
 // GetConfiguration gets the configuration property value. The configuration property
 // returns a ProviderResponse_configurationable when successful
 func (m *ProviderResponse) GetConfiguration()(ProviderResponse_configurationable) {
@@ -84,6 +91,16 @@ func (m *ProviderResponse) GetDescription()(*string) {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *ProviderResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["awsExternalIdStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAwsExternalIdStateFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAwsExternalIdStatus(val.(AwsExternalIdStateable))
+        }
+        return nil
+    }
     res["configuration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateProviderResponse_configurationFromDiscriminatorValue)
         if err != nil {
@@ -259,6 +276,12 @@ func (m *ProviderResponse) GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3
 // Serialize serializes information the current object
 func (m *ProviderResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteObjectValue("awsExternalIdStatus", m.GetAwsExternalIdStatus())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteObjectValue("configuration", m.GetConfiguration())
         if err != nil {
             return err
@@ -348,6 +371,10 @@ func (m *ProviderResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *ProviderResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetAwsExternalIdStatus sets the awsExternalIdStatus property value. The awsExternalIdStatus property
+func (m *ProviderResponse) SetAwsExternalIdStatus(value AwsExternalIdStateable)() {
+    m.awsExternalIdStatus = value
+}
 // SetConfiguration sets the configuration property value. The configuration property
 func (m *ProviderResponse) SetConfiguration(value ProviderResponse_configurationable)() {
     m.configuration = value
@@ -403,6 +430,7 @@ func (m *ProviderResponse) SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6
 type ProviderResponseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAwsExternalIdStatus()(AwsExternalIdStateable)
     GetConfiguration()(ProviderResponse_configurationable)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCreatedBy()(*string)
@@ -416,6 +444,7 @@ type ProviderResponseable interface {
     GetStatus()(*string)
     GetTypeEscaped()(*string)
     GetUpdatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    SetAwsExternalIdStatus(value AwsExternalIdStateable)()
     SetConfiguration(value ProviderResponse_configurationable)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCreatedBy(value *string)()

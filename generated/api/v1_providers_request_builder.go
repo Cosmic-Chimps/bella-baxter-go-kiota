@@ -14,6 +14,11 @@ import (
 type V1ProvidersRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Aws the aws property
+// returns a *V1ProvidersAwsRequestBuilder when successful
+func (m *V1ProvidersRequestBuilder) Aws()(*V1ProvidersAwsRequestBuilder) {
+    return NewV1ProvidersAwsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ById gets an item from the github.com/cosmic-chimps/bella-baxter-go-kiota/generated.api.v1.providers.item collection
 // returns a *V1ProvidersProvidersItemRequestBuilder when successful
 func (m *V1ProvidersRequestBuilder) ById(id i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)(*V1ProvidersProvidersItemRequestBuilder) {

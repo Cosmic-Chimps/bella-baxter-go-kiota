@@ -13,6 +13,11 @@ import (
 type V1ProvidersProvidersItemRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// Aws the aws property
+// returns a *V1ProvidersItemAwsRequestBuilder when successful
+func (m *V1ProvidersProvidersItemRequestBuilder) Aws()(*V1ProvidersItemAwsRequestBuilder) {
+    return NewV1ProvidersItemAwsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1ProvidersProvidersItemRequestBuilderInternal instantiates a new V1ProvidersProvidersItemRequestBuilder and sets the default values.
 func NewV1ProvidersProvidersItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProvidersProvidersItemRequestBuilder) {
     m := &V1ProvidersProvidersItemRequestBuilder{
@@ -68,7 +73,7 @@ func (m *V1ProvidersProvidersItemRequestBuilder) Get(ctx context.Context, reques
 }
 // Put pUT_api_v1_providers_id
 // returns a ProviderOperationResponseable when successful
-// returns a HttpValidationProblemDetails error when the service returns a 400 status code
+// returns a ProblemDetails error when the service returns a 400 status code
 // returns a ProblemDetails error when the service returns a 404 status code
 func (m *V1ProvidersProvidersItemRequestBuilder) Put(ctx context.Context, body i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.UpdateProviderCommandable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProviderOperationResponseable, error) {
     requestInfo, err := m.ToPutRequestInformation(ctx, body, requestConfiguration);
@@ -76,7 +81,7 @@ func (m *V1ProvidersProvidersItemRequestBuilder) Put(ctx context.Context, body i
         return nil, err
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateHttpValidationProblemDetailsFromDiscriminatorValue,
+        "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProviderOperationResponseFromDiscriminatorValue, errorMapping)

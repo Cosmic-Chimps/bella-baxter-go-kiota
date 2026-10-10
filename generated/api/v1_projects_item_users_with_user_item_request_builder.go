@@ -29,6 +29,8 @@ func NewV1ProjectsItemUsersWithUserItemRequestBuilder(rawUrl string, requestAdap
 // Delete dELETE_api_v1_projects_projectRef_users_userId
 // returns a OperationResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
+// returns a ProblemDetails error when the service returns a 500 status code
+// returns a ProblemDetails error when the service returns a 503 status code
 func (m *V1ProjectsItemUsersWithUserItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable, error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
@@ -36,6 +38,8 @@ func (m *V1ProjectsItemUsersWithUserItemRequestBuilder) Delete(ctx context.Conte
     }
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "500": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "503": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateOperationResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
