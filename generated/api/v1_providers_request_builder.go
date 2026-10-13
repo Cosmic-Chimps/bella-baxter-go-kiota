@@ -47,6 +47,11 @@ func NewV1ProvidersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewV1ProvidersRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Gcp the gcp property
+// returns a *V1ProvidersGcpRequestBuilder when successful
+func (m *V1ProvidersRequestBuilder) Gcp()(*V1ProvidersGcpRequestBuilder) {
+    return NewV1ProvidersGcpRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Get gET_api_v1_providers
 // returns a []ProviderResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
@@ -79,6 +84,7 @@ func (m *V1ProvidersRequestBuilder) InitSystem()(*V1ProvidersInitSystemRequestBu
 // returns a ProviderOperationResponseable when successful
 // returns a ProblemDetails error when the service returns a 400 status code
 // returns a ProblemDetails error when the service returns a 404 status code
+// returns a ProblemDetails error when the service returns a 409 status code
 func (m *V1ProvidersRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProviderCommandable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProviderOperationResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -87,6 +93,7 @@ func (m *V1ProvidersRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d
     errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
         "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "409": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProviderOperationResponseFromDiscriminatorValue, errorMapping)
     if err != nil {

@@ -23,6 +23,8 @@ type ProviderResponse struct {
     deletedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The description property
     description *string
+    // The gcpIdentityStatus property
+    gcpIdentityStatus GcpIdentityStateable
     // The id property
     id *string
     // The metaType property
@@ -151,6 +153,16 @@ func (m *ProviderResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
+    res["gcpIdentityStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateGcpIdentityStateFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGcpIdentityStatus(val.(GcpIdentityStateable))
+        }
+        return nil
+    }
     res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -233,6 +245,11 @@ func (m *ProviderResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e
     }
     return res
 }
+// GetGcpIdentityStatus gets the gcpIdentityStatus property value. The gcpIdentityStatus property
+// returns a GcpIdentityStateable when successful
+func (m *ProviderResponse) GetGcpIdentityStatus()(GcpIdentityStateable) {
+    return m.gcpIdentityStatus
+}
 // GetId gets the id property value. The id property
 // returns a *string when successful
 func (m *ProviderResponse) GetId()(*string) {
@@ -307,6 +324,12 @@ func (m *ProviderResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     }
     {
         err := writer.WriteStringValue("description", m.GetDescription())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("gcpIdentityStatus", m.GetGcpIdentityStatus())
         if err != nil {
             return err
         }
@@ -395,6 +418,10 @@ func (m *ProviderResponse) SetDeletedAt(value *i336074805fc853987abe6f7fe3ad97a6
 func (m *ProviderResponse) SetDescription(value *string)() {
     m.description = value
 }
+// SetGcpIdentityStatus sets the gcpIdentityStatus property value. The gcpIdentityStatus property
+func (m *ProviderResponse) SetGcpIdentityStatus(value GcpIdentityStateable)() {
+    m.gcpIdentityStatus = value
+}
 // SetId sets the id property value. The id property
 func (m *ProviderResponse) SetId(value *string)() {
     m.id = value
@@ -436,6 +463,7 @@ type ProviderResponseable interface {
     GetCreatedBy()(*string)
     GetDeletedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDescription()(*string)
+    GetGcpIdentityStatus()(GcpIdentityStateable)
     GetId()(*string)
     GetMetaType()(*string)
     GetName()(*string)
@@ -450,6 +478,7 @@ type ProviderResponseable interface {
     SetCreatedBy(value *string)()
     SetDeletedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDescription(value *string)()
+    SetGcpIdentityStatus(value GcpIdentityStateable)()
     SetId(value *string)()
     SetMetaType(value *string)()
     SetName(value *string)()
