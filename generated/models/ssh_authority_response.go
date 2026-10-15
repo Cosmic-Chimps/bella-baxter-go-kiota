@@ -21,6 +21,10 @@ type SshAuthorityResponse struct {
     authorityRetentionReason *string
     // The authorityRetentionState property
     authorityRetentionState *string
+    // The authorityStoreReason property
+    authorityStoreReason *string
+    // The authorityStoreState property
+    authorityStoreState *string
     // The detail property
     detail *string
     // The mountPath property
@@ -35,6 +39,8 @@ func NewSshAuthorityResponse()(*SshAuthorityResponse) {
     m.SetAdditionalData(make(map[string]any))
     authorityRetentionStateValue := "not-deleted"
     m.SetAuthorityRetentionState(&authorityRetentionStateValue)
+    authorityStoreStateValue := "in-sync"
+    m.SetAuthorityStoreState(&authorityStoreStateValue)
     return m
 }
 // CreateSshAuthorityResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -71,6 +77,16 @@ func (m *SshAuthorityResponse) GetAuthorityRetentionReason()(*string) {
 // returns a *string when successful
 func (m *SshAuthorityResponse) GetAuthorityRetentionState()(*string) {
     return m.authorityRetentionState
+}
+// GetAuthorityStoreReason gets the authorityStoreReason property value. The authorityStoreReason property
+// returns a *string when successful
+func (m *SshAuthorityResponse) GetAuthorityStoreReason()(*string) {
+    return m.authorityStoreReason
+}
+// GetAuthorityStoreState gets the authorityStoreState property value. The authorityStoreState property
+// returns a *string when successful
+func (m *SshAuthorityResponse) GetAuthorityStoreState()(*string) {
+    return m.authorityStoreState
 }
 // GetDetail gets the detail property value. The detail property
 // returns a *string when successful
@@ -128,6 +144,26 @@ func (m *SshAuthorityResponse) GetFieldDeserializers()(map[string]func(i878a80d2
         }
         if val != nil {
             m.SetAuthorityRetentionState(val)
+        }
+        return nil
+    }
+    res["authorityStoreReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreReason(val)
+        }
+        return nil
+    }
+    res["authorityStoreState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorityStoreState(val)
         }
         return nil
     }
@@ -206,6 +242,18 @@ func (m *SshAuthorityResponse) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
+        err := writer.WriteStringValue("authorityStoreReason", m.GetAuthorityStoreReason())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("authorityStoreState", m.GetAuthorityStoreState())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("detail", m.GetDetail())
         if err != nil {
             return err
@@ -255,6 +303,14 @@ func (m *SshAuthorityResponse) SetAuthorityRetentionReason(value *string)() {
 func (m *SshAuthorityResponse) SetAuthorityRetentionState(value *string)() {
     m.authorityRetentionState = value
 }
+// SetAuthorityStoreReason sets the authorityStoreReason property value. The authorityStoreReason property
+func (m *SshAuthorityResponse) SetAuthorityStoreReason(value *string)() {
+    m.authorityStoreReason = value
+}
+// SetAuthorityStoreState sets the authorityStoreState property value. The authorityStoreState property
+func (m *SshAuthorityResponse) SetAuthorityStoreState(value *string)() {
+    m.authorityStoreState = value
+}
 // SetDetail sets the detail property value. The detail property
 func (m *SshAuthorityResponse) SetDetail(value *string)() {
     m.detail = value
@@ -275,6 +331,8 @@ type SshAuthorityResponseable interface {
     GetAuthorityDestroyedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetAuthorityRetentionReason()(*string)
     GetAuthorityRetentionState()(*string)
+    GetAuthorityStoreReason()(*string)
+    GetAuthorityStoreState()(*string)
     GetDetail()(*string)
     GetMountPath()(*string)
     GetStatus()(*string)
@@ -283,6 +341,8 @@ type SshAuthorityResponseable interface {
     SetAuthorityDestroyedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetAuthorityRetentionReason(value *string)()
     SetAuthorityRetentionState(value *string)()
+    SetAuthorityStoreReason(value *string)()
+    SetAuthorityStoreState(value *string)()
     SetDetail(value *string)()
     SetMountPath(value *string)()
     SetStatus(value *string)()

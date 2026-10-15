@@ -70,6 +70,7 @@ func (m *V1ProjectsItemEnvironmentsRequestBuilder) Get(ctx context.Context, requ
 // returns a EnvironmentOperationResponse error when the service returns a 400 status code
 // returns a EnvironmentOperationResponse error when the service returns a 401 status code
 // returns a ProblemDetails error when the service returns a 404 status code
+// returns a ProblemDetails error when the service returns a 409 status code
 func (m *V1ProjectsItemEnvironmentsRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentCommandable, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.EnvironmentOperationResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -79,6 +80,7 @@ func (m *V1ProjectsItemEnvironmentsRequestBuilder) Post(ctx context.Context, bod
         "400": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue,
         "401": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue,
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "409": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
     res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateEnvironmentOperationResponseFromDiscriminatorValue, errorMapping)
     if err != nil {

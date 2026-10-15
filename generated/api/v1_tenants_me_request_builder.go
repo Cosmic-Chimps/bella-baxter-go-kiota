@@ -11,6 +11,11 @@ import (
 type V1TenantsMeRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// AuthorityNames the authorityNames property
+// returns a *V1TenantsMeAuthorityNamesRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) AuthorityNames()(*V1TenantsMeAuthorityNamesRequestBuilder) {
+    return NewV1TenantsMeAuthorityNamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // NewV1TenantsMeRequestBuilderInternal instantiates a new V1TenantsMeRequestBuilder and sets the default values.
 func NewV1TenantsMeRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1TenantsMeRequestBuilder) {
     m := &V1TenantsMeRequestBuilder{
