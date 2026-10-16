@@ -34,6 +34,11 @@ func NewTenantsInvitesWithTokenItemRequestBuilder(rawUrl string, requestAdapter 
     urlParams["request-raw-url"] = rawUrl
     return NewTenantsInvitesWithTokenItemRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Decline the decline property
+// returns a *TenantsInvitesItemDeclineRequestBuilder when successful
+func (m *TenantsInvitesWithTokenItemRequestBuilder) Decline()(*TenantsInvitesItemDeclineRequestBuilder) {
+    return NewTenantsInvitesItemDeclineRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Preview the preview property
 // returns a *TenantsInvitesItemPreviewRequestBuilder when successful
 func (m *TenantsInvitesWithTokenItemRequestBuilder) Preview()(*TenantsInvitesItemPreviewRequestBuilder) {

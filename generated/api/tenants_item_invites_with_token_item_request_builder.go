@@ -42,6 +42,11 @@ func (m *TenantsItemInvitesWithTokenItemRequestBuilder) Delete(ctx context.Conte
     }
     return nil
 }
+// Delivery the delivery property
+// returns a *TenantsItemInvitesItemDeliveryRequestBuilder when successful
+func (m *TenantsItemInvitesWithTokenItemRequestBuilder) Delivery()(*TenantsItemInvitesItemDeliveryRequestBuilder) {
+    return NewTenantsItemInvitesItemDeliveryRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Replacement the replacement property
 // returns a *TenantsItemInvitesItemReplacementRequestBuilder when successful
 func (m *TenantsItemInvitesWithTokenItemRequestBuilder) Replacement()(*TenantsItemInvitesItemReplacementRequestBuilder) {

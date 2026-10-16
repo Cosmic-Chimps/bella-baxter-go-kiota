@@ -10,6 +10,8 @@ import (
 type CertRotationLogPage struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The excludedCount property
+    excludedCount *int64
     // The items property
     items []CertRotationLogEntryable
     // The page property
@@ -36,10 +38,25 @@ func CreateCertRotationLogPageFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *CertRotationLogPage) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetExcludedCount gets the excludedCount property value. The excludedCount property
+// returns a *int64 when successful
+func (m *CertRotationLogPage) GetExcludedCount()(*int64) {
+    return m.excludedCount
+}
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
 func (m *CertRotationLogPage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["excludedCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExcludedCount(val)
+        }
+        return nil
+    }
     res["items"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateCertRotationLogEntryFromDiscriminatorValue)
         if err != nil {
@@ -110,6 +127,12 @@ func (m *CertRotationLogPage) GetTotalCount()(*int64) {
 }
 // Serialize serializes information the current object
 func (m *CertRotationLogPage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteInt64Value("excludedCount", m.GetExcludedCount())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetItems() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetItems()))
         for i, v := range m.GetItems() {
@@ -152,6 +175,10 @@ func (m *CertRotationLogPage) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *CertRotationLogPage) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetExcludedCount sets the excludedCount property value. The excludedCount property
+func (m *CertRotationLogPage) SetExcludedCount(value *int64)() {
+    m.excludedCount = value
+}
 // SetItems sets the items property value. The items property
 func (m *CertRotationLogPage) SetItems(value []CertRotationLogEntryable)() {
     m.items = value
@@ -171,10 +198,12 @@ func (m *CertRotationLogPage) SetTotalCount(value *int64)() {
 type CertRotationLogPageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExcludedCount()(*int64)
     GetItems()([]CertRotationLogEntryable)
     GetPage()(*int32)
     GetSize()(*int32)
     GetTotalCount()(*int64)
+    SetExcludedCount(value *int64)()
     SetItems(value []CertRotationLogEntryable)()
     SetPage(value *int32)()
     SetSize(value *int32)()

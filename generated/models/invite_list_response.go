@@ -18,6 +18,8 @@ type InviteListResponse struct {
     additionalData map[string]any
     // The createdAt property
     createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The declinedAt property
+    declinedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The deliveryFailureReason property
     deliveryFailureReason *string
     // The deliveryOutcome property
@@ -26,6 +28,8 @@ type InviteListResponse struct {
     email *string
     // The expiresAt property
     expiresAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The isDeclined property
+    isDeclined *bool
     // The isExpired property
     isExpired *bool
     // The isRevoked property
@@ -40,6 +44,16 @@ type InviteListResponse struct {
     refusedAttemptCount *int32
     // The role property
     role *TenantInviteRole
+    // The scopeId property
+    scopeId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+    // The scopeKind property
+    scopeKind *TenantInviteScopeKind
+    // The scopeName property
+    scopeName *string
+    // The scopeParentName property
+    scopeParentName *string
+    // The scopeRole property
+    scopeRole *string
     // The tenantId property
     tenantId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The token property
@@ -50,6 +64,8 @@ func NewInviteListResponse()(*InviteListResponse) {
     m := &InviteListResponse{
     }
     m.SetAdditionalData(make(map[string]any))
+    scopeKindValue := NONE_TENANTINVITESCOPEKIND
+    m.SetScopeKind(&scopeKindValue)
     return m
 }
 // CreateInviteListResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -76,6 +92,11 @@ func (m *InviteListResponse) GetAdditionalData()(map[string]any) {
 // returns a *Time when successful
 func (m *InviteListResponse) GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdAt
+}
+// GetDeclinedAt gets the declinedAt property value. The declinedAt property
+// returns a *Time when successful
+func (m *InviteListResponse) GetDeclinedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+    return m.declinedAt
 }
 // GetDeliveryFailureReason gets the deliveryFailureReason property value. The deliveryFailureReason property
 // returns a *string when successful
@@ -131,6 +152,16 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["declinedAt"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeclinedAt(val)
+        }
+        return nil
+    }
     res["deliveryFailureReason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -168,6 +199,16 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         if val != nil {
             m.SetExpiresAt(val)
+        }
+        return nil
+    }
+    res["isDeclined"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsDeclined(val)
         }
         return nil
     }
@@ -241,6 +282,56 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
+    res["scopeId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeId(val)
+        }
+        return nil
+    }
+    res["scopeKind"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseTenantInviteScopeKind)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeKind(val.(*TenantInviteScopeKind))
+        }
+        return nil
+    }
+    res["scopeName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeName(val)
+        }
+        return nil
+    }
+    res["scopeParentName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeParentName(val)
+        }
+        return nil
+    }
+    res["scopeRole"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeRole(val)
+        }
+        return nil
+    }
     res["tenantId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetUUIDValue()
         if err != nil {
@@ -262,6 +353,11 @@ func (m *InviteListResponse) GetFieldDeserializers()(map[string]func(i878a80d233
         return nil
     }
     return res
+}
+// GetIsDeclined gets the isDeclined property value. The isDeclined property
+// returns a *bool when successful
+func (m *InviteListResponse) GetIsDeclined()(*bool) {
+    return m.isDeclined
 }
 // GetIsExpired gets the isExpired property value. The isExpired property
 // returns a *bool when successful
@@ -298,6 +394,31 @@ func (m *InviteListResponse) GetRefusedAttemptCount()(*int32) {
 func (m *InviteListResponse) GetRole()(*TenantInviteRole) {
     return m.role
 }
+// GetScopeId gets the scopeId property value. The scopeId property
+// returns a *UUID when successful
+func (m *InviteListResponse) GetScopeId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+    return m.scopeId
+}
+// GetScopeKind gets the scopeKind property value. The scopeKind property
+// returns a *TenantInviteScopeKind when successful
+func (m *InviteListResponse) GetScopeKind()(*TenantInviteScopeKind) {
+    return m.scopeKind
+}
+// GetScopeName gets the scopeName property value. The scopeName property
+// returns a *string when successful
+func (m *InviteListResponse) GetScopeName()(*string) {
+    return m.scopeName
+}
+// GetScopeParentName gets the scopeParentName property value. The scopeParentName property
+// returns a *string when successful
+func (m *InviteListResponse) GetScopeParentName()(*string) {
+    return m.scopeParentName
+}
+// GetScopeRole gets the scopeRole property value. The scopeRole property
+// returns a *string when successful
+func (m *InviteListResponse) GetScopeRole()(*string) {
+    return m.scopeRole
+}
 // GetTenantId gets the tenantId property value. The tenantId property
 // returns a *UUID when successful
 func (m *InviteListResponse) GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
@@ -329,6 +450,12 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
+        err := writer.WriteTimeValue("declinedAt", m.GetDeclinedAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("deliveryFailureReason", m.GetDeliveryFailureReason())
         if err != nil {
             return err
@@ -349,6 +476,12 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     }
     {
         err := writer.WriteTimeValue("expiresAt", m.GetExpiresAt())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("isDeclined", m.GetIsDeclined())
         if err != nil {
             return err
         }
@@ -397,6 +530,37 @@ func (m *InviteListResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     {
+        err := writer.WriteUUIDValue("scopeId", m.GetScopeId())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetScopeKind() != nil {
+        cast := (*m.GetScopeKind()).String()
+        err := writer.WriteStringValue("scopeKind", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeName", m.GetScopeName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeParentName", m.GetScopeParentName())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("scopeRole", m.GetScopeRole())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteUUIDValue("tenantId", m.GetTenantId())
         if err != nil {
             return err
@@ -432,6 +596,10 @@ func (m *InviteListResponse) SetAdditionalData(value map[string]any)() {
 func (m *InviteListResponse) SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdAt = value
 }
+// SetDeclinedAt sets the declinedAt property value. The declinedAt property
+func (m *InviteListResponse) SetDeclinedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
+    m.declinedAt = value
+}
 // SetDeliveryFailureReason sets the deliveryFailureReason property value. The deliveryFailureReason property
 func (m *InviteListResponse) SetDeliveryFailureReason(value *string)() {
     m.deliveryFailureReason = value
@@ -447,6 +615,10 @@ func (m *InviteListResponse) SetEmail(value *string)() {
 // SetExpiresAt sets the expiresAt property value. The expiresAt property
 func (m *InviteListResponse) SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiresAt = value
+}
+// SetIsDeclined sets the isDeclined property value. The isDeclined property
+func (m *InviteListResponse) SetIsDeclined(value *bool)() {
+    m.isDeclined = value
 }
 // SetIsExpired sets the isExpired property value. The isExpired property
 func (m *InviteListResponse) SetIsExpired(value *bool)() {
@@ -476,6 +648,26 @@ func (m *InviteListResponse) SetRefusedAttemptCount(value *int32)() {
 func (m *InviteListResponse) SetRole(value *TenantInviteRole)() {
     m.role = value
 }
+// SetScopeId sets the scopeId property value. The scopeId property
+func (m *InviteListResponse) SetScopeId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
+    m.scopeId = value
+}
+// SetScopeKind sets the scopeKind property value. The scopeKind property
+func (m *InviteListResponse) SetScopeKind(value *TenantInviteScopeKind)() {
+    m.scopeKind = value
+}
+// SetScopeName sets the scopeName property value. The scopeName property
+func (m *InviteListResponse) SetScopeName(value *string)() {
+    m.scopeName = value
+}
+// SetScopeParentName sets the scopeParentName property value. The scopeParentName property
+func (m *InviteListResponse) SetScopeParentName(value *string)() {
+    m.scopeParentName = value
+}
+// SetScopeRole sets the scopeRole property value. The scopeRole property
+func (m *InviteListResponse) SetScopeRole(value *string)() {
+    m.scopeRole = value
+}
 // SetTenantId sets the tenantId property value. The tenantId property
 func (m *InviteListResponse) SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.tenantId = value
@@ -490,10 +682,12 @@ type InviteListResponseable interface {
     GetAcceptedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetAcceptedByUserId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetCreatedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDeclinedAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDeliveryFailureReason()(*string)
     GetDeliveryOutcome()(*InviteDeliveryOutcome)
     GetEmail()(*string)
     GetExpiresAt()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetIsDeclined()(*bool)
     GetIsExpired()(*bool)
     GetIsRevoked()(*bool)
     GetJoinUrl()(*string)
@@ -501,15 +695,22 @@ type InviteListResponseable interface {
     GetLastRefusedReason()(*string)
     GetRefusedAttemptCount()(*int32)
     GetRole()(*TenantInviteRole)
+    GetScopeId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetScopeKind()(*TenantInviteScopeKind)
+    GetScopeName()(*string)
+    GetScopeParentName()(*string)
+    GetScopeRole()(*string)
     GetTenantId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetToken()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     SetAcceptedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetAcceptedByUserId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDeclinedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDeliveryFailureReason(value *string)()
     SetDeliveryOutcome(value *InviteDeliveryOutcome)()
     SetEmail(value *string)()
     SetExpiresAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetIsDeclined(value *bool)()
     SetIsExpired(value *bool)()
     SetIsRevoked(value *bool)()
     SetJoinUrl(value *string)()
@@ -517,6 +718,11 @@ type InviteListResponseable interface {
     SetLastRefusedReason(value *string)()
     SetRefusedAttemptCount(value *int32)()
     SetRole(value *TenantInviteRole)()
+    SetScopeId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetScopeKind(value *TenantInviteScopeKind)()
+    SetScopeName(value *string)()
+    SetScopeParentName(value *string)()
+    SetScopeRole(value *string)()
     SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetToken(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
 }
