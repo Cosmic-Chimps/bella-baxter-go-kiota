@@ -11,6 +11,11 @@ import (
 type V1MeRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+// AccountSecurity the accountSecurity property
+// returns a *V1MeAccountSecurityRequestBuilder when successful
+func (m *V1MeRequestBuilder) AccountSecurity()(*V1MeAccountSecurityRequestBuilder) {
+    return NewV1MeAccountSecurityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // ApiKeys the apiKeys property
 // returns a *V1MeApiKeysRequestBuilder when successful
 func (m *V1MeRequestBuilder) ApiKeys()(*V1MeApiKeysRequestBuilder) {

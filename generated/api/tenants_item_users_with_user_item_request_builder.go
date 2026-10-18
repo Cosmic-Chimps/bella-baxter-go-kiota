@@ -44,10 +44,47 @@ func (m *TenantsItemUsersWithUserItemRequestBuilder) Delete(ctx context.Context,
     }
     return nil
 }
+// Get gET_api_tenants_id_users_userId
+// returns a TenantMemberDetailResponseable when successful
+// returns a ProblemDetails error when the service returns a 404 status code
+// returns a ProblemDetails error when the service returns a 503 status code
+func (m *TenantsItemUsersWithUserItemRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.TenantMemberDetailResponseable, error) {
+    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
+    if err != nil {
+        return nil, err
+    }
+    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
+        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+        "503": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+    }
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateTenantMemberDetailResponseFromDiscriminatorValue, errorMapping)
+    if err != nil {
+        return nil, err
+    }
+    if res == nil {
+        return nil, nil
+    }
+    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.TenantMemberDetailResponseable), nil
+}
+// PasswordChangeRequirement the passwordChangeRequirement property
+// returns a *TenantsItemUsersItemPasswordChangeRequirementRequestBuilder when successful
+func (m *TenantsItemUsersWithUserItemRequestBuilder) PasswordChangeRequirement()(*TenantsItemUsersItemPasswordChangeRequirementRequestBuilder) {
+    return NewTenantsItemUsersItemPasswordChangeRequirementRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Role the role property
 // returns a *TenantsItemUsersItemRoleRequestBuilder when successful
 func (m *TenantsItemUsersWithUserItemRequestBuilder) Role()(*TenantsItemUsersItemRoleRequestBuilder) {
     return NewTenantsItemUsersItemRoleRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// SecondFactorRemoval the secondFactorRemoval property
+// returns a *TenantsItemUsersItemSecondFactorRemovalRequestBuilder when successful
+func (m *TenantsItemUsersWithUserItemRequestBuilder) SecondFactorRemoval()(*TenantsItemUsersItemSecondFactorRemovalRequestBuilder) {
+    return NewTenantsItemUsersItemSecondFactorRemovalRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// Suspension the suspension property
+// returns a *TenantsItemUsersItemSuspensionRequestBuilder when successful
+func (m *TenantsItemUsersWithUserItemRequestBuilder) Suspension()(*TenantsItemUsersItemSuspensionRequestBuilder) {
+    return NewTenantsItemUsersItemSuspensionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 // ToDeleteRequestInformation dELETE_api_tenants_id_users_userId
 // returns a *RequestInformation when successful
@@ -55,6 +92,14 @@ func (m *TenantsItemUsersWithUserItemRequestBuilder) ToDeleteRequestInformation(
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
     requestInfo.Headers.TryAdd("Accept", "application/json, application/problem+json")
+    return requestInfo, nil
+}
+// ToGetRequestInformation gET_api_tenants_id_users_userId
+// returns a *RequestInformation when successful
+func (m *TenantsItemUsersWithUserItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
+    requestInfo.Headers.TryAdd("Accept", "application/json")
     return requestInfo, nil
 }
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.

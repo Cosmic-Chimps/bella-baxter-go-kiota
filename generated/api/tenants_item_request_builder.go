@@ -29,6 +29,16 @@ func NewTenantsItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 func (m *TenantsItemRequestBuilder) Invites()(*TenantsItemInvitesRequestBuilder) {
     return NewTenantsItemInvitesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+// Membership the membership property
+// returns a *TenantsItemMembershipRequestBuilder when successful
+func (m *TenantsItemRequestBuilder) Membership()(*TenantsItemMembershipRequestBuilder) {
+    return NewTenantsItemMembershipRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+// OwnershipTransfer the ownershipTransfer property
+// returns a *TenantsItemOwnershipTransferRequestBuilder when successful
+func (m *TenantsItemRequestBuilder) OwnershipTransfer()(*TenantsItemOwnershipTransferRequestBuilder) {
+    return NewTenantsItemOwnershipTransferRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
 // Settings the settings property
 // returns a *TenantsItemSettingsRequestBuilder when successful
 func (m *TenantsItemRequestBuilder) Settings()(*TenantsItemSettingsRequestBuilder) {
