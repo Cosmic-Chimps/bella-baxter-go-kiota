@@ -16,6 +16,8 @@ type ExchangeOidcTokenBySlugCommand struct {
     oidcToken *string
     // The projectSlug property
     projectSlug *string
+    // The publicKey property
+    publicKey *string
     // The tenantSlug property
     tenantSlug *string
 }
@@ -75,6 +77,16 @@ func (m *ExchangeOidcTokenBySlugCommand) GetFieldDeserializers()(map[string]func
         }
         return nil
     }
+    res["publicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublicKey(val)
+        }
+        return nil
+    }
     res["tenantSlug"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -97,6 +109,11 @@ func (m *ExchangeOidcTokenBySlugCommand) GetOidcToken()(*string) {
 func (m *ExchangeOidcTokenBySlugCommand) GetProjectSlug()(*string) {
     return m.projectSlug
 }
+// GetPublicKey gets the publicKey property value. The publicKey property
+// returns a *string when successful
+func (m *ExchangeOidcTokenBySlugCommand) GetPublicKey()(*string) {
+    return m.publicKey
+}
 // GetTenantSlug gets the tenantSlug property value. The tenantSlug property
 // returns a *string when successful
 func (m *ExchangeOidcTokenBySlugCommand) GetTenantSlug()(*string) {
@@ -118,6 +135,12 @@ func (m *ExchangeOidcTokenBySlugCommand) Serialize(writer i878a80d2330e89d268963
     }
     {
         err := writer.WriteStringValue("projectSlug", m.GetProjectSlug())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("publicKey", m.GetPublicKey())
         if err != nil {
             return err
         }
@@ -152,6 +175,10 @@ func (m *ExchangeOidcTokenBySlugCommand) SetOidcToken(value *string)() {
 func (m *ExchangeOidcTokenBySlugCommand) SetProjectSlug(value *string)() {
     m.projectSlug = value
 }
+// SetPublicKey sets the publicKey property value. The publicKey property
+func (m *ExchangeOidcTokenBySlugCommand) SetPublicKey(value *string)() {
+    m.publicKey = value
+}
 // SetTenantSlug sets the tenantSlug property value. The tenantSlug property
 func (m *ExchangeOidcTokenBySlugCommand) SetTenantSlug(value *string)() {
     m.tenantSlug = value
@@ -162,9 +189,11 @@ type ExchangeOidcTokenBySlugCommandable interface {
     GetEnvironmentSlug()(*string)
     GetOidcToken()(*string)
     GetProjectSlug()(*string)
+    GetPublicKey()(*string)
     GetTenantSlug()(*string)
     SetEnvironmentSlug(value *string)()
     SetOidcToken(value *string)()
     SetProjectSlug(value *string)()
+    SetPublicKey(value *string)()
     SetTenantSlug(value *string)()
 }

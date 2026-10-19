@@ -14,6 +14,8 @@ type AccessLogPage struct {
     items []AccessLogEntryable
     // The page property
     page *int32
+    // The scopeLimited property
+    scopeLimited *bool
     // The size property
     size *int32
     // The totalCount property
@@ -66,6 +68,16 @@ func (m *AccessLogPage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["scopeLimited"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScopeLimited(val)
+        }
+        return nil
+    }
     res["size"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetInt32Value()
         if err != nil {
@@ -98,6 +110,11 @@ func (m *AccessLogPage) GetItems()([]AccessLogEntryable) {
 func (m *AccessLogPage) GetPage()(*int32) {
     return m.page
 }
+// GetScopeLimited gets the scopeLimited property value. The scopeLimited property
+// returns a *bool when successful
+func (m *AccessLogPage) GetScopeLimited()(*bool) {
+    return m.scopeLimited
+}
 // GetSize gets the size property value. The size property
 // returns a *int32 when successful
 func (m *AccessLogPage) GetSize()(*int32) {
@@ -124,6 +141,12 @@ func (m *AccessLogPage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     {
         err := writer.WriteInt32Value("page", m.GetPage())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("scopeLimited", m.GetScopeLimited())
         if err != nil {
             return err
         }
@@ -160,6 +183,10 @@ func (m *AccessLogPage) SetItems(value []AccessLogEntryable)() {
 func (m *AccessLogPage) SetPage(value *int32)() {
     m.page = value
 }
+// SetScopeLimited sets the scopeLimited property value. The scopeLimited property
+func (m *AccessLogPage) SetScopeLimited(value *bool)() {
+    m.scopeLimited = value
+}
 // SetSize sets the size property value. The size property
 func (m *AccessLogPage) SetSize(value *int32)() {
     m.size = value
@@ -173,10 +200,12 @@ type AccessLogPageable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetItems()([]AccessLogEntryable)
     GetPage()(*int32)
+    GetScopeLimited()(*bool)
     GetSize()(*int32)
     GetTotalCount()(*int64)
     SetItems(value []AccessLogEntryable)()
     SetPage(value *int32)()
+    SetScopeLimited(value *bool)()
     SetSize(value *int32)()
     SetTotalCount(value *int64)()
 }

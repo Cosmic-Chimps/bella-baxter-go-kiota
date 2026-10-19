@@ -12,6 +12,8 @@ type ExchangeOidcTokenCommand struct {
     additionalData map[string]any
     // The oidcToken property
     oidcToken *string
+    // The publicKey property
+    publicKey *string
 }
 // NewExchangeOidcTokenCommand instantiates a new ExchangeOidcTokenCommand and sets the default values.
 func NewExchangeOidcTokenCommand()(*ExchangeOidcTokenCommand) {
@@ -44,6 +46,16 @@ func (m *ExchangeOidcTokenCommand) GetFieldDeserializers()(map[string]func(i878a
         }
         return nil
     }
+    res["publicKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublicKey(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOidcToken gets the oidcToken property value. The oidcToken property
@@ -51,10 +63,21 @@ func (m *ExchangeOidcTokenCommand) GetFieldDeserializers()(map[string]func(i878a
 func (m *ExchangeOidcTokenCommand) GetOidcToken()(*string) {
     return m.oidcToken
 }
+// GetPublicKey gets the publicKey property value. The publicKey property
+// returns a *string when successful
+func (m *ExchangeOidcTokenCommand) GetPublicKey()(*string) {
+    return m.publicKey
+}
 // Serialize serializes information the current object
 func (m *ExchangeOidcTokenCommand) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteStringValue("oidcToken", m.GetOidcToken())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteStringValue("publicKey", m.GetPublicKey())
         if err != nil {
             return err
         }
@@ -75,9 +98,15 @@ func (m *ExchangeOidcTokenCommand) SetAdditionalData(value map[string]any)() {
 func (m *ExchangeOidcTokenCommand) SetOidcToken(value *string)() {
     m.oidcToken = value
 }
+// SetPublicKey sets the publicKey property value. The publicKey property
+func (m *ExchangeOidcTokenCommand) SetPublicKey(value *string)() {
+    m.publicKey = value
+}
 type ExchangeOidcTokenCommandable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetOidcToken()(*string)
+    GetPublicKey()(*string)
     SetOidcToken(value *string)()
+    SetPublicKey(value *string)()
 }
