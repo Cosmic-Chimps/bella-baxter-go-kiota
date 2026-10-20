@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type MemberStatus int
 
 const (
-    ACTIVE_MEMBERSTATUS MemberStatus = iota
-    SUSPENDED_MEMBERSTATUS
+	ACTIVE_MEMBERSTATUS MemberStatus = iota
+	SUSPENDED_MEMBERSTATUS
 )
 
 func (i MemberStatus) String() string {
-    return []string{"Active", "Suspended"}[i]
+	return []string{"Active", "Suspended"}[i]
 }
+
 func ParseMemberStatus(v string) (any, error) {
-    result := ACTIVE_MEMBERSTATUS
-    switch v {
-        case "Active":
-            result = ACTIVE_MEMBERSTATUS
-        case "Suspended":
-            result = SUSPENDED_MEMBERSTATUS
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := ACTIVE_MEMBERSTATUS
+	switch v {
+	case "Active":
+		result = ACTIVE_MEMBERSTATUS
+	case "Suspended":
+		result = SUSPENDED_MEMBERSTATUS
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeMemberStatus(values []MemberStatus) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i MemberStatus) isMultiValue() bool {
-    return false
+	return false
 }

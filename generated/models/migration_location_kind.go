@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type MigrationLocationKind int
 
 const (
-    NONE_MIGRATIONLOCATIONKIND MigrationLocationKind = iota
-    ENVIRONMENT_MIGRATIONLOCATIONKIND
-    GLOBALSECRETS_MIGRATIONLOCATIONKIND
+	NONE_MIGRATIONLOCATIONKIND MigrationLocationKind = iota
+	ENVIRONMENT_MIGRATIONLOCATIONKIND
+	GLOBALSECRETS_MIGRATIONLOCATIONKIND
 )
 
 func (i MigrationLocationKind) String() string {
-    return []string{"None", "Environment", "GlobalSecrets"}[i]
+	return []string{"None", "Environment", "GlobalSecrets"}[i]
 }
+
 func ParseMigrationLocationKind(v string) (any, error) {
-    result := NONE_MIGRATIONLOCATIONKIND
-    switch v {
-        case "None":
-            result = NONE_MIGRATIONLOCATIONKIND
-        case "Environment":
-            result = ENVIRONMENT_MIGRATIONLOCATIONKIND
-        case "GlobalSecrets":
-            result = GLOBALSECRETS_MIGRATIONLOCATIONKIND
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NONE_MIGRATIONLOCATIONKIND
+	switch v {
+	case "None":
+		result = NONE_MIGRATIONLOCATIONKIND
+	case "Environment":
+		result = ENVIRONMENT_MIGRATIONLOCATIONKIND
+	case "GlobalSecrets":
+		result = GLOBALSECRETS_MIGRATIONLOCATIONKIND
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeMigrationLocationKind(values []MigrationLocationKind) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i MigrationLocationKind) isMultiValue() bool {
-    return false
+	return false
 }

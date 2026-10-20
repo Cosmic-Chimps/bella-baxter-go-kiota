@@ -4,167 +4,181 @@
 package models
 
 import (
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 type SshSignedCertResponse struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]any
-    // The instructions property
-    instructions *string
-    // The serialNumber property
-    serialNumber *string
-    // The signedKey property
-    signedKey *string
-    // The success property
-    success *bool
+	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+	additionalData map[string]any
+	// The instructions property
+	instructions *string
+	// The serialNumber property
+	serialNumber *string
+	// The signedKey property
+	signedKey *string
+	// The success property
+	success *bool
 }
+
 // NewSshSignedCertResponse instantiates a new SshSignedCertResponse and sets the default values.
-func NewSshSignedCertResponse()(*SshSignedCertResponse) {
-    m := &SshSignedCertResponse{
-    }
-    m.SetAdditionalData(make(map[string]any))
-    return m
+func NewSshSignedCertResponse() *SshSignedCertResponse {
+	m := &SshSignedCertResponse{}
+	m.SetAdditionalData(make(map[string]any))
+	return m
 }
+
 // CreateSshSignedCertResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateSshSignedCertResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSshSignedCertResponse(), nil
+func CreateSshSignedCertResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewSshSignedCertResponse(), nil
 }
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *SshSignedCertResponse) GetAdditionalData()(map[string]any) {
-    return m.additionalData
+func (m *SshSignedCertResponse) GetAdditionalData() map[string]any {
+	return m.additionalData
 }
+
 // GetFieldDeserializers the deserialization information for the current model
-// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *SshSignedCertResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["instructions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInstructions(val)
-        }
-        return nil
-    }
-    res["serialNumber"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSerialNumber(val)
-        }
-        return nil
-    }
-    res["signedKey"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetStringValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSignedKey(val)
-        }
-        return nil
-    }
-    res["success"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetBoolValue()
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSuccess(val)
-        }
-        return nil
-    }
-    return res
+// returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
+func (m *SshSignedCertResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["instructions"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetInstructions(val)
+		}
+		return nil
+	}
+	res["serialNumber"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSerialNumber(val)
+		}
+		return nil
+	}
+	res["signedKey"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSignedKey(val)
+		}
+		return nil
+	}
+	res["success"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSuccess(val)
+		}
+		return nil
+	}
+	return res
 }
+
 // GetInstructions gets the instructions property value. The instructions property
 // returns a *string when successful
-func (m *SshSignedCertResponse) GetInstructions()(*string) {
-    return m.instructions
+func (m *SshSignedCertResponse) GetInstructions() *string {
+	return m.instructions
 }
+
 // GetSerialNumber gets the serialNumber property value. The serialNumber property
 // returns a *string when successful
-func (m *SshSignedCertResponse) GetSerialNumber()(*string) {
-    return m.serialNumber
+func (m *SshSignedCertResponse) GetSerialNumber() *string {
+	return m.serialNumber
 }
+
 // GetSignedKey gets the signedKey property value. The signedKey property
 // returns a *string when successful
-func (m *SshSignedCertResponse) GetSignedKey()(*string) {
-    return m.signedKey
+func (m *SshSignedCertResponse) GetSignedKey() *string {
+	return m.signedKey
 }
+
 // GetSuccess gets the success property value. The success property
 // returns a *bool when successful
-func (m *SshSignedCertResponse) GetSuccess()(*bool) {
-    return m.success
+func (m *SshSignedCertResponse) GetSuccess() *bool {
+	return m.success
 }
+
 // Serialize serializes information the current object
-func (m *SshSignedCertResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteStringValue("instructions", m.GetInstructions())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("serialNumber", m.GetSerialNumber())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteStringValue("signedKey", m.GetSignedKey())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteBoolValue("success", m.GetSuccess())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
+func (m *SshSignedCertResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteStringValue("instructions", m.GetInstructions())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("serialNumber", m.GetSerialNumber())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("signedKey", m.GetSignedKey())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("success", m.GetSuccess())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteAdditionalData(m.GetAdditionalData())
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SshSignedCertResponse) SetAdditionalData(value map[string]any)() {
-    m.additionalData = value
+func (m *SshSignedCertResponse) SetAdditionalData(value map[string]any) {
+	m.additionalData = value
 }
+
 // SetInstructions sets the instructions property value. The instructions property
-func (m *SshSignedCertResponse) SetInstructions(value *string)() {
-    m.instructions = value
+func (m *SshSignedCertResponse) SetInstructions(value *string) {
+	m.instructions = value
 }
+
 // SetSerialNumber sets the serialNumber property value. The serialNumber property
-func (m *SshSignedCertResponse) SetSerialNumber(value *string)() {
-    m.serialNumber = value
+func (m *SshSignedCertResponse) SetSerialNumber(value *string) {
+	m.serialNumber = value
 }
+
 // SetSignedKey sets the signedKey property value. The signedKey property
-func (m *SshSignedCertResponse) SetSignedKey(value *string)() {
-    m.signedKey = value
+func (m *SshSignedCertResponse) SetSignedKey(value *string) {
+	m.signedKey = value
 }
+
 // SetSuccess sets the success property value. The success property
-func (m *SshSignedCertResponse) SetSuccess(value *bool)() {
-    m.success = value
+func (m *SshSignedCertResponse) SetSuccess(value *bool) {
+	m.success = value
 }
+
 type SshSignedCertResponseable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetInstructions()(*string)
-    GetSerialNumber()(*string)
-    GetSignedKey()(*string)
-    GetSuccess()(*bool)
-    SetInstructions(value *string)()
-    SetSerialNumber(value *string)()
-    SetSignedKey(value *string)()
-    SetSuccess(value *bool)()
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetInstructions() *string
+	GetSerialNumber() *string
+	GetSignedKey() *string
+	GetSuccess() *bool
+	SetInstructions(value *string)
+	SetSerialNumber(value *string)
+	SetSignedKey(value *string)
+	SetSuccess(value *bool)
 }

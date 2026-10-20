@@ -2,41 +2,45 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type MigrationSubject int
 
 const (
-    PROJECT_MIGRATIONSUBJECT MigrationSubject = iota
-    PROVIDERCREDENTIAL_MIGRATIONSUBJECT
-    WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
-    NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
+	PROJECT_MIGRATIONSUBJECT MigrationSubject = iota
+	PROVIDERCREDENTIAL_MIGRATIONSUBJECT
+	WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
+	NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
 )
 
 func (i MigrationSubject) String() string {
-    return []string{"Project", "ProviderCredential", "WebhookSigningSecret", "NotificationChannel"}[i]
+	return []string{"Project", "ProviderCredential", "WebhookSigningSecret", "NotificationChannel"}[i]
 }
+
 func ParseMigrationSubject(v string) (any, error) {
-    result := PROJECT_MIGRATIONSUBJECT
-    switch v {
-        case "Project":
-            result = PROJECT_MIGRATIONSUBJECT
-        case "ProviderCredential":
-            result = PROVIDERCREDENTIAL_MIGRATIONSUBJECT
-        case "WebhookSigningSecret":
-            result = WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
-        case "NotificationChannel":
-            result = NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PROJECT_MIGRATIONSUBJECT
+	switch v {
+	case "Project":
+		result = PROJECT_MIGRATIONSUBJECT
+	case "ProviderCredential":
+		result = PROVIDERCREDENTIAL_MIGRATIONSUBJECT
+	case "WebhookSigningSecret":
+		result = WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
+	case "NotificationChannel":
+		result = NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeMigrationSubject(values []MigrationSubject) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i MigrationSubject) isMultiValue() bool {
-    return false
+	return false
 }

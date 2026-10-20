@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type AccessSource int
 
 const (
-    DIRECT_ACCESSSOURCE AccessSource = iota
-    GROUP_ACCESSSOURCE
-    OWNER_ACCESSSOURCE
+	DIRECT_ACCESSSOURCE AccessSource = iota
+	GROUP_ACCESSSOURCE
+	OWNER_ACCESSSOURCE
 )
 
 func (i AccessSource) String() string {
-    return []string{"direct", "group", "owner"}[i]
+	return []string{"direct", "group", "owner"}[i]
 }
+
 func ParseAccessSource(v string) (any, error) {
-    result := DIRECT_ACCESSSOURCE
-    switch v {
-        case "direct":
-            result = DIRECT_ACCESSSOURCE
-        case "group":
-            result = GROUP_ACCESSSOURCE
-        case "owner":
-            result = OWNER_ACCESSSOURCE
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := DIRECT_ACCESSSOURCE
+	switch v {
+	case "direct":
+		result = DIRECT_ACCESSSOURCE
+	case "group":
+		result = GROUP_ACCESSSOURCE
+	case "owner":
+		result = OWNER_ACCESSSOURCE
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeAccessSource(values []AccessSource) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i AccessSource) isMultiValue() bool {
-    return false
+	return false
 }

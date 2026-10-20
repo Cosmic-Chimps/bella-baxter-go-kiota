@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type CredentialActionOutcome int
 
 const (
-    COMPLETED_CREDENTIALACTIONOUTCOME CredentialActionOutcome = iota
-    PARTIAL_CREDENTIALACTIONOUTCOME
+	COMPLETED_CREDENTIALACTIONOUTCOME CredentialActionOutcome = iota
+	PARTIAL_CREDENTIALACTIONOUTCOME
 )
 
 func (i CredentialActionOutcome) String() string {
-    return []string{"completed", "partial"}[i]
+	return []string{"completed", "partial"}[i]
 }
+
 func ParseCredentialActionOutcome(v string) (any, error) {
-    result := COMPLETED_CREDENTIALACTIONOUTCOME
-    switch v {
-        case "completed":
-            result = COMPLETED_CREDENTIALACTIONOUTCOME
-        case "partial":
-            result = PARTIAL_CREDENTIALACTIONOUTCOME
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := COMPLETED_CREDENTIALACTIONOUTCOME
+	switch v {
+	case "completed":
+		result = COMPLETED_CREDENTIALACTIONOUTCOME
+	case "partial":
+		result = PARTIAL_CREDENTIALACTIONOUTCOME
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeCredentialActionOutcome(values []CredentialActionOutcome) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i CredentialActionOutcome) isMultiValue() bool {
-    return false
+	return false
 }

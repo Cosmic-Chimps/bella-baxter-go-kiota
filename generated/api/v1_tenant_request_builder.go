@@ -4,38 +4,43 @@
 package api
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // V1TenantRequestBuilder builds and executes requests for operations under \api\v1\tenant
 type V1TenantRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // Billing the billing property
 // returns a *V1TenantBillingRequestBuilder when successful
-func (m *V1TenantRequestBuilder) Billing()(*V1TenantBillingRequestBuilder) {
-    return NewV1TenantBillingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *V1TenantRequestBuilder) Billing() *V1TenantBillingRequestBuilder {
+	return NewV1TenantBillingRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // NewV1TenantRequestBuilderInternal instantiates a new V1TenantRequestBuilder and sets the default values.
-func NewV1TenantRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1TenantRequestBuilder) {
-    m := &V1TenantRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/tenant", pathParameters),
-    }
-    return m
+func NewV1TenantRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1TenantRequestBuilder {
+	m := &V1TenantRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/tenant", pathParameters),
+	}
+	return m
 }
+
 // NewV1TenantRequestBuilder instantiates a new V1TenantRequestBuilder and sets the default values.
-func NewV1TenantRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1TenantRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewV1TenantRequestBuilderInternal(urlParams, requestAdapter)
+func NewV1TenantRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1TenantRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewV1TenantRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Features the features property
 // returns a *V1TenantFeaturesRequestBuilder when successful
-func (m *V1TenantRequestBuilder) Features()(*V1TenantFeaturesRequestBuilder) {
-    return NewV1TenantFeaturesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *V1TenantRequestBuilder) Features() *V1TenantFeaturesRequestBuilder {
+	return NewV1TenantFeaturesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Usage the usage property
 // returns a *V1TenantUsageRequestBuilder when successful
-func (m *V1TenantRequestBuilder) Usage()(*V1TenantUsageRequestBuilder) {
-    return NewV1TenantUsageRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *V1TenantRequestBuilder) Usage() *V1TenantUsageRequestBuilder {
+	return NewV1TenantUsageRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

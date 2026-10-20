@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type TenantInviteScopeKind int
 
 const (
-    NONE_TENANTINVITESCOPEKIND TenantInviteScopeKind = iota
-    PROJECT_TENANTINVITESCOPEKIND
-    ENVIRONMENT_TENANTINVITESCOPEKIND
+	NONE_TENANTINVITESCOPEKIND TenantInviteScopeKind = iota
+	PROJECT_TENANTINVITESCOPEKIND
+	ENVIRONMENT_TENANTINVITESCOPEKIND
 )
 
 func (i TenantInviteScopeKind) String() string {
-    return []string{"None", "Project", "Environment"}[i]
+	return []string{"None", "Project", "Environment"}[i]
 }
+
 func ParseTenantInviteScopeKind(v string) (any, error) {
-    result := NONE_TENANTINVITESCOPEKIND
-    switch v {
-        case "None":
-            result = NONE_TENANTINVITESCOPEKIND
-        case "Project":
-            result = PROJECT_TENANTINVITESCOPEKIND
-        case "Environment":
-            result = ENVIRONMENT_TENANTINVITESCOPEKIND
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := NONE_TENANTINVITESCOPEKIND
+	switch v {
+	case "None":
+		result = NONE_TENANTINVITESCOPEKIND
+	case "Project":
+		result = PROJECT_TENANTINVITESCOPEKIND
+	case "Environment":
+		result = ENVIRONMENT_TENANTINVITESCOPEKIND
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeTenantInviteScopeKind(values []TenantInviteScopeKind) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i TenantInviteScopeKind) isMultiValue() bool {
-    return false
+	return false
 }

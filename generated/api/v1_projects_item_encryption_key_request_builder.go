@@ -4,68 +4,75 @@
 package api
 
 import (
-    "context"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
+	"context"
+	i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d "github.com/cosmic-chimps/bella-baxter-go-kiota/generated/models"
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
 )
 
 // V1ProjectsItemEncryptionKeyRequestBuilder builds and executes requests for operations under \api\v1\projects\{-id}\encryption-key
 type V1ProjectsItemEncryptionKeyRequestBuilder struct {
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
+
 // NewV1ProjectsItemEncryptionKeyRequestBuilderInternal instantiates a new V1ProjectsItemEncryptionKeyRequestBuilder and sets the default values.
-func NewV1ProjectsItemEncryptionKeyRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProjectsItemEncryptionKeyRequestBuilder) {
-    m := &V1ProjectsItemEncryptionKeyRequestBuilder{
-        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/projects/{%2Did}/encryption-key", pathParameters),
-    }
-    return m
+func NewV1ProjectsItemEncryptionKeyRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1ProjectsItemEncryptionKeyRequestBuilder {
+	m := &V1ProjectsItemEncryptionKeyRequestBuilder{
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/projects/{%2Did}/encryption-key", pathParameters),
+	}
+	return m
 }
+
 // NewV1ProjectsItemEncryptionKeyRequestBuilder instantiates a new V1ProjectsItemEncryptionKeyRequestBuilder and sets the default values.
-func NewV1ProjectsItemEncryptionKeyRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProjectsItemEncryptionKeyRequestBuilder) {
-    urlParams := make(map[string]string)
-    urlParams["request-raw-url"] = rawUrl
-    return NewV1ProjectsItemEncryptionKeyRequestBuilderInternal(urlParams, requestAdapter)
+func NewV1ProjectsItemEncryptionKeyRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1ProjectsItemEncryptionKeyRequestBuilder {
+	urlParams := make(map[string]string)
+	urlParams["request-raw-url"] = rawUrl
+	return NewV1ProjectsItemEncryptionKeyRequestBuilderInternal(urlParams, requestAdapter)
 }
+
 // Get gET_api_v1_projects_id_encryption_key
 // returns a ProjectEncryptionKeyStatusResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
-func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProjectEncryptionKeyStatusResponseable, error) {
-    requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
-    if err != nil {
-        return nil, err
-    }
-    errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings {
-        "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
-    }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProjectEncryptionKeyStatusResponseFromDiscriminatorValue, errorMapping)
-    if err != nil {
-        return nil, err
-    }
-    if res == nil {
-        return nil, nil
-    }
-    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProjectEncryptionKeyStatusResponseable), nil
+func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters]) (i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProjectEncryptionKeyStatusResponseable, error) {
+	requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration)
+	if err != nil {
+		return nil, err
+	}
+	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
+		"404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+	}
+	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProjectEncryptionKeyStatusResponseFromDiscriminatorValue, errorMapping)
+	if err != nil {
+		return nil, err
+	}
+	if res == nil {
+		return nil, nil
+	}
+	return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProjectEncryptionKeyStatusResponseable), nil
 }
+
 // Provision the provision property
 // returns a *V1ProjectsItemEncryptionKeyProvisionRequestBuilder when successful
-func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Provision()(*V1ProjectsItemEncryptionKeyProvisionRequestBuilder) {
-    return NewV1ProjectsItemEncryptionKeyProvisionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Provision() *V1ProjectsItemEncryptionKeyProvisionRequestBuilder {
+	return NewV1ProjectsItemEncryptionKeyProvisionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // Rotate the rotate property
 // returns a *V1ProjectsItemEncryptionKeyRotateRequestBuilder when successful
-func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Rotate()(*V1ProjectsItemEncryptionKeyRotateRequestBuilder) {
-    return NewV1ProjectsItemEncryptionKeyRotateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+func (m *V1ProjectsItemEncryptionKeyRequestBuilder) Rotate() *V1ProjectsItemEncryptionKeyRotateRequestBuilder {
+	return NewV1ProjectsItemEncryptionKeyRotateRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
 // ToGetRequestInformation gET_api_v1_projects_id_encryption_key
 // returns a *RequestInformation when successful
-func (m *V1ProjectsItemEncryptionKeyRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters])(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
-    requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
-    requestInfo.Headers.TryAdd("Accept", "application/json")
-    return requestInfo, nil
+func (m *V1ProjectsItemEncryptionKeyRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters]) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
+	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
+	requestInfo.Headers.TryAdd("Accept", "application/json")
+	return requestInfo, nil
 }
+
 // WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
 // returns a *V1ProjectsItemEncryptionKeyRequestBuilder when successful
-func (m *V1ProjectsItemEncryptionKeyRequestBuilder) WithUrl(rawUrl string)(*V1ProjectsItemEncryptionKeyRequestBuilder) {
-    return NewV1ProjectsItemEncryptionKeyRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
+func (m *V1ProjectsItemEncryptionKeyRequestBuilder) WithUrl(rawUrl string) *V1ProjectsItemEncryptionKeyRequestBuilder {
+	return NewV1ProjectsItemEncryptionKeyRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter)
 }

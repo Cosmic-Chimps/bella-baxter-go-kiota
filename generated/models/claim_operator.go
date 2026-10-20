@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type ClaimOperator int
 
 const (
-    EQUALS_CLAIMOPERATOR ClaimOperator = iota
-    STARTSWITH_CLAIMOPERATOR
-    CONTAINS_CLAIMOPERATOR
+	EQUALS_CLAIMOPERATOR ClaimOperator = iota
+	STARTSWITH_CLAIMOPERATOR
+	CONTAINS_CLAIMOPERATOR
 )
 
 func (i ClaimOperator) String() string {
-    return []string{"Equals", "StartsWith", "Contains"}[i]
+	return []string{"Equals", "StartsWith", "Contains"}[i]
 }
+
 func ParseClaimOperator(v string) (any, error) {
-    result := EQUALS_CLAIMOPERATOR
-    switch v {
-        case "Equals":
-            result = EQUALS_CLAIMOPERATOR
-        case "StartsWith":
-            result = STARTSWITH_CLAIMOPERATOR
-        case "Contains":
-            result = CONTAINS_CLAIMOPERATOR
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := EQUALS_CLAIMOPERATOR
+	switch v {
+	case "Equals":
+		result = EQUALS_CLAIMOPERATOR
+	case "StartsWith":
+		result = STARTSWITH_CLAIMOPERATOR
+	case "Contains":
+		result = CONTAINS_CLAIMOPERATOR
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeClaimOperator(values []ClaimOperator) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i ClaimOperator) isMultiValue() bool {
-    return false
+	return false
 }

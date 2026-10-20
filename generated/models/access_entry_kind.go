@@ -2,35 +2,39 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type AccessEntryKind int
 
 const (
-    PROJECT_ACCESSENTRYKIND AccessEntryKind = iota
-    ENVIRONMENT_ACCESSENTRYKIND
+	PROJECT_ACCESSENTRYKIND AccessEntryKind = iota
+	ENVIRONMENT_ACCESSENTRYKIND
 )
 
 func (i AccessEntryKind) String() string {
-    return []string{"project", "environment"}[i]
+	return []string{"project", "environment"}[i]
 }
+
 func ParseAccessEntryKind(v string) (any, error) {
-    result := PROJECT_ACCESSENTRYKIND
-    switch v {
-        case "project":
-            result = PROJECT_ACCESSENTRYKIND
-        case "environment":
-            result = ENVIRONMENT_ACCESSENTRYKIND
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := PROJECT_ACCESSENTRYKIND
+	switch v {
+	case "project":
+		result = PROJECT_ACCESSENTRYKIND
+	case "environment":
+		result = ENVIRONMENT_ACCESSENTRYKIND
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeAccessEntryKind(values []AccessEntryKind) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i AccessEntryKind) isMultiValue() bool {
-    return false
+	return false
 }

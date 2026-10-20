@@ -2,38 +2,42 @@
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 package models
+
 type InviteAddressVerificationOutcome int
 
 const (
-    SENT_INVITEADDRESSVERIFICATIONOUTCOME InviteAddressVerificationOutcome = iota
-    FAILED_INVITEADDRESSVERIFICATIONOUTCOME
-    UNAVAILABLE_INVITEADDRESSVERIFICATIONOUTCOME
+	SENT_INVITEADDRESSVERIFICATIONOUTCOME InviteAddressVerificationOutcome = iota
+	FAILED_INVITEADDRESSVERIFICATIONOUTCOME
+	UNAVAILABLE_INVITEADDRESSVERIFICATIONOUTCOME
 )
 
 func (i InviteAddressVerificationOutcome) String() string {
-    return []string{"Sent", "Failed", "Unavailable"}[i]
+	return []string{"Sent", "Failed", "Unavailable"}[i]
 }
+
 func ParseInviteAddressVerificationOutcome(v string) (any, error) {
-    result := SENT_INVITEADDRESSVERIFICATIONOUTCOME
-    switch v {
-        case "Sent":
-            result = SENT_INVITEADDRESSVERIFICATIONOUTCOME
-        case "Failed":
-            result = FAILED_INVITEADDRESSVERIFICATIONOUTCOME
-        case "Unavailable":
-            result = UNAVAILABLE_INVITEADDRESSVERIFICATIONOUTCOME
-        default:
-            return nil, nil
-    }
-    return &result, nil
+	result := SENT_INVITEADDRESSVERIFICATIONOUTCOME
+	switch v {
+	case "Sent":
+		result = SENT_INVITEADDRESSVERIFICATIONOUTCOME
+	case "Failed":
+		result = FAILED_INVITEADDRESSVERIFICATIONOUTCOME
+	case "Unavailable":
+		result = UNAVAILABLE_INVITEADDRESSVERIFICATIONOUTCOME
+	default:
+		return nil, nil
+	}
+	return &result, nil
 }
+
 func SerializeInviteAddressVerificationOutcome(values []InviteAddressVerificationOutcome) []string {
-    result := make([]string, len(values))
-    for i, v := range values {
-        result[i] = v.String()
-    }
-    return result
+	result := make([]string, len(values))
+	for i, v := range values {
+		result[i] = v.String()
+	}
+	return result
 }
+
 func (i InviteAddressVerificationOutcome) isMultiValue() bool {
-    return false
+	return false
 }
