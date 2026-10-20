@@ -95,11 +95,6 @@ func (m *V1ProjectsRequestBuilder) Post(ctx context.Context, body i8cb6f6b3ef9d5
     }
     return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.ProjectOperationResponseable), nil
 }
-// Search the search property
-// returns a *V1ProjectsSearchRequestBuilder when successful
-func (m *V1ProjectsRequestBuilder) Search()(*V1ProjectsSearchRequestBuilder) {
-    return NewV1ProjectsSearchRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // Tags the tags property
 // returns a *V1ProjectsTagsRequestBuilder when successful
 func (m *V1ProjectsRequestBuilder) Tags()(*V1ProjectsTagsRequestBuilder) {

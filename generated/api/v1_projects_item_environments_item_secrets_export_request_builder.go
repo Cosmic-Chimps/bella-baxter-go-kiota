@@ -31,10 +31,10 @@ func NewV1ProjectsItemEnvironmentsItemSecretsExportRequestBuilder(rawUrl string,
     return NewV1ProjectsItemEnvironmentsItemSecretsExportRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Get gET_api_v1_projects_projectRef_environments_envSlug_secrets_export
-// returns a E2EEncryptedPayloadable when successful
+// returns a V1ProjectsItemEnvironmentsItemSecretsExportGetResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
 // returns a ProblemDetails error when the service returns a 502 status code
-func (m *V1ProjectsItemEnvironmentsItemSecretsExportRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsItemEnvironmentsItemSecretsExportRequestBuilderGetQueryParameters])(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.E2EEncryptedPayloadable, error) {
+func (m *V1ProjectsItemEnvironmentsItemSecretsExportRequestBuilder) Get(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsItemEnvironmentsItemSecretsExportRequestBuilderGetQueryParameters])(V1ProjectsItemEnvironmentsItemSecretsExportGetResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
         return nil, err
@@ -43,14 +43,14 @@ func (m *V1ProjectsItemEnvironmentsItemSecretsExportRequestBuilder) Get(ctx cont
         "404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
         "502": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
     }
-    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateE2EEncryptedPayloadFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateV1ProjectsItemEnvironmentsItemSecretsExportGetResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
     if res == nil {
         return nil, nil
     }
-    return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.E2EEncryptedPayloadable), nil
+    return res.(V1ProjectsItemEnvironmentsItemSecretsExportGetResponseable), nil
 }
 // ToGetRequestInformation gET_api_v1_projects_projectRef_environments_envSlug_secrets_export
 // returns a *RequestInformation when successful

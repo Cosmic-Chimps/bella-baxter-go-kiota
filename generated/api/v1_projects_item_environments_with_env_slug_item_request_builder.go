@@ -23,11 +23,6 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) AudienceReadin
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Authority()(*V1ProjectsItemEnvironmentsItemAuthorityRequestBuilder) {
     return NewV1ProjectsItemEnvironmentsItemAuthorityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// CertRotation the certRotation property
-// returns a *V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder when successful
-func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) CertRotation()(*V1ProjectsItemEnvironmentsItemCertRotationRequestBuilder) {
-    return NewV1ProjectsItemEnvironmentsItemCertRotationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
-}
 // NewV1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilderInternal instantiates a new V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder and sets the default values.
 func NewV1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) {
     m := &V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder{
