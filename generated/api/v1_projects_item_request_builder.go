@@ -14,10 +14,16 @@ type V1ProjectsItemRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// V1ProjectsItemRequestBuilderDeleteQueryParameters dELETE_api_v1_projects_projectRef
+type V1ProjectsItemRequestBuilderDeleteQueryParameters struct {
+	ConfirmProjectSlug *string "uriparametername:\"confirmProjectSlug\""
+	PreviewDigest      *string "uriparametername:\"previewDigest\""
+}
+
 // NewV1ProjectsItemRequestBuilderInternal instantiates a new V1ProjectsItemRequestBuilder and sets the default values.
 func NewV1ProjectsItemRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1ProjectsItemRequestBuilder {
 	m := &V1ProjectsItemRequestBuilder{
-		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/projects/{%2Did}", pathParameters),
+		BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/api/v1/projects/{%2Did}{?confirmProjectSlug*,previewDigest*}", pathParameters),
 	}
 	return m
 }
@@ -32,13 +38,19 @@ func NewV1ProjectsItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
 // Delete dELETE_api_v1_projects_projectRef
 // returns a OperationResponseable when successful
 // returns a ProblemDetails error when the service returns a 404 status code
-func (m *V1ProjectsItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters]) (i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable, error) {
+// returns a ProblemDetails error when the service returns a 409 status code
+// returns a ProblemDetails error when the service returns a 422 status code
+// returns a ProblemDetails error when the service returns a 503 status code
+func (m *V1ProjectsItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsItemRequestBuilderDeleteQueryParameters]) (i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable, error) {
 	requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration)
 	if err != nil {
 		return nil, err
 	}
 	errorMapping := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ErrorMappings{
 		"404": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+		"409": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+		"422": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
+		"503": i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateProblemDetailsFromDiscriminatorValue,
 	}
 	res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.CreateOperationResponseFromDiscriminatorValue, errorMapping)
 	if err != nil {
@@ -48,6 +60,12 @@ func (m *V1ProjectsItemRequestBuilder) Delete(ctx context.Context, requestConfig
 		return nil, nil
 	}
 	return res.(i8cb6f6b3ef9d526a285dccfc6572e3abf87504b915a3847eb9d5aebdf2472c1d.OperationResponseable), nil
+}
+
+// DeletionPreview the deletionPreview property
+// returns a *V1ProjectsItemDeletionPreviewRequestBuilder when successful
+func (m *V1ProjectsItemRequestBuilder) DeletionPreview() *V1ProjectsItemDeletionPreviewRequestBuilder {
+	return NewV1ProjectsItemDeletionPreviewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
 // EncryptionKey the encryptionKey property
@@ -154,7 +172,7 @@ func (m *V1ProjectsItemRequestBuilder) Security() *V1ProjectsItemSecurityRequest
 
 // ToDeleteRequestInformation dELETE_api_v1_projects_projectRef
 // returns a *RequestInformation when successful
-func (m *V1ProjectsItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters]) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
+func (m *V1ProjectsItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[V1ProjectsItemRequestBuilderDeleteQueryParameters]) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
 	requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DELETE, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.ConfigureRequestInformation(requestInfo, requestConfiguration)
 	requestInfo.Headers.TryAdd("Accept", "application/json")
