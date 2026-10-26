@@ -10,6 +10,8 @@ import (
 )
 
 type EnvironmentSecurityReportResponse struct {
+	// The acknowledgedInsights property
+	acknowledgedInsights []AcknowledgedInsightResponseable
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
 	// The breachCheckSkipped property
@@ -49,6 +51,12 @@ func CreateEnvironmentSecurityReportResponseFromDiscriminatorValue(parseNode i87
 	return NewEnvironmentSecurityReportResponse(), nil
 }
 
+// GetAcknowledgedInsights gets the acknowledgedInsights property value. The acknowledgedInsights property
+// returns a []AcknowledgedInsightResponseable when successful
+func (m *EnvironmentSecurityReportResponse) GetAcknowledgedInsights() []AcknowledgedInsightResponseable {
+	return m.acknowledgedInsights
+}
+
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
 func (m *EnvironmentSecurityReportResponse) GetAdditionalData() map[string]any {
@@ -77,6 +85,22 @@ func (m *EnvironmentSecurityReportResponse) GetEnvironmentSlug() *string {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *EnvironmentSecurityReportResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["acknowledgedInsights"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateAcknowledgedInsightResponseFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]AcknowledgedInsightResponseable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(AcknowledgedInsightResponseable)
+				}
+			}
+			m.SetAcknowledgedInsights(res)
+		}
+		return nil
+	}
 	res["breachCheckSkipped"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -246,6 +270,18 @@ func (m *EnvironmentSecurityReportResponse) GetSummary() SecurityReportSummaryab
 
 // Serialize serializes information the current object
 func (m *EnvironmentSecurityReportResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAcknowledgedInsights() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAcknowledgedInsights()))
+		for i, v := range m.GetAcknowledgedInsights() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("acknowledgedInsights", cast)
+		if err != nil {
+			return err
+		}
+	}
 	{
 		err := writer.WriteBoolValue("breachCheckSkipped", m.GetBreachCheckSkipped())
 		if err != nil {
@@ -327,6 +363,11 @@ func (m *EnvironmentSecurityReportResponse) Serialize(writer i878a80d2330e89d268
 	return nil
 }
 
+// SetAcknowledgedInsights sets the acknowledgedInsights property value. The acknowledgedInsights property
+func (m *EnvironmentSecurityReportResponse) SetAcknowledgedInsights(value []AcknowledgedInsightResponseable) {
+	m.acknowledgedInsights = value
+}
+
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *EnvironmentSecurityReportResponse) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
@@ -390,6 +431,7 @@ func (m *EnvironmentSecurityReportResponse) SetSummary(value SecurityReportSumma
 type EnvironmentSecurityReportResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAcknowledgedInsights() []AcknowledgedInsightResponseable
 	GetBreachCheckSkipped() *bool
 	GetEnvironmentId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetEnvironmentSlug() *string
@@ -401,6 +443,7 @@ type EnvironmentSecurityReportResponseable interface {
 	GetProviderFetchFailed() *bool
 	GetScannedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetSummary() SecurityReportSummaryable
+	SetAcknowledgedInsights(value []AcknowledgedInsightResponseable)
 	SetBreachCheckSkipped(value *bool)
 	SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetEnvironmentSlug(value *string)

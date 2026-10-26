@@ -9,6 +9,8 @@ import (
 )
 
 type ProjectGlobalSecurityReport struct {
+	// The acknowledgedInsights property
+	acknowledgedInsights []AcknowledgedInsightResponseable
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
 	// The breachCheckSkipped property
@@ -27,6 +29,8 @@ type ProjectGlobalSecurityReport struct {
 	noProviderConfigured *bool
 	// The overallRisk property
 	overallRisk *string
+	// The passed property
+	passed *int32
 	// The providerFetchFailed property
 	providerFetchFailed *bool
 	// The scannedAt property
@@ -39,6 +43,8 @@ type ProjectGlobalSecurityReport struct {
 func NewProjectGlobalSecurityReport() *ProjectGlobalSecurityReport {
 	m := &ProjectGlobalSecurityReport{}
 	m.SetAdditionalData(make(map[string]any))
+	passedValue := int32(0)
+	m.SetPassed(&passedValue)
 	return m
 }
 
@@ -46,6 +52,12 @@ func NewProjectGlobalSecurityReport() *ProjectGlobalSecurityReport {
 // returns a Parsable when successful
 func CreateProjectGlobalSecurityReportFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
 	return NewProjectGlobalSecurityReport(), nil
+}
+
+// GetAcknowledgedInsights gets the acknowledgedInsights property value. The acknowledgedInsights property
+// returns a []AcknowledgedInsightResponseable when successful
+func (m *ProjectGlobalSecurityReport) GetAcknowledgedInsights() []AcknowledgedInsightResponseable {
+	return m.acknowledgedInsights
 }
 
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -70,6 +82,22 @@ func (m *ProjectGlobalSecurityReport) GetCritical() *int32 {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *ProjectGlobalSecurityReport) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["acknowledgedInsights"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateAcknowledgedInsightResponseFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]AcknowledgedInsightResponseable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(AcknowledgedInsightResponseable)
+				}
+			}
+			m.SetAcknowledgedInsights(res)
+		}
+		return nil
+	}
 	res["breachCheckSkipped"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -156,6 +184,16 @@ func (m *ProjectGlobalSecurityReport) GetFieldDeserializers() map[string]func(i8
 		}
 		return nil
 	}
+	res["passed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPassed(val)
+		}
+		return nil
+	}
 	res["providerFetchFailed"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -225,6 +263,12 @@ func (m *ProjectGlobalSecurityReport) GetOverallRisk() *string {
 	return m.overallRisk
 }
 
+// GetPassed gets the passed property value. The passed property
+// returns a *int32 when successful
+func (m *ProjectGlobalSecurityReport) GetPassed() *int32 {
+	return m.passed
+}
+
 // GetProviderFetchFailed gets the providerFetchFailed property value. The providerFetchFailed property
 // returns a *bool when successful
 func (m *ProjectGlobalSecurityReport) GetProviderFetchFailed() *bool {
@@ -245,6 +289,18 @@ func (m *ProjectGlobalSecurityReport) GetTotalSecretsScanned() *int32 {
 
 // Serialize serializes information the current object
 func (m *ProjectGlobalSecurityReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	if m.GetAcknowledgedInsights() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAcknowledgedInsights()))
+		for i, v := range m.GetAcknowledgedInsights() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("acknowledgedInsights", cast)
+		if err != nil {
+			return err
+		}
+	}
 	{
 		err := writer.WriteBoolValue("breachCheckSkipped", m.GetBreachCheckSkipped())
 		if err != nil {
@@ -300,6 +356,12 @@ func (m *ProjectGlobalSecurityReport) Serialize(writer i878a80d2330e89d26896388a
 		}
 	}
 	{
+		err := writer.WriteInt32Value("passed", m.GetPassed())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteBoolValue("providerFetchFailed", m.GetProviderFetchFailed())
 		if err != nil {
 			return err
@@ -324,6 +386,11 @@ func (m *ProjectGlobalSecurityReport) Serialize(writer i878a80d2330e89d26896388a
 		}
 	}
 	return nil
+}
+
+// SetAcknowledgedInsights sets the acknowledgedInsights property value. The acknowledgedInsights property
+func (m *ProjectGlobalSecurityReport) SetAcknowledgedInsights(value []AcknowledgedInsightResponseable) {
+	m.acknowledgedInsights = value
 }
 
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -371,6 +438,11 @@ func (m *ProjectGlobalSecurityReport) SetOverallRisk(value *string) {
 	m.overallRisk = value
 }
 
+// SetPassed sets the passed property value. The passed property
+func (m *ProjectGlobalSecurityReport) SetPassed(value *int32) {
+	m.passed = value
+}
+
 // SetProviderFetchFailed sets the providerFetchFailed property value. The providerFetchFailed property
 func (m *ProjectGlobalSecurityReport) SetProviderFetchFailed(value *bool) {
 	m.providerFetchFailed = value
@@ -389,6 +461,7 @@ func (m *ProjectGlobalSecurityReport) SetTotalSecretsScanned(value *int32) {
 type ProjectGlobalSecurityReportable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetAcknowledgedInsights() []AcknowledgedInsightResponseable
 	GetBreachCheckSkipped() *bool
 	GetCritical() *int32
 	GetHigh() *int32
@@ -397,9 +470,11 @@ type ProjectGlobalSecurityReportable interface {
 	GetMedium() *int32
 	GetNoProviderConfigured() *bool
 	GetOverallRisk() *string
+	GetPassed() *int32
 	GetProviderFetchFailed() *bool
 	GetScannedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetTotalSecretsScanned() *int32
+	SetAcknowledgedInsights(value []AcknowledgedInsightResponseable)
 	SetBreachCheckSkipped(value *bool)
 	SetCritical(value *int32)
 	SetHigh(value *int32)
@@ -408,6 +483,7 @@ type ProjectGlobalSecurityReportable interface {
 	SetMedium(value *int32)
 	SetNoProviderConfigured(value *bool)
 	SetOverallRisk(value *string)
+	SetPassed(value *int32)
 	SetProviderFetchFailed(value *bool)
 	SetScannedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetTotalSecretsScanned(value *int32)

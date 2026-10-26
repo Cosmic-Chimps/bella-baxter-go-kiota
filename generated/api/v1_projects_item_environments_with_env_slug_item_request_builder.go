@@ -160,6 +160,12 @@ func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Secrets() *V1P
 	return NewV1ProjectsItemEnvironmentsItemSecretsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// Security the security property
+// returns a *V1ProjectsItemEnvironmentsItemSecurityRequestBuilder when successful
+func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) Security() *V1ProjectsItemEnvironmentsItemSecurityRequestBuilder {
+	return NewV1ProjectsItemEnvironmentsItemSecurityRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // SpiffeSettings the spiffeSettings property
 // returns a *V1ProjectsItemEnvironmentsItemSpiffeSettingsRequestBuilder when successful
 func (m *V1ProjectsItemEnvironmentsWithEnvSlugItemRequestBuilder) SpiffeSettings() *V1ProjectsItemEnvironmentsItemSpiffeSettingsRequestBuilder {

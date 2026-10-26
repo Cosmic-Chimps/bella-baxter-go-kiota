@@ -18,6 +18,8 @@ type SecurityInsightResponse struct {
 	matchedPattern *string
 	// The messageParameters property
 	messageParameters SecurityInsightResponse_messageParametersable
+	// The previouslyAcknowledged property
+	previouslyAcknowledged *bool
 	// The recommendation property
 	recommendation *string
 	// The recommendationCode property
@@ -34,6 +36,8 @@ type SecurityInsightResponse struct {
 func NewSecurityInsightResponse() *SecurityInsightResponse {
 	m := &SecurityInsightResponse{}
 	m.SetAdditionalData(make(map[string]any))
+	previouslyAcknowledgedValue := false
+	m.SetPreviouslyAcknowledged(&previouslyAcknowledgedValue)
 	return m
 }
 
@@ -105,6 +109,16 @@ func (m *SecurityInsightResponse) GetFieldDeserializers() map[string]func(i878a8
 		}
 		return nil
 	}
+	res["previouslyAcknowledged"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPreviouslyAcknowledged(val)
+		}
+		return nil
+	}
 	res["recommendation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -170,6 +184,12 @@ func (m *SecurityInsightResponse) GetMessageParameters() SecurityInsightResponse
 	return m.messageParameters
 }
 
+// GetPreviouslyAcknowledged gets the previouslyAcknowledged property value. The previouslyAcknowledged property
+// returns a *bool when successful
+func (m *SecurityInsightResponse) GetPreviouslyAcknowledged() *bool {
+	return m.previouslyAcknowledged
+}
+
 // GetRecommendation gets the recommendation property value. The recommendation property
 // returns a *string when successful
 func (m *SecurityInsightResponse) GetRecommendation() *string {
@@ -222,6 +242,12 @@ func (m *SecurityInsightResponse) Serialize(writer i878a80d2330e89d26896388a3f48
 	}
 	{
 		err := writer.WriteObjectValue("messageParameters", m.GetMessageParameters())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("previouslyAcknowledged", m.GetPreviouslyAcknowledged())
 		if err != nil {
 			return err
 		}
@@ -290,6 +316,11 @@ func (m *SecurityInsightResponse) SetMessageParameters(value SecurityInsightResp
 	m.messageParameters = value
 }
 
+// SetPreviouslyAcknowledged sets the previouslyAcknowledged property value. The previouslyAcknowledged property
+func (m *SecurityInsightResponse) SetPreviouslyAcknowledged(value *bool) {
+	m.previouslyAcknowledged = value
+}
+
 // SetRecommendation sets the recommendation property value. The recommendation property
 func (m *SecurityInsightResponse) SetRecommendation(value *string) {
 	m.recommendation = value
@@ -322,6 +353,7 @@ type SecurityInsightResponseable interface {
 	GetDetailCode() *string
 	GetMatchedPattern() *string
 	GetMessageParameters() SecurityInsightResponse_messageParametersable
+	GetPreviouslyAcknowledged() *bool
 	GetRecommendation() *string
 	GetRecommendationCode() *string
 	GetSecretKey() *string
@@ -331,6 +363,7 @@ type SecurityInsightResponseable interface {
 	SetDetailCode(value *string)
 	SetMatchedPattern(value *string)
 	SetMessageParameters(value SecurityInsightResponse_messageParametersable)
+	SetPreviouslyAcknowledged(value *bool)
 	SetRecommendation(value *string)
 	SetRecommendationCode(value *string)
 	SetSecretKey(value *string)

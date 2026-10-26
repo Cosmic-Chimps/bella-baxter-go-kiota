@@ -14,6 +14,12 @@ type V1ProjectsItemSecurityRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// Acknowledgements the acknowledgements property
+// returns a *V1ProjectsItemSecurityAcknowledgementsRequestBuilder when successful
+func (m *V1ProjectsItemSecurityRequestBuilder) Acknowledgements() *V1ProjectsItemSecurityAcknowledgementsRequestBuilder {
+	return NewV1ProjectsItemSecurityAcknowledgementsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // NewV1ProjectsItemSecurityRequestBuilderInternal instantiates a new V1ProjectsItemSecurityRequestBuilder and sets the default values.
 func NewV1ProjectsItemSecurityRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1ProjectsItemSecurityRequestBuilder {
 	m := &V1ProjectsItemSecurityRequestBuilder{
