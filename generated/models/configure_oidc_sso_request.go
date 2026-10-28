@@ -18,6 +18,8 @@ type ConfigureOidcSsoRequest struct {
 	discoveryUrl *string
 	// The domains property
 	domains []string
+	// The expectedIssuer property
+	expectedIssuer *string
 }
 
 // NewConfigureOidcSsoRequest instantiates a new ConfigureOidcSsoRequest and sets the default values.
@@ -61,6 +63,12 @@ func (m *ConfigureOidcSsoRequest) GetDiscoveryUrl() *string {
 // returns a []string when successful
 func (m *ConfigureOidcSsoRequest) GetDomains() []string {
 	return m.domains
+}
+
+// GetExpectedIssuer gets the expectedIssuer property value. The expectedIssuer property
+// returns a *string when successful
+func (m *ConfigureOidcSsoRequest) GetExpectedIssuer() *string {
+	return m.expectedIssuer
 }
 
 // GetFieldDeserializers the deserialization information for the current model
@@ -113,6 +121,16 @@ func (m *ConfigureOidcSsoRequest) GetFieldDeserializers() map[string]func(i878a8
 		}
 		return nil
 	}
+	res["expectedIssuer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExpectedIssuer(val)
+		}
+		return nil
+	}
 	return res
 }
 
@@ -138,6 +156,12 @@ func (m *ConfigureOidcSsoRequest) Serialize(writer i878a80d2330e89d26896388a3f48
 	}
 	if m.GetDomains() != nil {
 		err := writer.WriteCollectionOfStringValues("domains", m.GetDomains())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("expectedIssuer", m.GetExpectedIssuer())
 		if err != nil {
 			return err
 		}
@@ -176,6 +200,11 @@ func (m *ConfigureOidcSsoRequest) SetDomains(value []string) {
 	m.domains = value
 }
 
+// SetExpectedIssuer sets the expectedIssuer property value. The expectedIssuer property
+func (m *ConfigureOidcSsoRequest) SetExpectedIssuer(value *string) {
+	m.expectedIssuer = value
+}
+
 type ConfigureOidcSsoRequestable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -183,8 +212,10 @@ type ConfigureOidcSsoRequestable interface {
 	GetClientSecret() *string
 	GetDiscoveryUrl() *string
 	GetDomains() []string
+	GetExpectedIssuer() *string
 	SetClientId(value *string)
 	SetClientSecret(value *string)
 	SetDiscoveryUrl(value *string)
 	SetDomains(value []string)
+	SetExpectedIssuer(value *string)
 }

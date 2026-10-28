@@ -16,6 +16,8 @@ type UpdateSsoConfigRequest struct {
 	discoveryUrl *string
 	// The domains property
 	domains []string
+	// The expectedIssuer property
+	expectedIssuer *string
 	// The metadataUrl property
 	metadataUrl *string
 }
@@ -57,6 +59,12 @@ func (m *UpdateSsoConfigRequest) GetDomains() []string {
 	return m.domains
 }
 
+// GetExpectedIssuer gets the expectedIssuer property value. The expectedIssuer property
+// returns a *string when successful
+func (m *UpdateSsoConfigRequest) GetExpectedIssuer() *string {
+	return m.expectedIssuer
+}
+
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *UpdateSsoConfigRequest) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
@@ -94,6 +102,16 @@ func (m *UpdateSsoConfigRequest) GetFieldDeserializers() map[string]func(i878a80
 				}
 			}
 			m.SetDomains(res)
+		}
+		return nil
+	}
+	res["expectedIssuer"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetExpectedIssuer(val)
 		}
 		return nil
 	}
@@ -137,6 +155,12 @@ func (m *UpdateSsoConfigRequest) Serialize(writer i878a80d2330e89d26896388a3f487
 		}
 	}
 	{
+		err := writer.WriteStringValue("expectedIssuer", m.GetExpectedIssuer())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("metadataUrl", m.GetMetadataUrl())
 		if err != nil {
 			return err
@@ -171,6 +195,11 @@ func (m *UpdateSsoConfigRequest) SetDomains(value []string) {
 	m.domains = value
 }
 
+// SetExpectedIssuer sets the expectedIssuer property value. The expectedIssuer property
+func (m *UpdateSsoConfigRequest) SetExpectedIssuer(value *string) {
+	m.expectedIssuer = value
+}
+
 // SetMetadataUrl sets the metadataUrl property value. The metadataUrl property
 func (m *UpdateSsoConfigRequest) SetMetadataUrl(value *string) {
 	m.metadataUrl = value
@@ -182,9 +211,11 @@ type UpdateSsoConfigRequestable interface {
 	GetClientSecret() *string
 	GetDiscoveryUrl() *string
 	GetDomains() []string
+	GetExpectedIssuer() *string
 	GetMetadataUrl() *string
 	SetClientSecret(value *string)
 	SetDiscoveryUrl(value *string)
 	SetDomains(value []string)
+	SetExpectedIssuer(value *string)
 	SetMetadataUrl(value *string)
 }
