@@ -16,6 +16,8 @@ type TenantUsageResponse struct {
 	currentMonth *string
 	// The estimatedOverageCost property
 	estimatedOverageCost *float64
+	// The freeAllowanceWithheld property
+	freeAllowanceWithheld *bool
 	// The freeMonthlyQuota property
 	freeMonthlyQuota *int32
 	// The hasActiveSubscription property
@@ -42,6 +44,8 @@ func NewTenantUsageResponse() *TenantUsageResponse {
 	m.SetAdditionalData(make(map[string]any))
 	certificatesIssuedValue := int64(0)
 	m.SetCertificatesIssued(&certificatesIssuedValue)
+	freeAllowanceWithheldValue := false
+	m.SetFreeAllowanceWithheld(&freeAllowanceWithheldValue)
 	svidsIssuedValue := int64(0)
 	m.SetSvidsIssued(&svidsIssuedValue)
 	return m
@@ -108,6 +112,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		if val != nil {
 			m.SetEstimatedOverageCost(val)
+		}
+		return nil
+	}
+	res["freeAllowanceWithheld"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFreeAllowanceWithheld(val)
 		}
 		return nil
 	}
@@ -204,6 +218,12 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 	return res
 }
 
+// GetFreeAllowanceWithheld gets the freeAllowanceWithheld property value. The freeAllowanceWithheld property
+// returns a *bool when successful
+func (m *TenantUsageResponse) GetFreeAllowanceWithheld() *bool {
+	return m.freeAllowanceWithheld
+}
+
 // GetFreeMonthlyQuota gets the freeMonthlyQuota property value. The freeMonthlyQuota property
 // returns a *int32 when successful
 func (m *TenantUsageResponse) GetFreeMonthlyQuota() *int32 {
@@ -274,6 +294,12 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 	}
 	{
 		err := writer.WriteFloat64Value("estimatedOverageCost", m.GetEstimatedOverageCost())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("freeAllowanceWithheld", m.GetFreeAllowanceWithheld())
 		if err != nil {
 			return err
 		}
@@ -361,6 +387,11 @@ func (m *TenantUsageResponse) SetEstimatedOverageCost(value *float64) {
 	m.estimatedOverageCost = value
 }
 
+// SetFreeAllowanceWithheld sets the freeAllowanceWithheld property value. The freeAllowanceWithheld property
+func (m *TenantUsageResponse) SetFreeAllowanceWithheld(value *bool) {
+	m.freeAllowanceWithheld = value
+}
+
 // SetFreeMonthlyQuota sets the freeMonthlyQuota property value. The freeMonthlyQuota property
 func (m *TenantUsageResponse) SetFreeMonthlyQuota(value *int32) {
 	m.freeMonthlyQuota = value
@@ -412,6 +443,7 @@ type TenantUsageResponseable interface {
 	GetCertificatesIssued() *int64
 	GetCurrentMonth() *string
 	GetEstimatedOverageCost() *float64
+	GetFreeAllowanceWithheld() *bool
 	GetFreeMonthlyQuota() *int32
 	GetHasActiveSubscription() *bool
 	GetIsOperatorManaged() *bool
@@ -424,6 +456,7 @@ type TenantUsageResponseable interface {
 	SetCertificatesIssued(value *int64)
 	SetCurrentMonth(value *string)
 	SetEstimatedOverageCost(value *float64)
+	SetFreeAllowanceWithheld(value *bool)
 	SetFreeMonthlyQuota(value *int32)
 	SetHasActiveSubscription(value *bool)
 	SetIsOperatorManaged(value *bool)

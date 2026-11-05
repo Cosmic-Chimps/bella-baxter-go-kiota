@@ -68,6 +68,12 @@ func (m *V1ProjectsItemRequestBuilder) DeletionPreview() *V1ProjectsItemDeletion
 	return NewV1ProjectsItemDeletionPreviewRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// DeviceKeyRotations the deviceKeyRotations property
+// returns a *V1ProjectsItemDeviceKeyRotationsRequestBuilder when successful
+func (m *V1ProjectsItemRequestBuilder) DeviceKeyRotations() *V1ProjectsItemDeviceKeyRotationsRequestBuilder {
+	return NewV1ProjectsItemDeviceKeyRotationsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // EncryptionKey the encryptionKey property
 // returns a *V1ProjectsItemEncryptionKeyRequestBuilder when successful
 func (m *V1ProjectsItemRequestBuilder) EncryptionKey() *V1ProjectsItemEncryptionKeyRequestBuilder {

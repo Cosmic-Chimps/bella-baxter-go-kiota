@@ -12,10 +12,12 @@ const (
 	UNDECRYPTABLE_MIGRATIONSKIPREASON
 	WRITEFAILED_MIGRATIONSKIPREASON
 	UNREADABLE_MIGRATIONSKIPREASON
+	CHANGEDDURINGRUN_MIGRATIONSKIPREASON
+	CONDITIONALWRITEUNSUPPORTED_MIGRATIONSKIPREASON
 )
 
 func (i MigrationSkipReason) String() string {
-	return []string{"NoKey", "KeyStoreUnreadable", "ProviderUnreachable", "Undecryptable", "WriteFailed", "Unreadable"}[i]
+	return []string{"NoKey", "KeyStoreUnreadable", "ProviderUnreachable", "Undecryptable", "WriteFailed", "Unreadable", "ChangedDuringRun", "ConditionalWriteUnsupported"}[i]
 }
 
 func ParseMigrationSkipReason(v string) (any, error) {
@@ -33,6 +35,10 @@ func ParseMigrationSkipReason(v string) (any, error) {
 		result = WRITEFAILED_MIGRATIONSKIPREASON
 	case "Unreadable":
 		result = UNREADABLE_MIGRATIONSKIPREASON
+	case "ChangedDuringRun":
+		result = CHANGEDDURINGRUN_MIGRATIONSKIPREASON
+	case "ConditionalWriteUnsupported":
+		result = CONDITIONALWRITEUNSUPPORTED_MIGRATIONSKIPREASON
 	default:
 		return nil, nil
 	}

@@ -72,6 +72,12 @@ func (m *V1TenantsMeDevicesRequestBuilder) Get(ctx context.Context, requestConfi
 	return val, nil
 }
 
+// KeyRotations the keyRotations property
+// returns a *V1TenantsMeDevicesKeyRotationsRequestBuilder when successful
+func (m *V1TenantsMeDevicesRequestBuilder) KeyRotations() *V1TenantsMeDevicesKeyRotationsRequestBuilder {
+	return NewV1TenantsMeDevicesKeyRotationsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Post pOST_api_v1_tenants_me_devices
 // returns a ZkeDeviceResponseable when successful
 // returns a ProblemDetails error when the service returns a 400 status code

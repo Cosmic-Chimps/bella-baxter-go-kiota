@@ -37,6 +37,8 @@ type ProviderResponse struct {
 	source *string
 	// The status property
 	status *string
+	// The supportsSecretsManagement property
+	supportsSecretsManagement *bool
 	// The type property
 	typeEscaped *string
 	// The updatedAt property
@@ -232,6 +234,16 @@ func (m *ProviderResponse) GetFieldDeserializers() map[string]func(i878a80d2330e
 		}
 		return nil
 	}
+	res["supportsSecretsManagement"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSupportsSecretsManagement(val)
+		}
+		return nil
+	}
 	res["type"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -295,6 +307,12 @@ func (m *ProviderResponse) GetSource() *string {
 // returns a *string when successful
 func (m *ProviderResponse) GetStatus() *string {
 	return m.status
+}
+
+// GetSupportsSecretsManagement gets the supportsSecretsManagement property value. The supportsSecretsManagement property
+// returns a *bool when successful
+func (m *ProviderResponse) GetSupportsSecretsManagement() *bool {
+	return m.supportsSecretsManagement
 }
 
 // GetTypeEscaped gets the type property value. The type property
@@ -390,6 +408,12 @@ func (m *ProviderResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 		}
 	}
 	{
+		err := writer.WriteBoolValue("supportsSecretsManagement", m.GetSupportsSecretsManagement())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("type", m.GetTypeEscaped())
 		if err != nil {
 			return err
@@ -480,6 +504,11 @@ func (m *ProviderResponse) SetStatus(value *string) {
 	m.status = value
 }
 
+// SetSupportsSecretsManagement sets the supportsSecretsManagement property value. The supportsSecretsManagement property
+func (m *ProviderResponse) SetSupportsSecretsManagement(value *bool) {
+	m.supportsSecretsManagement = value
+}
+
 // SetTypeEscaped sets the type property value. The type property
 func (m *ProviderResponse) SetTypeEscaped(value *string) {
 	m.typeEscaped = value
@@ -506,6 +535,7 @@ type ProviderResponseable interface {
 	GetSlug() *string
 	GetSource() *string
 	GetStatus() *string
+	GetSupportsSecretsManagement() *bool
 	GetTypeEscaped() *string
 	GetUpdatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	SetAwsExternalIdStatus(value AwsExternalIdStateable)
@@ -521,6 +551,7 @@ type ProviderResponseable interface {
 	SetSlug(value *string)
 	SetSource(value *string)
 	SetStatus(value *string)
+	SetSupportsSecretsManagement(value *bool)
 	SetTypeEscaped(value *string)
 	SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 }

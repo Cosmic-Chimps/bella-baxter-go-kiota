@@ -11,6 +11,8 @@ import (
 type CreateOwnTenantResponse struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
+	// The freeAllowanceWithheld property
+	freeAllowanceWithheld *bool
 	// The requiresTokenRefresh property
 	requiresTokenRefresh *bool
 	// The tenantId property
@@ -25,6 +27,8 @@ type CreateOwnTenantResponse struct {
 func NewCreateOwnTenantResponse() *CreateOwnTenantResponse {
 	m := &CreateOwnTenantResponse{}
 	m.SetAdditionalData(make(map[string]any))
+	freeAllowanceWithheldValue := false
+	m.SetFreeAllowanceWithheld(&freeAllowanceWithheldValue)
 	return m
 }
 
@@ -44,6 +48,16 @@ func (m *CreateOwnTenantResponse) GetAdditionalData() map[string]any {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *CreateOwnTenantResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["freeAllowanceWithheld"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetFreeAllowanceWithheld(val)
+		}
+		return nil
+	}
 	res["requiresTokenRefresh"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -87,6 +101,12 @@ func (m *CreateOwnTenantResponse) GetFieldDeserializers() map[string]func(i878a8
 	return res
 }
 
+// GetFreeAllowanceWithheld gets the freeAllowanceWithheld property value. The freeAllowanceWithheld property
+// returns a *bool when successful
+func (m *CreateOwnTenantResponse) GetFreeAllowanceWithheld() *bool {
+	return m.freeAllowanceWithheld
+}
+
 // GetRequiresTokenRefresh gets the requiresTokenRefresh property value. The requiresTokenRefresh property
 // returns a *bool when successful
 func (m *CreateOwnTenantResponse) GetRequiresTokenRefresh() *bool {
@@ -113,6 +133,12 @@ func (m *CreateOwnTenantResponse) GetTenantSlug() *string {
 
 // Serialize serializes information the current object
 func (m *CreateOwnTenantResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+	{
+		err := writer.WriteBoolValue("freeAllowanceWithheld", m.GetFreeAllowanceWithheld())
+		if err != nil {
+			return err
+		}
+	}
 	{
 		err := writer.WriteBoolValue("requiresTokenRefresh", m.GetRequiresTokenRefresh())
 		if err != nil {
@@ -151,6 +177,11 @@ func (m *CreateOwnTenantResponse) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
 }
 
+// SetFreeAllowanceWithheld sets the freeAllowanceWithheld property value. The freeAllowanceWithheld property
+func (m *CreateOwnTenantResponse) SetFreeAllowanceWithheld(value *bool) {
+	m.freeAllowanceWithheld = value
+}
+
 // SetRequiresTokenRefresh sets the requiresTokenRefresh property value. The requiresTokenRefresh property
 func (m *CreateOwnTenantResponse) SetRequiresTokenRefresh(value *bool) {
 	m.requiresTokenRefresh = value
@@ -174,10 +205,12 @@ func (m *CreateOwnTenantResponse) SetTenantSlug(value *string) {
 type CreateOwnTenantResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetFreeAllowanceWithheld() *bool
 	GetRequiresTokenRefresh() *bool
 	GetTenantId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetTenantName() *string
 	GetTenantSlug() *string
+	SetFreeAllowanceWithheld(value *bool)
 	SetRequiresTokenRefresh(value *bool)
 	SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetTenantName(value *string)

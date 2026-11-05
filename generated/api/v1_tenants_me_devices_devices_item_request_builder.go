@@ -50,6 +50,18 @@ func (m *V1TenantsMeDevicesDevicesItemRequestBuilder) Delete(ctx context.Context
 	return nil
 }
 
+// KeyExposure the keyExposure property
+// returns a *V1TenantsMeDevicesItemKeyExposureRequestBuilder when successful
+func (m *V1TenantsMeDevicesDevicesItemRequestBuilder) KeyExposure() *V1TenantsMeDevicesItemKeyExposureRequestBuilder {
+	return NewV1TenantsMeDevicesItemKeyExposureRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
+// KeyRotation the keyRotation property
+// returns a *V1TenantsMeDevicesItemKeyRotationRequestBuilder when successful
+func (m *V1TenantsMeDevicesDevicesItemRequestBuilder) KeyRotation() *V1TenantsMeDevicesItemKeyRotationRequestBuilder {
+	return NewV1TenantsMeDevicesItemKeyRotationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // ToDeleteRequestInformation dELETE_api_v1_tenants_me_devices_id
 // returns a *RequestInformation when successful
 func (m *V1TenantsMeDevicesDevicesItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestConfiguration[i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.DefaultQueryParameters]) (*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

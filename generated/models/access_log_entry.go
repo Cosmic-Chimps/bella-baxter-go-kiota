@@ -52,6 +52,8 @@ type AccessLogEntry struct {
 	projectSlug *string
 	// The providerId property
 	providerId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The scopeNarrowing property
+	scopeNarrowing ScopeNarrowingable
 	// The secretKey property
 	secretKey *string
 	// The timestamp property
@@ -379,6 +381,16 @@ func (m *AccessLogEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89
 		}
 		return nil
 	}
+	res["scopeNarrowing"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateScopeNarrowingFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScopeNarrowing(val.(ScopeNarrowingable))
+		}
+		return nil
+	}
 	res["secretKey"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -476,6 +488,12 @@ func (m *AccessLogEntry) GetProjectSlug() *string {
 // returns a *UUID when successful
 func (m *AccessLogEntry) GetProviderId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
 	return m.providerId
+}
+
+// GetScopeNarrowing gets the scopeNarrowing property value. The scopeNarrowing property
+// returns a ScopeNarrowingable when successful
+func (m *AccessLogEntry) GetScopeNarrowing() ScopeNarrowingable {
+	return m.scopeNarrowing
 }
 
 // GetSecretKey gets the secretKey property value. The secretKey property
@@ -637,6 +655,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 		}
 	}
 	{
+		err := writer.WriteObjectValue("scopeNarrowing", m.GetScopeNarrowing())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("secretKey", m.GetSecretKey())
 		if err != nil {
 			return err
@@ -786,6 +810,11 @@ func (m *AccessLogEntry) SetProviderId(value *i561e97a8befe7661a44c8f54600992b42
 	m.providerId = value
 }
 
+// SetScopeNarrowing sets the scopeNarrowing property value. The scopeNarrowing property
+func (m *AccessLogEntry) SetScopeNarrowing(value ScopeNarrowingable) {
+	m.scopeNarrowing = value
+}
+
 // SetSecretKey sets the secretKey property value. The secretKey property
 func (m *AccessLogEntry) SetSecretKey(value *string) {
 	m.secretKey = value
@@ -839,6 +868,7 @@ type AccessLogEntryable interface {
 	GetProjectId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetProjectSlug() *string
 	GetProviderId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetScopeNarrowing() ScopeNarrowingable
 	GetSecretKey() *string
 	GetTimestamp() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetTrustDomainId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
@@ -865,6 +895,7 @@ type AccessLogEntryable interface {
 	SetProjectId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetProjectSlug(value *string)
 	SetProviderId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetScopeNarrowing(value ScopeNarrowingable)
 	SetSecretKey(value *string)
 	SetTimestamp(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetTrustDomainId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)

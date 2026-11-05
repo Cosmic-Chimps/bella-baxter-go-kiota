@@ -29,6 +29,8 @@ type EnvironmentProviderResponse struct {
 	providerType *string
 	// The region property
 	region *string
+	// The supportsSecretsManagement property
+	supportsSecretsManagement *bool
 }
 
 // NewEnvironmentProviderResponse instantiates a new EnvironmentProviderResponse and sets the default values.
@@ -150,6 +152,16 @@ func (m *EnvironmentProviderResponse) GetFieldDeserializers() map[string]func(i8
 		}
 		return nil
 	}
+	res["supportsSecretsManagement"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSupportsSecretsManagement(val)
+		}
+		return nil
+	}
 	return res
 }
 
@@ -199,6 +211,12 @@ func (m *EnvironmentProviderResponse) GetProviderType() *string {
 // returns a *string when successful
 func (m *EnvironmentProviderResponse) GetRegion() *string {
 	return m.region
+}
+
+// GetSupportsSecretsManagement gets the supportsSecretsManagement property value. The supportsSecretsManagement property
+// returns a *bool when successful
+func (m *EnvironmentProviderResponse) GetSupportsSecretsManagement() *bool {
+	return m.supportsSecretsManagement
 }
 
 // Serialize serializes information the current object
@@ -253,6 +271,12 @@ func (m *EnvironmentProviderResponse) Serialize(writer i878a80d2330e89d26896388a
 	}
 	{
 		err := writer.WriteStringValue("region", m.GetRegion())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("supportsSecretsManagement", m.GetSupportsSecretsManagement())
 		if err != nil {
 			return err
 		}
@@ -316,6 +340,11 @@ func (m *EnvironmentProviderResponse) SetRegion(value *string) {
 	m.region = value
 }
 
+// SetSupportsSecretsManagement sets the supportsSecretsManagement property value. The supportsSecretsManagement property
+func (m *EnvironmentProviderResponse) SetSupportsSecretsManagement(value *bool) {
+	m.supportsSecretsManagement = value
+}
+
 type EnvironmentProviderResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -328,6 +357,7 @@ type EnvironmentProviderResponseable interface {
 	GetProviderSlug() *string
 	GetProviderType() *string
 	GetRegion() *string
+	GetSupportsSecretsManagement() *bool
 	SetAssignedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetId(value *string)
 	SetProviderDescription(value *string)
@@ -337,4 +367,5 @@ type EnvironmentProviderResponseable interface {
 	SetProviderSlug(value *string)
 	SetProviderType(value *string)
 	SetRegion(value *string)
+	SetSupportsSecretsManagement(value *bool)
 }

@@ -15,10 +15,14 @@ type SsoStatusResponse struct {
 	approvalStatus *string
 	// The config property
 	config SsoConfigResponseable
+	// The hasSso property
+	hasSso *bool
 	// The rejectionReason property
 	rejectionReason *string
 	// The requestedAt property
 	requestedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The ssoOffered property
+	ssoOffered *bool
 }
 
 // NewSsoStatusResponse instantiates a new SsoStatusResponse and sets the default values.
@@ -76,6 +80,16 @@ func (m *SsoStatusResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		return nil
 	}
+	res["hasSso"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHasSso(val)
+		}
+		return nil
+	}
 	res["rejectionReason"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -96,7 +110,23 @@ func (m *SsoStatusResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		return nil
 	}
+	res["ssoOffered"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSsoOffered(val)
+		}
+		return nil
+	}
 	return res
+}
+
+// GetHasSso gets the hasSso property value. The hasSso property
+// returns a *bool when successful
+func (m *SsoStatusResponse) GetHasSso() *bool {
+	return m.hasSso
 }
 
 // GetRejectionReason gets the rejectionReason property value. The rejectionReason property
@@ -109,6 +139,12 @@ func (m *SsoStatusResponse) GetRejectionReason() *string {
 // returns a *Time when successful
 func (m *SsoStatusResponse) GetRequestedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
 	return m.requestedAt
+}
+
+// GetSsoOffered gets the ssoOffered property value. The ssoOffered property
+// returns a *bool when successful
+func (m *SsoStatusResponse) GetSsoOffered() *bool {
+	return m.ssoOffered
 }
 
 // Serialize serializes information the current object
@@ -126,6 +162,12 @@ func (m *SsoStatusResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 		}
 	}
 	{
+		err := writer.WriteBoolValue("hasSso", m.GetHasSso())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("rejectionReason", m.GetRejectionReason())
 		if err != nil {
 			return err
@@ -133,6 +175,12 @@ func (m *SsoStatusResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 	}
 	{
 		err := writer.WriteTimeValue("requestedAt", m.GetRequestedAt())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("ssoOffered", m.GetSsoOffered())
 		if err != nil {
 			return err
 		}
@@ -161,6 +209,11 @@ func (m *SsoStatusResponse) SetConfig(value SsoConfigResponseable) {
 	m.config = value
 }
 
+// SetHasSso sets the hasSso property value. The hasSso property
+func (m *SsoStatusResponse) SetHasSso(value *bool) {
+	m.hasSso = value
+}
+
 // SetRejectionReason sets the rejectionReason property value. The rejectionReason property
 func (m *SsoStatusResponse) SetRejectionReason(value *string) {
 	m.rejectionReason = value
@@ -171,15 +224,24 @@ func (m *SsoStatusResponse) SetRequestedAt(value *i336074805fc853987abe6f7fe3ad9
 	m.requestedAt = value
 }
 
+// SetSsoOffered sets the ssoOffered property value. The ssoOffered property
+func (m *SsoStatusResponse) SetSsoOffered(value *bool) {
+	m.ssoOffered = value
+}
+
 type SsoStatusResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetApprovalStatus() *string
 	GetConfig() SsoConfigResponseable
+	GetHasSso() *bool
 	GetRejectionReason() *string
 	GetRequestedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetSsoOffered() *bool
 	SetApprovalStatus(value *string)
 	SetConfig(value SsoConfigResponseable)
+	SetHasSso(value *bool)
 	SetRejectionReason(value *string)
 	SetRequestedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetSsoOffered(value *bool)
 }
