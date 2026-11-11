@@ -17,6 +17,8 @@ type SsoStatusResponse struct {
 	config SsoConfigResponseable
 	// The hasSso property
 	hasSso *bool
+	// The registration property
+	registration SsoRegistrationValuesable
 	// The rejectionReason property
 	rejectionReason *string
 	// The requestedAt property
@@ -90,6 +92,16 @@ func (m *SsoStatusResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		return nil
 	}
+	res["registration"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetObjectValue(CreateSsoRegistrationValuesFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetRegistration(val.(SsoRegistrationValuesable))
+		}
+		return nil
+	}
 	res["rejectionReason"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -129,6 +141,12 @@ func (m *SsoStatusResponse) GetHasSso() *bool {
 	return m.hasSso
 }
 
+// GetRegistration gets the registration property value. The registration property
+// returns a SsoRegistrationValuesable when successful
+func (m *SsoStatusResponse) GetRegistration() SsoRegistrationValuesable {
+	return m.registration
+}
+
 // GetRejectionReason gets the rejectionReason property value. The rejectionReason property
 // returns a *string when successful
 func (m *SsoStatusResponse) GetRejectionReason() *string {
@@ -163,6 +181,12 @@ func (m *SsoStatusResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 	}
 	{
 		err := writer.WriteBoolValue("hasSso", m.GetHasSso())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteObjectValue("registration", m.GetRegistration())
 		if err != nil {
 			return err
 		}
@@ -214,6 +238,11 @@ func (m *SsoStatusResponse) SetHasSso(value *bool) {
 	m.hasSso = value
 }
 
+// SetRegistration sets the registration property value. The registration property
+func (m *SsoStatusResponse) SetRegistration(value SsoRegistrationValuesable) {
+	m.registration = value
+}
+
 // SetRejectionReason sets the rejectionReason property value. The rejectionReason property
 func (m *SsoStatusResponse) SetRejectionReason(value *string) {
 	m.rejectionReason = value
@@ -235,12 +264,14 @@ type SsoStatusResponseable interface {
 	GetApprovalStatus() *string
 	GetConfig() SsoConfigResponseable
 	GetHasSso() *bool
+	GetRegistration() SsoRegistrationValuesable
 	GetRejectionReason() *string
 	GetRequestedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetSsoOffered() *bool
 	SetApprovalStatus(value *string)
 	SetConfig(value SsoConfigResponseable)
 	SetHasSso(value *bool)
+	SetRegistration(value SsoRegistrationValuesable)
 	SetRejectionReason(value *string)
 	SetRequestedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetSsoOffered(value *bool)

@@ -32,6 +32,12 @@ type SpiffeSettingsResponse struct {
 	k8sRecommendedAudience *string
 	// The modeMeaning property
 	modeMeaning ModeMeaningDtoable
+	// The nomadExpectedAudience property
+	nomadExpectedAudience *string
+	// The nomadOidcIssuerUrl property
+	nomadOidcIssuerUrl *string
+	// The nomadRecommendedAudience property
+	nomadRecommendedAudience *string
 	// The strictReadiness property
 	strictReadiness StrictReadinessDtoable
 }
@@ -205,6 +211,36 @@ func (m *SpiffeSettingsResponse) GetFieldDeserializers() map[string]func(i878a80
 		}
 		return nil
 	}
+	res["nomadExpectedAudience"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadExpectedAudience(val)
+		}
+		return nil
+	}
+	res["nomadOidcIssuerUrl"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadOidcIssuerUrl(val)
+		}
+		return nil
+	}
+	res["nomadRecommendedAudience"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadRecommendedAudience(val)
+		}
+		return nil
+	}
 	res["strictReadiness"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetObjectValue(CreateStrictReadinessDtoFromDiscriminatorValue)
 		if err != nil {
@@ -252,6 +288,24 @@ func (m *SpiffeSettingsResponse) GetK8sRecommendedAudience() *string {
 // returns a ModeMeaningDtoable when successful
 func (m *SpiffeSettingsResponse) GetModeMeaning() ModeMeaningDtoable {
 	return m.modeMeaning
+}
+
+// GetNomadExpectedAudience gets the nomadExpectedAudience property value. The nomadExpectedAudience property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetNomadExpectedAudience() *string {
+	return m.nomadExpectedAudience
+}
+
+// GetNomadOidcIssuerUrl gets the nomadOidcIssuerUrl property value. The nomadOidcIssuerUrl property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetNomadOidcIssuerUrl() *string {
+	return m.nomadOidcIssuerUrl
+}
+
+// GetNomadRecommendedAudience gets the nomadRecommendedAudience property value. The nomadRecommendedAudience property
+// returns a *string when successful
+func (m *SpiffeSettingsResponse) GetNomadRecommendedAudience() *string {
+	return m.nomadRecommendedAudience
 }
 
 // GetStrictReadiness gets the strictReadiness property value. The strictReadiness property
@@ -324,6 +378,24 @@ func (m *SpiffeSettingsResponse) Serialize(writer i878a80d2330e89d26896388a3f487
 	}
 	{
 		err := writer.WriteObjectValue("modeMeaning", m.GetModeMeaning())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadExpectedAudience", m.GetNomadExpectedAudience())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadOidcIssuerUrl", m.GetNomadOidcIssuerUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadRecommendedAudience", m.GetNomadRecommendedAudience())
 		if err != nil {
 			return err
 		}
@@ -403,6 +475,21 @@ func (m *SpiffeSettingsResponse) SetModeMeaning(value ModeMeaningDtoable) {
 	m.modeMeaning = value
 }
 
+// SetNomadExpectedAudience sets the nomadExpectedAudience property value. The nomadExpectedAudience property
+func (m *SpiffeSettingsResponse) SetNomadExpectedAudience(value *string) {
+	m.nomadExpectedAudience = value
+}
+
+// SetNomadOidcIssuerUrl sets the nomadOidcIssuerUrl property value. The nomadOidcIssuerUrl property
+func (m *SpiffeSettingsResponse) SetNomadOidcIssuerUrl(value *string) {
+	m.nomadOidcIssuerUrl = value
+}
+
+// SetNomadRecommendedAudience sets the nomadRecommendedAudience property value. The nomadRecommendedAudience property
+func (m *SpiffeSettingsResponse) SetNomadRecommendedAudience(value *string) {
+	m.nomadRecommendedAudience = value
+}
+
 // SetStrictReadiness sets the strictReadiness property value. The strictReadiness property
 func (m *SpiffeSettingsResponse) SetStrictReadiness(value StrictReadinessDtoable) {
 	m.strictReadiness = value
@@ -422,6 +509,9 @@ type SpiffeSettingsResponseable interface {
 	GetK8sOidcDiscoveryUrl() *string
 	GetK8sRecommendedAudience() *string
 	GetModeMeaning() ModeMeaningDtoable
+	GetNomadExpectedAudience() *string
+	GetNomadOidcIssuerUrl() *string
+	GetNomadRecommendedAudience() *string
 	GetStrictReadiness() StrictReadinessDtoable
 	SetAttestationMode(value *string)
 	SetAudienceNotice(value *string)
@@ -434,5 +524,8 @@ type SpiffeSettingsResponseable interface {
 	SetK8sOidcDiscoveryUrl(value *string)
 	SetK8sRecommendedAudience(value *string)
 	SetModeMeaning(value ModeMeaningDtoable)
+	SetNomadExpectedAudience(value *string)
+	SetNomadOidcIssuerUrl(value *string)
+	SetNomadRecommendedAudience(value *string)
 	SetStrictReadiness(value StrictReadinessDtoable)
 }

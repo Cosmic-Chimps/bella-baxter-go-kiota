@@ -14,6 +14,8 @@ type MyAccountSecurityResponse struct {
 	emailVerified *bool
 	// The otpConfigured property
 	otpConfigured *bool
+	// The passkeys property
+	passkeys []MyPasskeyable
 	// The verificationMailAvailable property
 	verificationMailAvailable *bool
 }
@@ -67,6 +69,22 @@ func (m *MyAccountSecurityResponse) GetFieldDeserializers() map[string]func(i878
 		}
 		return nil
 	}
+	res["passkeys"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateMyPasskeyFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]MyPasskeyable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(MyPasskeyable)
+				}
+			}
+			m.SetPasskeys(res)
+		}
+		return nil
+	}
 	res["verificationMailAvailable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -86,6 +104,12 @@ func (m *MyAccountSecurityResponse) GetOtpConfigured() *bool {
 	return m.otpConfigured
 }
 
+// GetPasskeys gets the passkeys property value. The passkeys property
+// returns a []MyPasskeyable when successful
+func (m *MyAccountSecurityResponse) GetPasskeys() []MyPasskeyable {
+	return m.passkeys
+}
+
 // GetVerificationMailAvailable gets the verificationMailAvailable property value. The verificationMailAvailable property
 // returns a *bool when successful
 func (m *MyAccountSecurityResponse) GetVerificationMailAvailable() *bool {
@@ -102,6 +126,18 @@ func (m *MyAccountSecurityResponse) Serialize(writer i878a80d2330e89d26896388a3f
 	}
 	{
 		err := writer.WriteBoolValue("otpConfigured", m.GetOtpConfigured())
+		if err != nil {
+			return err
+		}
+	}
+	if m.GetPasskeys() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPasskeys()))
+		for i, v := range m.GetPasskeys() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("passkeys", cast)
 		if err != nil {
 			return err
 		}
@@ -136,6 +172,11 @@ func (m *MyAccountSecurityResponse) SetOtpConfigured(value *bool) {
 	m.otpConfigured = value
 }
 
+// SetPasskeys sets the passkeys property value. The passkeys property
+func (m *MyAccountSecurityResponse) SetPasskeys(value []MyPasskeyable) {
+	m.passkeys = value
+}
+
 // SetVerificationMailAvailable sets the verificationMailAvailable property value. The verificationMailAvailable property
 func (m *MyAccountSecurityResponse) SetVerificationMailAvailable(value *bool) {
 	m.verificationMailAvailable = value
@@ -146,8 +187,10 @@ type MyAccountSecurityResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetEmailVerified() *bool
 	GetOtpConfigured() *bool
+	GetPasskeys() []MyPasskeyable
 	GetVerificationMailAvailable() *bool
 	SetEmailVerified(value *bool)
 	SetOtpConfigured(value *bool)
+	SetPasskeys(value []MyPasskeyable)
 	SetVerificationMailAvailable(value *bool)
 }

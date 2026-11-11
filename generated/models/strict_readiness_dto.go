@@ -12,6 +12,8 @@ type StrictReadinessDto struct {
 	additionalData map[string]any
 	// The k8sOidcIssuerProblem property
 	k8sOidcIssuerProblem *string
+	// The nomadOidcIssuerProblem property
+	nomadOidcIssuerProblem *string
 	// The workloadsWithoutVerifiableConstraint property
 	workloadsWithoutVerifiableConstraint []string
 }
@@ -49,6 +51,16 @@ func (m *StrictReadinessDto) GetFieldDeserializers() map[string]func(i878a80d233
 		}
 		return nil
 	}
+	res["nomadOidcIssuerProblem"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadOidcIssuerProblem(val)
+		}
+		return nil
+	}
 	res["workloadsWithoutVerifiableConstraint"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetCollectionOfPrimitiveValues("string")
 		if err != nil {
@@ -74,6 +86,12 @@ func (m *StrictReadinessDto) GetK8sOidcIssuerProblem() *string {
 	return m.k8sOidcIssuerProblem
 }
 
+// GetNomadOidcIssuerProblem gets the nomadOidcIssuerProblem property value. The nomadOidcIssuerProblem property
+// returns a *string when successful
+func (m *StrictReadinessDto) GetNomadOidcIssuerProblem() *string {
+	return m.nomadOidcIssuerProblem
+}
+
 // GetWorkloadsWithoutVerifiableConstraint gets the workloadsWithoutVerifiableConstraint property value. The workloadsWithoutVerifiableConstraint property
 // returns a []string when successful
 func (m *StrictReadinessDto) GetWorkloadsWithoutVerifiableConstraint() []string {
@@ -84,6 +102,12 @@ func (m *StrictReadinessDto) GetWorkloadsWithoutVerifiableConstraint() []string 
 func (m *StrictReadinessDto) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	{
 		err := writer.WriteStringValue("k8sOidcIssuerProblem", m.GetK8sOidcIssuerProblem())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadOidcIssuerProblem", m.GetNomadOidcIssuerProblem())
 		if err != nil {
 			return err
 		}
@@ -113,6 +137,11 @@ func (m *StrictReadinessDto) SetK8sOidcIssuerProblem(value *string) {
 	m.k8sOidcIssuerProblem = value
 }
 
+// SetNomadOidcIssuerProblem sets the nomadOidcIssuerProblem property value. The nomadOidcIssuerProblem property
+func (m *StrictReadinessDto) SetNomadOidcIssuerProblem(value *string) {
+	m.nomadOidcIssuerProblem = value
+}
+
 // SetWorkloadsWithoutVerifiableConstraint sets the workloadsWithoutVerifiableConstraint property value. The workloadsWithoutVerifiableConstraint property
 func (m *StrictReadinessDto) SetWorkloadsWithoutVerifiableConstraint(value []string) {
 	m.workloadsWithoutVerifiableConstraint = value
@@ -122,7 +151,9 @@ type StrictReadinessDtoable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetK8sOidcIssuerProblem() *string
+	GetNomadOidcIssuerProblem() *string
 	GetWorkloadsWithoutVerifiableConstraint() []string
 	SetK8sOidcIssuerProblem(value *string)
+	SetNomadOidcIssuerProblem(value *string)
 	SetWorkloadsWithoutVerifiableConstraint(value []string)
 }

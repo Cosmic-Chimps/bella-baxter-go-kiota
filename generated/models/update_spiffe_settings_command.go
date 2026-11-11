@@ -26,6 +26,10 @@ type UpdateSpiffeSettingsCommand struct {
 	k8sExpectedAudience *string
 	// The k8sOidcDiscoveryUrl property
 	k8sOidcDiscoveryUrl *string
+	// The nomadExpectedAudience property
+	nomadExpectedAudience *string
+	// The nomadOidcIssuerUrl property
+	nomadOidcIssuerUrl *string
 }
 
 // NewUpdateSpiffeSettingsCommand instantiates a new UpdateSpiffeSettingsCommand and sets the default values.
@@ -173,6 +177,26 @@ func (m *UpdateSpiffeSettingsCommand) GetFieldDeserializers() map[string]func(i8
 		}
 		return nil
 	}
+	res["nomadExpectedAudience"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadExpectedAudience(val)
+		}
+		return nil
+	}
+	res["nomadOidcIssuerUrl"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetNomadOidcIssuerUrl(val)
+		}
+		return nil
+	}
 	return res
 }
 
@@ -192,6 +216,18 @@ func (m *UpdateSpiffeSettingsCommand) GetK8sExpectedAudience() *string {
 // returns a *string when successful
 func (m *UpdateSpiffeSettingsCommand) GetK8sOidcDiscoveryUrl() *string {
 	return m.k8sOidcDiscoveryUrl
+}
+
+// GetNomadExpectedAudience gets the nomadExpectedAudience property value. The nomadExpectedAudience property
+// returns a *string when successful
+func (m *UpdateSpiffeSettingsCommand) GetNomadExpectedAudience() *string {
+	return m.nomadExpectedAudience
+}
+
+// GetNomadOidcIssuerUrl gets the nomadOidcIssuerUrl property value. The nomadOidcIssuerUrl property
+// returns a *string when successful
+func (m *UpdateSpiffeSettingsCommand) GetNomadOidcIssuerUrl() *string {
+	return m.nomadOidcIssuerUrl
 }
 
 // Serialize serializes information the current object
@@ -240,6 +276,18 @@ func (m *UpdateSpiffeSettingsCommand) Serialize(writer i878a80d2330e89d26896388a
 	}
 	{
 		err := writer.WriteStringValue("k8sOidcDiscoveryUrl", m.GetK8sOidcDiscoveryUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadExpectedAudience", m.GetNomadExpectedAudience())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("nomadOidcIssuerUrl", m.GetNomadOidcIssuerUrl())
 		if err != nil {
 			return err
 		}
@@ -298,6 +346,16 @@ func (m *UpdateSpiffeSettingsCommand) SetK8sOidcDiscoveryUrl(value *string) {
 	m.k8sOidcDiscoveryUrl = value
 }
 
+// SetNomadExpectedAudience sets the nomadExpectedAudience property value. The nomadExpectedAudience property
+func (m *UpdateSpiffeSettingsCommand) SetNomadExpectedAudience(value *string) {
+	m.nomadExpectedAudience = value
+}
+
+// SetNomadOidcIssuerUrl sets the nomadOidcIssuerUrl property value. The nomadOidcIssuerUrl property
+func (m *UpdateSpiffeSettingsCommand) SetNomadOidcIssuerUrl(value *string) {
+	m.nomadOidcIssuerUrl = value
+}
+
 type UpdateSpiffeSettingsCommandable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
@@ -309,6 +367,8 @@ type UpdateSpiffeSettingsCommandable interface {
 	GetK8sAudienceEnforced() *bool
 	GetK8sExpectedAudience() *string
 	GetK8sOidcDiscoveryUrl() *string
+	GetNomadExpectedAudience() *string
+	GetNomadOidcIssuerUrl() *string
 	SetAcknowledgeAudienceRefusals(value *bool)
 	SetAcknowledgeStrictRefusals(value *bool)
 	SetAttestationMode(value *string)
@@ -317,4 +377,6 @@ type UpdateSpiffeSettingsCommandable interface {
 	SetK8sAudienceEnforced(value *bool)
 	SetK8sExpectedAudience(value *string)
 	SetK8sOidcDiscoveryUrl(value *string)
+	SetNomadExpectedAudience(value *string)
+	SetNomadOidcIssuerUrl(value *string)
 }

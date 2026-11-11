@@ -50,3 +50,9 @@ func (m *V1MeRequestBuilder) Invitations() *V1MeInvitationsRequestBuilder {
 func (m *V1MeRequestBuilder) McpConnections() *V1MeMcpConnectionsRequestBuilder {
 	return NewV1MeMcpConnectionsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
+
+// Passkeys the passkeys property
+// returns a *V1MePasskeysRequestBuilder when successful
+func (m *V1MeRequestBuilder) Passkeys() *V1MePasskeysRequestBuilder {
+	return NewV1MePasskeysRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
