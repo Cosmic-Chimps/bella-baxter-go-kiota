@@ -11,6 +11,8 @@ import (
 type CurrentUserResponse struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
+	// The canCreateTenants property
+	canCreateTenants *bool
 	// The createdAt property
 	createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	// The email property
@@ -48,6 +50,12 @@ func (m *CurrentUserResponse) GetAdditionalData() map[string]any {
 	return m.additionalData
 }
 
+// GetCanCreateTenants gets the canCreateTenants property value. The canCreateTenants property
+// returns a *bool when successful
+func (m *CurrentUserResponse) GetCanCreateTenants() *bool {
+	return m.canCreateTenants
+}
+
 // GetCreatedAt gets the createdAt property value. The createdAt property
 // returns a *Time when successful
 func (m *CurrentUserResponse) GetCreatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
@@ -64,6 +72,16 @@ func (m *CurrentUserResponse) GetEmail() *string {
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error when successful
 func (m *CurrentUserResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
+	res["canCreateTenants"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetCanCreateTenants(val)
+		}
+		return nil
+	}
 	res["createdAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetTimeValue()
 		if err != nil {
@@ -186,6 +204,12 @@ func (m *CurrentUserResponse) GetUsername() *string {
 // Serialize serializes information the current object
 func (m *CurrentUserResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	{
+		err := writer.WriteBoolValue("canCreateTenants", m.GetCanCreateTenants())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteTimeValue("createdAt", m.GetCreatedAt())
 		if err != nil {
 			return err
@@ -247,6 +271,11 @@ func (m *CurrentUserResponse) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
 }
 
+// SetCanCreateTenants sets the canCreateTenants property value. The canCreateTenants property
+func (m *CurrentUserResponse) SetCanCreateTenants(value *bool) {
+	m.canCreateTenants = value
+}
+
 // SetCreatedAt sets the createdAt property value. The createdAt property
 func (m *CurrentUserResponse) SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
 	m.createdAt = value
@@ -290,6 +319,7 @@ func (m *CurrentUserResponse) SetUsername(value *string) {
 type CurrentUserResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+	GetCanCreateTenants() *bool
 	GetCreatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetEmail() *string
 	GetId() *string
@@ -298,6 +328,7 @@ type CurrentUserResponseable interface {
 	GetTokenRemainingMinutes() *int64
 	GetUpdatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetUsername() *string
+	SetCanCreateTenants(value *bool)
 	SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetEmail(value *string)
 	SetId(value *string)
