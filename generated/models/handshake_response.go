@@ -13,8 +13,12 @@ type HandshakeResponse struct {
 	additionalData map[string]any
 	// The isNewTenant property
 	isNewTenant *bool
+	// The organisationSetupRequired property
+	organisationSetupRequired *bool
 	// The requiresTokenRefresh property
 	requiresTokenRefresh *bool
+	// The suggestedOrganisationName property
+	suggestedOrganisationName *string
 	// The tenantId property
 	tenantId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The tenantName property
@@ -31,6 +35,8 @@ func NewHandshakeResponse() *HandshakeResponse {
 	m.SetAdditionalData(make(map[string]any))
 	isNewTenantValue := false
 	m.SetIsNewTenant(&isNewTenantValue)
+	organisationSetupRequiredValue := false
+	m.SetOrganisationSetupRequired(&organisationSetupRequiredValue)
 	return m
 }
 
@@ -60,6 +66,16 @@ func (m *HandshakeResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		return nil
 	}
+	res["organisationSetupRequired"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrganisationSetupRequired(val)
+		}
+		return nil
+	}
 	res["requiresTokenRefresh"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -67,6 +83,16 @@ func (m *HandshakeResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		if val != nil {
 			m.SetRequiresTokenRefresh(val)
+		}
+		return nil
+	}
+	res["suggestedOrganisationName"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSuggestedOrganisationName(val)
 		}
 		return nil
 	}
@@ -119,10 +145,22 @@ func (m *HandshakeResponse) GetIsNewTenant() *bool {
 	return m.isNewTenant
 }
 
+// GetOrganisationSetupRequired gets the organisationSetupRequired property value. The organisationSetupRequired property
+// returns a *bool when successful
+func (m *HandshakeResponse) GetOrganisationSetupRequired() *bool {
+	return m.organisationSetupRequired
+}
+
 // GetRequiresTokenRefresh gets the requiresTokenRefresh property value. The requiresTokenRefresh property
 // returns a *bool when successful
 func (m *HandshakeResponse) GetRequiresTokenRefresh() *bool {
 	return m.requiresTokenRefresh
+}
+
+// GetSuggestedOrganisationName gets the suggestedOrganisationName property value. The suggestedOrganisationName property
+// returns a *string when successful
+func (m *HandshakeResponse) GetSuggestedOrganisationName() *string {
+	return m.suggestedOrganisationName
 }
 
 // GetTenantId gets the tenantId property value. The tenantId property
@@ -158,7 +196,19 @@ func (m *HandshakeResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 		}
 	}
 	{
+		err := writer.WriteBoolValue("organisationSetupRequired", m.GetOrganisationSetupRequired())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteBoolValue("requiresTokenRefresh", m.GetRequiresTokenRefresh())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("suggestedOrganisationName", m.GetSuggestedOrganisationName())
 		if err != nil {
 			return err
 		}
@@ -206,9 +256,19 @@ func (m *HandshakeResponse) SetIsNewTenant(value *bool) {
 	m.isNewTenant = value
 }
 
+// SetOrganisationSetupRequired sets the organisationSetupRequired property value. The organisationSetupRequired property
+func (m *HandshakeResponse) SetOrganisationSetupRequired(value *bool) {
+	m.organisationSetupRequired = value
+}
+
 // SetRequiresTokenRefresh sets the requiresTokenRefresh property value. The requiresTokenRefresh property
 func (m *HandshakeResponse) SetRequiresTokenRefresh(value *bool) {
 	m.requiresTokenRefresh = value
+}
+
+// SetSuggestedOrganisationName sets the suggestedOrganisationName property value. The suggestedOrganisationName property
+func (m *HandshakeResponse) SetSuggestedOrganisationName(value *string) {
+	m.suggestedOrganisationName = value
 }
 
 // SetTenantId sets the tenantId property value. The tenantId property
@@ -235,13 +295,17 @@ type HandshakeResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetIsNewTenant() *bool
+	GetOrganisationSetupRequired() *bool
 	GetRequiresTokenRefresh() *bool
+	GetSuggestedOrganisationName() *string
 	GetTenantId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetTenantName() *string
 	GetTenantSlug() *string
 	GetUserId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	SetIsNewTenant(value *bool)
+	SetOrganisationSetupRequired(value *bool)
 	SetRequiresTokenRefresh(value *bool)
+	SetSuggestedOrganisationName(value *string)
 	SetTenantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetTenantName(value *string)
 	SetTenantSlug(value *string)

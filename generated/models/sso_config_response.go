@@ -15,6 +15,8 @@ type SsoConfigResponse struct {
 	configuredAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	// The connection property
 	connection SsoConnectionStatusable
+	// The domainClaims property
+	domainClaims []SsoDomainClaimResponseable
 	// The domains property
 	domains []string
 	// The enforced property
@@ -58,6 +60,12 @@ func (m *SsoConfigResponse) GetConnection() SsoConnectionStatusable {
 	return m.connection
 }
 
+// GetDomainClaims gets the domainClaims property value. The domainClaims property
+// returns a []SsoDomainClaimResponseable when successful
+func (m *SsoConfigResponse) GetDomainClaims() []SsoDomainClaimResponseable {
+	return m.domainClaims
+}
+
 // GetDomains gets the domains property value. The domains property
 // returns a []string when successful
 func (m *SsoConfigResponse) GetDomains() []string {
@@ -91,6 +99,22 @@ func (m *SsoConfigResponse) GetFieldDeserializers() map[string]func(i878a80d2330
 		}
 		if val != nil {
 			m.SetConnection(val.(SsoConnectionStatusable))
+		}
+		return nil
+	}
+	res["domainClaims"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetCollectionOfObjectValues(CreateSsoDomainClaimResponseFromDiscriminatorValue)
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			res := make([]SsoDomainClaimResponseable, len(val))
+			for i, v := range val {
+				if v != nil {
+					res[i] = v.(SsoDomainClaimResponseable)
+				}
+			}
+			m.SetDomainClaims(res)
 		}
 		return nil
 	}
@@ -185,6 +209,18 @@ func (m *SsoConfigResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 			return err
 		}
 	}
+	if m.GetDomainClaims() != nil {
+		cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDomainClaims()))
+		for i, v := range m.GetDomainClaims() {
+			if v != nil {
+				cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+			}
+		}
+		err := writer.WriteCollectionOfObjectValues("domainClaims", cast)
+		if err != nil {
+			return err
+		}
+	}
 	if m.GetDomains() != nil {
 		err := writer.WriteCollectionOfStringValues("domains", m.GetDomains())
 		if err != nil {
@@ -240,6 +276,11 @@ func (m *SsoConfigResponse) SetConnection(value SsoConnectionStatusable) {
 	m.connection = value
 }
 
+// SetDomainClaims sets the domainClaims property value. The domainClaims property
+func (m *SsoConfigResponse) SetDomainClaims(value []SsoDomainClaimResponseable) {
+	m.domainClaims = value
+}
+
 // SetDomains sets the domains property value. The domains property
 func (m *SsoConfigResponse) SetDomains(value []string) {
 	m.domains = value
@@ -270,6 +311,7 @@ type SsoConfigResponseable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetConfiguredAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetConnection() SsoConnectionStatusable
+	GetDomainClaims() []SsoDomainClaimResponseable
 	GetDomains() []string
 	GetEnforced() *bool
 	GetIdpAlias() *string
@@ -277,6 +319,7 @@ type SsoConfigResponseable interface {
 	GetSpMetadataUrl() *string
 	SetConfiguredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetConnection(value SsoConnectionStatusable)
+	SetDomainClaims(value []SsoDomainClaimResponseable)
 	SetDomains(value []string)
 	SetEnforced(value *bool)
 	SetIdpAlias(value *string)

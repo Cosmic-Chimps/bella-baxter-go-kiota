@@ -39,6 +39,12 @@ func (m *TenantsItemRequestBuilder) Membership() *TenantsItemMembershipRequestBu
 	return NewTenantsItemMembershipRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// Name the name property
+// returns a *TenantsItemNameRequestBuilder when successful
+func (m *TenantsItemRequestBuilder) Name() *TenantsItemNameRequestBuilder {
+	return NewTenantsItemNameRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // OwnershipTransfer the ownershipTransfer property
 // returns a *TenantsItemOwnershipTransferRequestBuilder when successful
 func (m *TenantsItemRequestBuilder) OwnershipTransfer() *TenantsItemOwnershipTransferRequestBuilder {

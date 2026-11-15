@@ -52,6 +52,12 @@ func (m *V1TenantsMeSsoRequestBuilder) Delete(ctx context.Context, requestConfig
 	return nil
 }
 
+// Domains the domains property
+// returns a *V1TenantsMeSsoDomainsRequestBuilder when successful
+func (m *V1TenantsMeSsoRequestBuilder) Domains() *V1TenantsMeSsoDomainsRequestBuilder {
+	return NewV1TenantsMeSsoDomainsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Enforce the enforce property
 // returns a *V1TenantsMeSsoEnforceRequestBuilder when successful
 func (m *V1TenantsMeSsoRequestBuilder) Enforce() *V1TenantsMeSsoEnforceRequestBuilder {

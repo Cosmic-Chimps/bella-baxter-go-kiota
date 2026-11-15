@@ -17,12 +17,20 @@ type CurrentUserResponse struct {
 	createdAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	// The email property
 	email *string
+	// The hasOrganisation property
+	hasOrganisation *bool
 	// The id property
 	id *string
 	// The isAdmin property
 	isAdmin *bool
 	// The nombre property
 	nombre *string
+	// The organisationSetupDetail property
+	organisationSetupDetail *string
+	// The organisationSetupUrl property
+	organisationSetupUrl *string
+	// The suggestedOrganisationName property
+	suggestedOrganisationName *string
 	// The tokenRemainingMinutes property
 	tokenRemainingMinutes *int64
 	// The updatedAt property
@@ -102,6 +110,16 @@ func (m *CurrentUserResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		return nil
 	}
+	res["hasOrganisation"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHasOrganisation(val)
+		}
+		return nil
+	}
 	res["id"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -129,6 +147,36 @@ func (m *CurrentUserResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		if val != nil {
 			m.SetNombre(val)
+		}
+		return nil
+	}
+	res["organisationSetupDetail"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrganisationSetupDetail(val)
+		}
+		return nil
+	}
+	res["organisationSetupUrl"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrganisationSetupUrl(val)
+		}
+		return nil
+	}
+	res["suggestedOrganisationName"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetSuggestedOrganisationName(val)
 		}
 		return nil
 	}
@@ -165,6 +213,12 @@ func (m *CurrentUserResponse) GetFieldDeserializers() map[string]func(i878a80d23
 	return res
 }
 
+// GetHasOrganisation gets the hasOrganisation property value. The hasOrganisation property
+// returns a *bool when successful
+func (m *CurrentUserResponse) GetHasOrganisation() *bool {
+	return m.hasOrganisation
+}
+
 // GetId gets the id property value. The id property
 // returns a *string when successful
 func (m *CurrentUserResponse) GetId() *string {
@@ -181,6 +235,24 @@ func (m *CurrentUserResponse) GetIsAdmin() *bool {
 // returns a *string when successful
 func (m *CurrentUserResponse) GetNombre() *string {
 	return m.nombre
+}
+
+// GetOrganisationSetupDetail gets the organisationSetupDetail property value. The organisationSetupDetail property
+// returns a *string when successful
+func (m *CurrentUserResponse) GetOrganisationSetupDetail() *string {
+	return m.organisationSetupDetail
+}
+
+// GetOrganisationSetupUrl gets the organisationSetupUrl property value. The organisationSetupUrl property
+// returns a *string when successful
+func (m *CurrentUserResponse) GetOrganisationSetupUrl() *string {
+	return m.organisationSetupUrl
+}
+
+// GetSuggestedOrganisationName gets the suggestedOrganisationName property value. The suggestedOrganisationName property
+// returns a *string when successful
+func (m *CurrentUserResponse) GetSuggestedOrganisationName() *string {
+	return m.suggestedOrganisationName
 }
 
 // GetTokenRemainingMinutes gets the tokenRemainingMinutes property value. The tokenRemainingMinutes property
@@ -222,6 +294,12 @@ func (m *CurrentUserResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 		}
 	}
 	{
+		err := writer.WriteBoolValue("hasOrganisation", m.GetHasOrganisation())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteStringValue("id", m.GetId())
 		if err != nil {
 			return err
@@ -235,6 +313,24 @@ func (m *CurrentUserResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 	}
 	{
 		err := writer.WriteStringValue("nombre", m.GetNombre())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("organisationSetupDetail", m.GetOrganisationSetupDetail())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("organisationSetupUrl", m.GetOrganisationSetupUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("suggestedOrganisationName", m.GetSuggestedOrganisationName())
 		if err != nil {
 			return err
 		}
@@ -286,6 +382,11 @@ func (m *CurrentUserResponse) SetEmail(value *string) {
 	m.email = value
 }
 
+// SetHasOrganisation sets the hasOrganisation property value. The hasOrganisation property
+func (m *CurrentUserResponse) SetHasOrganisation(value *bool) {
+	m.hasOrganisation = value
+}
+
 // SetId sets the id property value. The id property
 func (m *CurrentUserResponse) SetId(value *string) {
 	m.id = value
@@ -299,6 +400,21 @@ func (m *CurrentUserResponse) SetIsAdmin(value *bool) {
 // SetNombre sets the nombre property value. The nombre property
 func (m *CurrentUserResponse) SetNombre(value *string) {
 	m.nombre = value
+}
+
+// SetOrganisationSetupDetail sets the organisationSetupDetail property value. The organisationSetupDetail property
+func (m *CurrentUserResponse) SetOrganisationSetupDetail(value *string) {
+	m.organisationSetupDetail = value
+}
+
+// SetOrganisationSetupUrl sets the organisationSetupUrl property value. The organisationSetupUrl property
+func (m *CurrentUserResponse) SetOrganisationSetupUrl(value *string) {
+	m.organisationSetupUrl = value
+}
+
+// SetSuggestedOrganisationName sets the suggestedOrganisationName property value. The suggestedOrganisationName property
+func (m *CurrentUserResponse) SetSuggestedOrganisationName(value *string) {
+	m.suggestedOrganisationName = value
 }
 
 // SetTokenRemainingMinutes sets the tokenRemainingMinutes property value. The tokenRemainingMinutes property
@@ -322,18 +438,26 @@ type CurrentUserResponseable interface {
 	GetCanCreateTenants() *bool
 	GetCreatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetEmail() *string
+	GetHasOrganisation() *bool
 	GetId() *string
 	GetIsAdmin() *bool
 	GetNombre() *string
+	GetOrganisationSetupDetail() *string
+	GetOrganisationSetupUrl() *string
+	GetSuggestedOrganisationName() *string
 	GetTokenRemainingMinutes() *int64
 	GetUpdatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetUsername() *string
 	SetCanCreateTenants(value *bool)
 	SetCreatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetEmail(value *string)
+	SetHasOrganisation(value *bool)
 	SetId(value *string)
 	SetIsAdmin(value *bool)
 	SetNombre(value *string)
+	SetOrganisationSetupDetail(value *string)
+	SetOrganisationSetupUrl(value *string)
+	SetSuggestedOrganisationName(value *string)
 	SetTokenRemainingMinutes(value *int64)
 	SetUpdatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetUsername(value *string)

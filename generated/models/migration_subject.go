@@ -10,10 +10,11 @@ const (
 	PROVIDERCREDENTIAL_MIGRATIONSUBJECT
 	WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
 	NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
+	AUDITSTREAMCREDENTIAL_MIGRATIONSUBJECT
 )
 
 func (i MigrationSubject) String() string {
-	return []string{"Project", "ProviderCredential", "WebhookSigningSecret", "NotificationChannel"}[i]
+	return []string{"Project", "ProviderCredential", "WebhookSigningSecret", "NotificationChannel", "AuditStreamCredential"}[i]
 }
 
 func ParseMigrationSubject(v string) (any, error) {
@@ -27,6 +28,8 @@ func ParseMigrationSubject(v string) (any, error) {
 		result = WEBHOOKSIGNINGSECRET_MIGRATIONSUBJECT
 	case "NotificationChannel":
 		result = NOTIFICATIONCHANNEL_MIGRATIONSUBJECT
+	case "AuditStreamCredential":
+		result = AUDITSTREAMCREDENTIAL_MIGRATIONSUBJECT
 	default:
 		return nil, nil
 	}

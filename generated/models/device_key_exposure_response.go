@@ -24,6 +24,8 @@ type DeviceKeyExposureResponse struct {
 	latestRunId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The latestRunState property
 	latestRunState *string
+	// The organisationKeyRotatedAfterRead property
+	organisationKeyRotatedAfterRead *bool
 	// The owedCount property
 	owedCount *int32
 	// The projectCount property
@@ -42,6 +44,8 @@ type DeviceKeyExposureResponse struct {
 func NewDeviceKeyExposureResponse() *DeviceKeyExposureResponse {
 	m := &DeviceKeyExposureResponse{}
 	m.SetAdditionalData(make(map[string]any))
+	organisationKeyRotatedAfterReadValue := false
+	m.SetOrganisationKeyRotatedAfterRead(&organisationKeyRotatedAfterReadValue)
 	return m
 }
 
@@ -124,6 +128,16 @@ func (m *DeviceKeyExposureResponse) GetFieldDeserializers() map[string]func(i878
 		}
 		if val != nil {
 			m.SetLatestRunState(val)
+		}
+		return nil
+	}
+	res["organisationKeyRotatedAfterRead"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrganisationKeyRotatedAfterRead(val)
 		}
 		return nil
 	}
@@ -226,6 +240,12 @@ func (m *DeviceKeyExposureResponse) GetLatestRunState() *string {
 	return m.latestRunState
 }
 
+// GetOrganisationKeyRotatedAfterRead gets the organisationKeyRotatedAfterRead property value. The organisationKeyRotatedAfterRead property
+// returns a *bool when successful
+func (m *DeviceKeyExposureResponse) GetOrganisationKeyRotatedAfterRead() *bool {
+	return m.organisationKeyRotatedAfterRead
+}
+
 // GetOwedCount gets the owedCount property value. The owedCount property
 // returns a *int32 when successful
 func (m *DeviceKeyExposureResponse) GetOwedCount() *int32 {
@@ -296,6 +316,12 @@ func (m *DeviceKeyExposureResponse) Serialize(writer i878a80d2330e89d26896388a3f
 	}
 	{
 		err := writer.WriteStringValue("latestRunState", m.GetLatestRunState())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("organisationKeyRotatedAfterRead", m.GetOrganisationKeyRotatedAfterRead())
 		if err != nil {
 			return err
 		}
@@ -386,6 +412,11 @@ func (m *DeviceKeyExposureResponse) SetLatestRunState(value *string) {
 	m.latestRunState = value
 }
 
+// SetOrganisationKeyRotatedAfterRead sets the organisationKeyRotatedAfterRead property value. The organisationKeyRotatedAfterRead property
+func (m *DeviceKeyExposureResponse) SetOrganisationKeyRotatedAfterRead(value *bool) {
+	m.organisationKeyRotatedAfterRead = value
+}
+
 // SetOwedCount sets the owedCount property value. The owedCount property
 func (m *DeviceKeyExposureResponse) SetOwedCount(value *int32) {
 	m.owedCount = value
@@ -425,6 +456,7 @@ type DeviceKeyExposureResponseable interface {
 	GetLatestRunFinishedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetLatestRunId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetLatestRunState() *string
+	GetOrganisationKeyRotatedAfterRead() *bool
 	GetOwedCount() *int32
 	GetProjectCount() *int32
 	GetProjects() []DeviceKeyExposureProjectable
@@ -437,6 +469,7 @@ type DeviceKeyExposureResponseable interface {
 	SetLatestRunFinishedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetLatestRunId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetLatestRunState(value *string)
+	SetOrganisationKeyRotatedAfterRead(value *bool)
 	SetOwedCount(value *int32)
 	SetProjectCount(value *int32)
 	SetProjects(value []DeviceKeyExposureProjectable)

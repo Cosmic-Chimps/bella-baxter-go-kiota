@@ -19,6 +19,8 @@ type TenantEncryptionKeyStatusResponse struct {
 	hasDek *bool
 	// The masterKeyFingerprint property
 	masterKeyFingerprint *string
+	// The organisationKeyRotatedAt property
+	organisationKeyRotatedAt *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	// The recoveryKeyFingerprint property
 	recoveryKeyFingerprint *string
 	// The registeredAt property
@@ -100,6 +102,16 @@ func (m *TenantEncryptionKeyStatusResponse) GetFieldDeserializers() map[string]f
 		}
 		return nil
 	}
+	res["organisationKeyRotatedAt"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetOrganisationKeyRotatedAt(val)
+		}
+		return nil
+	}
 	res["recoveryKeyFingerprint"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetStringValue()
 		if err != nil {
@@ -133,6 +145,12 @@ func (m *TenantEncryptionKeyStatusResponse) GetHasDek() *bool {
 // returns a *string when successful
 func (m *TenantEncryptionKeyStatusResponse) GetMasterKeyFingerprint() *string {
 	return m.masterKeyFingerprint
+}
+
+// GetOrganisationKeyRotatedAt gets the organisationKeyRotatedAt property value. The organisationKeyRotatedAt property
+// returns a *Time when successful
+func (m *TenantEncryptionKeyStatusResponse) GetOrganisationKeyRotatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.organisationKeyRotatedAt
 }
 
 // GetRecoveryKeyFingerprint gets the recoveryKeyFingerprint property value. The recoveryKeyFingerprint property
@@ -169,6 +187,12 @@ func (m *TenantEncryptionKeyStatusResponse) Serialize(writer i878a80d2330e89d268
 	}
 	{
 		err := writer.WriteStringValue("masterKeyFingerprint", m.GetMasterKeyFingerprint())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteTimeValue("organisationKeyRotatedAt", m.GetOrganisationKeyRotatedAt())
 		if err != nil {
 			return err
 		}
@@ -219,6 +243,11 @@ func (m *TenantEncryptionKeyStatusResponse) SetMasterKeyFingerprint(value *strin
 	m.masterKeyFingerprint = value
 }
 
+// SetOrganisationKeyRotatedAt sets the organisationKeyRotatedAt property value. The organisationKeyRotatedAt property
+func (m *TenantEncryptionKeyStatusResponse) SetOrganisationKeyRotatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.organisationKeyRotatedAt = value
+}
+
 // SetRecoveryKeyFingerprint sets the recoveryKeyFingerprint property value. The recoveryKeyFingerprint property
 func (m *TenantEncryptionKeyStatusResponse) SetRecoveryKeyFingerprint(value *string) {
 	m.recoveryKeyFingerprint = value
@@ -236,12 +265,14 @@ type TenantEncryptionKeyStatusResponseable interface {
 	GetEnforceZke() *bool
 	GetHasDek() *bool
 	GetMasterKeyFingerprint() *string
+	GetOrganisationKeyRotatedAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	GetRecoveryKeyFingerprint() *string
 	GetRegisteredAt() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 	SetEncryptionEnabled(value *bool)
 	SetEnforceZke(value *bool)
 	SetHasDek(value *bool)
 	SetMasterKeyFingerprint(value *string)
+	SetOrganisationKeyRotatedAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 	SetRecoveryKeyFingerprint(value *string)
 	SetRegisteredAt(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
 }
