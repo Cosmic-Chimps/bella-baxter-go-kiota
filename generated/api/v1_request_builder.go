@@ -54,6 +54,12 @@ func (m *V1RequestBuilder) CertRotation() *V1CertRotationRequestBuilder {
 	return NewV1CertRotationRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// ConnectedApps the connectedApps property
+// returns a *V1ConnectedAppsRequestBuilder when successful
+func (m *V1RequestBuilder) ConnectedApps() *V1ConnectedAppsRequestBuilder {
+	return NewV1ConnectedAppsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // NewV1RequestBuilderInternal instantiates a new V1RequestBuilder and sets the default values.
 func NewV1RequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1RequestBuilder {
 	m := &V1RequestBuilder{

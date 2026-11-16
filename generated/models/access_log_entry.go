@@ -22,6 +22,10 @@ type AccessLogEntry struct {
 	apiKeyName *string
 	// The appClient property
 	appClient *string
+	// The appId property
+	appId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	// The appName property
+	appName *string
 	// The audienceMatched property
 	audienceMatched *bool
 	// The bellaClient property
@@ -40,6 +44,8 @@ type AccessLogEntry struct {
 	environmentId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The environmentSlug property
 	environmentSlug *string
+	// The grantId property
+	grantId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The id property
 	id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	// The ipAddress property
@@ -115,6 +121,18 @@ func (m *AccessLogEntry) GetApiKeyName() *string {
 // returns a *string when successful
 func (m *AccessLogEntry) GetAppClient() *string {
 	return m.appClient
+}
+
+// GetAppId gets the appId property value. The appId property
+// returns a *UUID when successful
+func (m *AccessLogEntry) GetAppId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.appId
+}
+
+// GetAppName gets the appName property value. The appName property
+// returns a *string when successful
+func (m *AccessLogEntry) GetAppName() *string {
+	return m.appName
 }
 
 // GetAudienceMatched gets the audienceMatched property value. The audienceMatched property
@@ -225,6 +243,26 @@ func (m *AccessLogEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89
 		}
 		return nil
 	}
+	res["appId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAppId(val)
+		}
+		return nil
+	}
+	res["appName"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAppName(val)
+		}
+		return nil
+	}
 	res["audienceMatched"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -312,6 +350,16 @@ func (m *AccessLogEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89
 		}
 		if val != nil {
 			m.SetEnvironmentSlug(val)
+		}
+		return nil
+	}
+	res["grantId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetUUIDValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetGrantId(val)
 		}
 		return nil
 	}
@@ -454,6 +502,12 @@ func (m *AccessLogEntry) GetFieldDeserializers() map[string]func(i878a80d2330e89
 	return res
 }
 
+// GetGrantId gets the grantId property value. The grantId property
+// returns a *UUID when successful
+func (m *AccessLogEntry) GetGrantId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+	return m.grantId
+}
+
 // GetId gets the id property value. The id property
 // returns a *UUID when successful
 func (m *AccessLogEntry) GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
@@ -565,6 +619,18 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 		}
 	}
 	{
+		err := writer.WriteUUIDValue("appId", m.GetAppId())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("appName", m.GetAppName())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteBoolValue("audienceMatched", m.GetAudienceMatched())
 		if err != nil {
 			return err
@@ -614,6 +680,12 @@ func (m *AccessLogEntry) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 	}
 	{
 		err := writer.WriteStringValue("environmentSlug", m.GetEnvironmentSlug())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteUUIDValue("grantId", m.GetGrantId())
 		if err != nil {
 			return err
 		}
@@ -735,6 +807,16 @@ func (m *AccessLogEntry) SetAppClient(value *string) {
 	m.appClient = value
 }
 
+// SetAppId sets the appId property value. The appId property
+func (m *AccessLogEntry) SetAppId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.appId = value
+}
+
+// SetAppName sets the appName property value. The appName property
+func (m *AccessLogEntry) SetAppName(value *string) {
+	m.appName = value
+}
+
 // SetAudienceMatched sets the audienceMatched property value. The audienceMatched property
 func (m *AccessLogEntry) SetAudienceMatched(value *bool) {
 	m.audienceMatched = value
@@ -778,6 +860,11 @@ func (m *AccessLogEntry) SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992
 // SetEnvironmentSlug sets the environmentSlug property value. The environmentSlug property
 func (m *AccessLogEntry) SetEnvironmentSlug(value *string) {
 	m.environmentSlug = value
+}
+
+// SetGrantId sets the grantId property value. The grantId property
+func (m *AccessLogEntry) SetGrantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+	m.grantId = value
 }
 
 // SetId sets the id property value. The id property
@@ -853,6 +940,8 @@ type AccessLogEntryable interface {
 	GetApiKeyId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetApiKeyName() *string
 	GetAppClient() *string
+	GetAppId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
+	GetAppName() *string
 	GetAudienceMatched() *bool
 	GetBellaClient() *string
 	GetCity() *string
@@ -862,6 +951,7 @@ type AccessLogEntryable interface {
 	GetDeviceFingerprint() *string
 	GetEnvironmentId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetEnvironmentSlug() *string
+	GetGrantId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 	GetIpAddress() *string
 	GetPresentedAudiences() []string
@@ -880,6 +970,8 @@ type AccessLogEntryable interface {
 	SetApiKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetApiKeyName(value *string)
 	SetAppClient(value *string)
+	SetAppId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+	SetAppName(value *string)
 	SetAudienceMatched(value *bool)
 	SetBellaClient(value *string)
 	SetCity(value *string)
@@ -889,6 +981,7 @@ type AccessLogEntryable interface {
 	SetDeviceFingerprint(value *string)
 	SetEnvironmentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetEnvironmentSlug(value *string)
+	SetGrantId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
 	SetIpAddress(value *string)
 	SetPresentedAudiences(value []string)

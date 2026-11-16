@@ -18,6 +18,12 @@ func (m *V1TenantsMeRequestBuilder) AuthorityNames() *V1TenantsMeAuthorityNamesR
 	return NewV1TenantsMeAuthorityNamesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// ConnectedApps the connectedApps property
+// returns a *V1TenantsMeConnectedAppsRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) ConnectedApps() *V1TenantsMeConnectedAppsRequestBuilder {
+	return NewV1TenantsMeConnectedAppsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // NewV1TenantsMeRequestBuilderInternal instantiates a new V1TenantsMeRequestBuilder and sets the default values.
 func NewV1TenantsMeRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1TenantsMeRequestBuilder {
 	m := &V1TenantsMeRequestBuilder{
@@ -31,6 +37,12 @@ func NewV1TenantsMeRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
 	urlParams := make(map[string]string)
 	urlParams["request-raw-url"] = rawUrl
 	return NewV1TenantsMeRequestBuilderInternal(urlParams, requestAdapter)
+}
+
+// DeveloperApps the developerApps property
+// returns a *V1TenantsMeDeveloperAppsRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) DeveloperApps() *V1TenantsMeDeveloperAppsRequestBuilder {
+	return NewV1TenantsMeDeveloperAppsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
 // Devices the devices property

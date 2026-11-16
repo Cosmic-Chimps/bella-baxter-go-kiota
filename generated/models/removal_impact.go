@@ -12,6 +12,8 @@ type RemovalImpact struct {
 	additionalData map[string]any
 	// The apiKeys property
 	apiKeys *int32
+	// The appGrants property
+	appGrants *int32
 	// The environments property
 	environments *int32
 	// The mcpConnections property
@@ -47,6 +49,12 @@ func (m *RemovalImpact) GetApiKeys() *int32 {
 	return m.apiKeys
 }
 
+// GetAppGrants gets the appGrants property value. The appGrants property
+// returns a *int32 when successful
+func (m *RemovalImpact) GetAppGrants() *int32 {
+	return m.appGrants
+}
+
 // GetEnvironments gets the environments property value. The environments property
 // returns a *int32 when successful
 func (m *RemovalImpact) GetEnvironments() *int32 {
@@ -64,6 +72,16 @@ func (m *RemovalImpact) GetFieldDeserializers() map[string]func(i878a80d2330e89d
 		}
 		if val != nil {
 			m.SetApiKeys(val)
+		}
+		return nil
+	}
+	res["appGrants"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetAppGrants(val)
 		}
 		return nil
 	}
@@ -137,6 +155,12 @@ func (m *RemovalImpact) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 		}
 	}
 	{
+		err := writer.WriteInt32Value("appGrants", m.GetAppGrants())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteInt32Value("environments", m.GetEnvironments())
 		if err != nil {
 			return err
@@ -179,6 +203,11 @@ func (m *RemovalImpact) SetApiKeys(value *int32) {
 	m.apiKeys = value
 }
 
+// SetAppGrants sets the appGrants property value. The appGrants property
+func (m *RemovalImpact) SetAppGrants(value *int32) {
+	m.appGrants = value
+}
+
 // SetEnvironments sets the environments property value. The environments property
 func (m *RemovalImpact) SetEnvironments(value *int32) {
 	m.environments = value
@@ -203,11 +232,13 @@ type RemovalImpactable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetApiKeys() *int32
+	GetAppGrants() *int32
 	GetEnvironments() *int32
 	GetMcpConnections() *int32
 	GetPendingInvitations() *int32
 	GetProjects() *int32
 	SetApiKeys(value *int32)
+	SetAppGrants(value *int32)
 	SetEnvironments(value *int32)
 	SetMcpConnections(value *int32)
 	SetPendingInvitations(value *int32)

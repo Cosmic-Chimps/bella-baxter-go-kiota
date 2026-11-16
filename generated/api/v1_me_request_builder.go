@@ -24,6 +24,12 @@ func (m *V1MeRequestBuilder) ApiKeys() *V1MeApiKeysRequestBuilder {
 	return NewV1MeApiKeysRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// ConnectedApps the connectedApps property
+// returns a *V1MeConnectedAppsRequestBuilder when successful
+func (m *V1MeRequestBuilder) ConnectedApps() *V1MeConnectedAppsRequestBuilder {
+	return NewV1MeConnectedAppsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // NewV1MeRequestBuilderInternal instantiates a new V1MeRequestBuilder and sets the default values.
 func NewV1MeRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1MeRequestBuilder {
 	m := &V1MeRequestBuilder{
