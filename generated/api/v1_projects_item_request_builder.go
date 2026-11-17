@@ -207,6 +207,12 @@ func (m *V1ProjectsItemRequestBuilder) ToPutRequestInformation(ctx context.Conte
 	return requestInfo, nil
 }
 
+// Transfer the transfer property
+// returns a *V1ProjectsItemTransferRequestBuilder when successful
+func (m *V1ProjectsItemRequestBuilder) Transfer() *V1ProjectsItemTransferRequestBuilder {
+	return NewV1ProjectsItemTransferRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Users the users property
 // returns a *V1ProjectsItemUsersRequestBuilder when successful
 func (m *V1ProjectsItemRequestBuilder) Users() *V1ProjectsItemUsersRequestBuilder {

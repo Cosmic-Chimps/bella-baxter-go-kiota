@@ -129,6 +129,12 @@ func (m *V1RequestBuilder) Projects() *V1ProjectsRequestBuilder {
 	return NewV1ProjectsRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// ProjectTransfers the projectTransfers property
+// returns a *V1ProjectTransfersRequestBuilder when successful
+func (m *V1RequestBuilder) ProjectTransfers() *V1ProjectTransfersRequestBuilder {
+	return NewV1ProjectTransfersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Providers the providers property
 // returns a *V1ProvidersRequestBuilder when successful
 func (m *V1RequestBuilder) Providers() *V1ProvidersRequestBuilder {
