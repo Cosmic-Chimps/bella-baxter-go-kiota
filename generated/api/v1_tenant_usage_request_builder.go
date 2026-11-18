@@ -14,6 +14,12 @@ type V1TenantUsageRequestBuilder struct {
 	i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 
+// Breakdown the breakdown property
+// returns a *V1TenantUsageBreakdownRequestBuilder when successful
+func (m *V1TenantUsageRequestBuilder) Breakdown() *V1TenantUsageBreakdownRequestBuilder {
+	return NewV1TenantUsageBreakdownRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // NewV1TenantUsageRequestBuilderInternal instantiates a new V1TenantUsageRequestBuilder and sets the default values.
 func NewV1TenantUsageRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter) *V1TenantUsageRequestBuilder {
 	m := &V1TenantUsageRequestBuilder{
