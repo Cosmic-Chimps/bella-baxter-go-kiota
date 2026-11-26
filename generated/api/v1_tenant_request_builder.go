@@ -39,6 +39,12 @@ func (m *V1TenantRequestBuilder) Features() *V1TenantFeaturesRequestBuilder {
 	return NewV1TenantFeaturesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// Modules the modules property
+// returns a *V1TenantModulesRequestBuilder when successful
+func (m *V1TenantRequestBuilder) Modules() *V1TenantModulesRequestBuilder {
+	return NewV1TenantModulesRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Usage the usage property
 // returns a *V1TenantUsageRequestBuilder when successful
 func (m *V1TenantRequestBuilder) Usage() *V1TenantUsageRequestBuilder {

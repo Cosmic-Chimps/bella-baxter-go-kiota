@@ -57,6 +57,12 @@ func (m *V1TenantsMeRequestBuilder) EncryptionKey() *V1TenantsMeEncryptionKeyReq
 	return NewV1TenantsMeEncryptionKeyRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// EnterpriseRequest the enterpriseRequest property
+// returns a *V1TenantsMeEnterpriseRequestRequestBuilder when successful
+func (m *V1TenantsMeRequestBuilder) EnterpriseRequest() *V1TenantsMeEnterpriseRequestRequestBuilder {
+	return NewV1TenantsMeEnterpriseRequestRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Sso the sso property
 // returns a *V1TenantsMeSsoRequestBuilder when successful
 func (m *V1TenantsMeRequestBuilder) Sso() *V1TenantsMeSsoRequestBuilder {

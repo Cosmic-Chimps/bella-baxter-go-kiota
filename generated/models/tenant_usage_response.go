@@ -5,6 +5,7 @@ package models
 
 import (
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+	i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
 )
 
 type TenantUsageResponse struct {
@@ -22,20 +23,32 @@ type TenantUsageResponse struct {
 	freeMonthlyQuota *int32
 	// The hasActiveSubscription property
 	hasActiveSubscription *bool
+	// The hasUsagePaymentMethod property
+	hasUsagePaymentMethod *bool
 	// The isOperatorManaged property
 	isOperatorManaged *bool
 	// The isUnlimited property
 	isUnlimited *bool
 	// The overageRatePerRequest property
 	overageRatePerRequest *float64
+	// The paidUsageAvailable property
+	paidUsageAvailable *bool
 	// The plan property
 	plan *string
 	// The requestsRemaining property
 	requestsRemaining *int64
 	// The requestsUsed property
 	requestsUsed *int64
+	// The scheduledEffectiveFrom property
+	scheduledEffectiveFrom *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	// The scheduledFreeMonthlyQuota property
+	scheduledFreeMonthlyQuota *int32
+	// The scheduledOverageRatePerRequest property
+	scheduledOverageRatePerRequest *float64
 	// The svidsIssued property
 	svidsIssued *int64
+	// The usageTermsVersion property
+	usageTermsVersion *string
 }
 
 // NewTenantUsageResponse instantiates a new TenantUsageResponse and sets the default values.
@@ -46,6 +59,10 @@ func NewTenantUsageResponse() *TenantUsageResponse {
 	m.SetCertificatesIssued(&certificatesIssuedValue)
 	freeAllowanceWithheldValue := false
 	m.SetFreeAllowanceWithheld(&freeAllowanceWithheldValue)
+	hasUsagePaymentMethodValue := false
+	m.SetHasUsagePaymentMethod(&hasUsagePaymentMethodValue)
+	paidUsageAvailableValue := false
+	m.SetPaidUsageAvailable(&paidUsageAvailableValue)
 	svidsIssuedValue := int64(0)
 	m.SetSvidsIssued(&svidsIssuedValue)
 	return m
@@ -145,6 +162,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		return nil
 	}
+	res["hasUsagePaymentMethod"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetHasUsagePaymentMethod(val)
+		}
+		return nil
+	}
 	res["isOperatorManaged"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetBoolValue()
 		if err != nil {
@@ -172,6 +199,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		if val != nil {
 			m.SetOverageRatePerRequest(val)
+		}
+		return nil
+	}
+	res["paidUsageAvailable"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetBoolValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetPaidUsageAvailable(val)
 		}
 		return nil
 	}
@@ -205,6 +242,36 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		return nil
 	}
+	res["scheduledEffectiveFrom"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetTimeValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScheduledEffectiveFrom(val)
+		}
+		return nil
+	}
+	res["scheduledFreeMonthlyQuota"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetInt32Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScheduledFreeMonthlyQuota(val)
+		}
+		return nil
+	}
+	res["scheduledOverageRatePerRequest"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetFloat64Value()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetScheduledOverageRatePerRequest(val)
+		}
+		return nil
+	}
 	res["svidsIssued"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetInt64Value()
 		if err != nil {
@@ -212,6 +279,16 @@ func (m *TenantUsageResponse) GetFieldDeserializers() map[string]func(i878a80d23
 		}
 		if val != nil {
 			m.SetSvidsIssued(val)
+		}
+		return nil
+	}
+	res["usageTermsVersion"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetUsageTermsVersion(val)
 		}
 		return nil
 	}
@@ -236,6 +313,12 @@ func (m *TenantUsageResponse) GetHasActiveSubscription() *bool {
 	return m.hasActiveSubscription
 }
 
+// GetHasUsagePaymentMethod gets the hasUsagePaymentMethod property value. The hasUsagePaymentMethod property
+// returns a *bool when successful
+func (m *TenantUsageResponse) GetHasUsagePaymentMethod() *bool {
+	return m.hasUsagePaymentMethod
+}
+
 // GetIsOperatorManaged gets the isOperatorManaged property value. The isOperatorManaged property
 // returns a *bool when successful
 func (m *TenantUsageResponse) GetIsOperatorManaged() *bool {
@@ -252,6 +335,12 @@ func (m *TenantUsageResponse) GetIsUnlimited() *bool {
 // returns a *float64 when successful
 func (m *TenantUsageResponse) GetOverageRatePerRequest() *float64 {
 	return m.overageRatePerRequest
+}
+
+// GetPaidUsageAvailable gets the paidUsageAvailable property value. The paidUsageAvailable property
+// returns a *bool when successful
+func (m *TenantUsageResponse) GetPaidUsageAvailable() *bool {
+	return m.paidUsageAvailable
 }
 
 // GetPlan gets the plan property value. The plan property
@@ -272,10 +361,34 @@ func (m *TenantUsageResponse) GetRequestsUsed() *int64 {
 	return m.requestsUsed
 }
 
+// GetScheduledEffectiveFrom gets the scheduledEffectiveFrom property value. The scheduledEffectiveFrom property
+// returns a *Time when successful
+func (m *TenantUsageResponse) GetScheduledEffectiveFrom() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time {
+	return m.scheduledEffectiveFrom
+}
+
+// GetScheduledFreeMonthlyQuota gets the scheduledFreeMonthlyQuota property value. The scheduledFreeMonthlyQuota property
+// returns a *int32 when successful
+func (m *TenantUsageResponse) GetScheduledFreeMonthlyQuota() *int32 {
+	return m.scheduledFreeMonthlyQuota
+}
+
+// GetScheduledOverageRatePerRequest gets the scheduledOverageRatePerRequest property value. The scheduledOverageRatePerRequest property
+// returns a *float64 when successful
+func (m *TenantUsageResponse) GetScheduledOverageRatePerRequest() *float64 {
+	return m.scheduledOverageRatePerRequest
+}
+
 // GetSvidsIssued gets the svidsIssued property value. The svidsIssued property
 // returns a *int64 when successful
 func (m *TenantUsageResponse) GetSvidsIssued() *int64 {
 	return m.svidsIssued
+}
+
+// GetUsageTermsVersion gets the usageTermsVersion property value. The usageTermsVersion property
+// returns a *string when successful
+func (m *TenantUsageResponse) GetUsageTermsVersion() *string {
+	return m.usageTermsVersion
 }
 
 // Serialize serializes information the current object
@@ -317,6 +430,12 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 		}
 	}
 	{
+		err := writer.WriteBoolValue("hasUsagePaymentMethod", m.GetHasUsagePaymentMethod())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteBoolValue("isOperatorManaged", m.GetIsOperatorManaged())
 		if err != nil {
 			return err
@@ -330,6 +449,12 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 	}
 	{
 		err := writer.WriteFloat64Value("overageRatePerRequest", m.GetOverageRatePerRequest())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteBoolValue("paidUsageAvailable", m.GetPaidUsageAvailable())
 		if err != nil {
 			return err
 		}
@@ -353,7 +478,31 @@ func (m *TenantUsageResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef
 		}
 	}
 	{
+		err := writer.WriteTimeValue("scheduledEffectiveFrom", m.GetScheduledEffectiveFrom())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteInt32Value("scheduledFreeMonthlyQuota", m.GetScheduledFreeMonthlyQuota())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteFloat64Value("scheduledOverageRatePerRequest", m.GetScheduledOverageRatePerRequest())
+		if err != nil {
+			return err
+		}
+	}
+	{
 		err := writer.WriteInt64Value("svidsIssued", m.GetSvidsIssued())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("usageTermsVersion", m.GetUsageTermsVersion())
 		if err != nil {
 			return err
 		}
@@ -402,6 +551,11 @@ func (m *TenantUsageResponse) SetHasActiveSubscription(value *bool) {
 	m.hasActiveSubscription = value
 }
 
+// SetHasUsagePaymentMethod sets the hasUsagePaymentMethod property value. The hasUsagePaymentMethod property
+func (m *TenantUsageResponse) SetHasUsagePaymentMethod(value *bool) {
+	m.hasUsagePaymentMethod = value
+}
+
 // SetIsOperatorManaged sets the isOperatorManaged property value. The isOperatorManaged property
 func (m *TenantUsageResponse) SetIsOperatorManaged(value *bool) {
 	m.isOperatorManaged = value
@@ -415,6 +569,11 @@ func (m *TenantUsageResponse) SetIsUnlimited(value *bool) {
 // SetOverageRatePerRequest sets the overageRatePerRequest property value. The overageRatePerRequest property
 func (m *TenantUsageResponse) SetOverageRatePerRequest(value *float64) {
 	m.overageRatePerRequest = value
+}
+
+// SetPaidUsageAvailable sets the paidUsageAvailable property value. The paidUsageAvailable property
+func (m *TenantUsageResponse) SetPaidUsageAvailable(value *bool) {
+	m.paidUsageAvailable = value
 }
 
 // SetPlan sets the plan property value. The plan property
@@ -432,9 +591,29 @@ func (m *TenantUsageResponse) SetRequestsUsed(value *int64) {
 	m.requestsUsed = value
 }
 
+// SetScheduledEffectiveFrom sets the scheduledEffectiveFrom property value. The scheduledEffectiveFrom property
+func (m *TenantUsageResponse) SetScheduledEffectiveFrom(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
+	m.scheduledEffectiveFrom = value
+}
+
+// SetScheduledFreeMonthlyQuota sets the scheduledFreeMonthlyQuota property value. The scheduledFreeMonthlyQuota property
+func (m *TenantUsageResponse) SetScheduledFreeMonthlyQuota(value *int32) {
+	m.scheduledFreeMonthlyQuota = value
+}
+
+// SetScheduledOverageRatePerRequest sets the scheduledOverageRatePerRequest property value. The scheduledOverageRatePerRequest property
+func (m *TenantUsageResponse) SetScheduledOverageRatePerRequest(value *float64) {
+	m.scheduledOverageRatePerRequest = value
+}
+
 // SetSvidsIssued sets the svidsIssued property value. The svidsIssued property
 func (m *TenantUsageResponse) SetSvidsIssued(value *int64) {
 	m.svidsIssued = value
+}
+
+// SetUsageTermsVersion sets the usageTermsVersion property value. The usageTermsVersion property
+func (m *TenantUsageResponse) SetUsageTermsVersion(value *string) {
+	m.usageTermsVersion = value
 }
 
 type TenantUsageResponseable interface {
@@ -446,24 +625,36 @@ type TenantUsageResponseable interface {
 	GetFreeAllowanceWithheld() *bool
 	GetFreeMonthlyQuota() *int32
 	GetHasActiveSubscription() *bool
+	GetHasUsagePaymentMethod() *bool
 	GetIsOperatorManaged() *bool
 	GetIsUnlimited() *bool
 	GetOverageRatePerRequest() *float64
+	GetPaidUsageAvailable() *bool
 	GetPlan() *string
 	GetRequestsRemaining() *int64
 	GetRequestsUsed() *int64
+	GetScheduledEffectiveFrom() *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+	GetScheduledFreeMonthlyQuota() *int32
+	GetScheduledOverageRatePerRequest() *float64
 	GetSvidsIssued() *int64
+	GetUsageTermsVersion() *string
 	SetCertificatesIssued(value *int64)
 	SetCurrentMonth(value *string)
 	SetEstimatedOverageCost(value *float64)
 	SetFreeAllowanceWithheld(value *bool)
 	SetFreeMonthlyQuota(value *int32)
 	SetHasActiveSubscription(value *bool)
+	SetHasUsagePaymentMethod(value *bool)
 	SetIsOperatorManaged(value *bool)
 	SetIsUnlimited(value *bool)
 	SetOverageRatePerRequest(value *float64)
+	SetPaidUsageAvailable(value *bool)
 	SetPlan(value *string)
 	SetRequestsRemaining(value *int64)
 	SetRequestsUsed(value *int64)
+	SetScheduledEffectiveFrom(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+	SetScheduledFreeMonthlyQuota(value *int32)
+	SetScheduledOverageRatePerRequest(value *float64)
 	SetSvidsIssued(value *int64)
+	SetUsageTermsVersion(value *string)
 }

@@ -14,6 +14,8 @@ type CreateCheckoutSessionRequest struct {
 	cancelUrl *string
 	// The successUrl property
 	successUrl *string
+	// The termsVersion property
+	termsVersion *string
 }
 
 // NewCreateCheckoutSessionRequest instantiates a new CreateCheckoutSessionRequest and sets the default values.
@@ -65,6 +67,16 @@ func (m *CreateCheckoutSessionRequest) GetFieldDeserializers() map[string]func(i
 		}
 		return nil
 	}
+	res["termsVersion"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+		val, err := n.GetStringValue()
+		if err != nil {
+			return err
+		}
+		if val != nil {
+			m.SetTermsVersion(val)
+		}
+		return nil
+	}
 	return res
 }
 
@@ -72,6 +84,12 @@ func (m *CreateCheckoutSessionRequest) GetFieldDeserializers() map[string]func(i
 // returns a *string when successful
 func (m *CreateCheckoutSessionRequest) GetSuccessUrl() *string {
 	return m.successUrl
+}
+
+// GetTermsVersion gets the termsVersion property value. The termsVersion property
+// returns a *string when successful
+func (m *CreateCheckoutSessionRequest) GetTermsVersion() *string {
+	return m.termsVersion
 }
 
 // Serialize serializes information the current object
@@ -84,6 +102,12 @@ func (m *CreateCheckoutSessionRequest) Serialize(writer i878a80d2330e89d26896388
 	}
 	{
 		err := writer.WriteStringValue("successUrl", m.GetSuccessUrl())
+		if err != nil {
+			return err
+		}
+	}
+	{
+		err := writer.WriteStringValue("termsVersion", m.GetTermsVersion())
 		if err != nil {
 			return err
 		}
@@ -112,11 +136,18 @@ func (m *CreateCheckoutSessionRequest) SetSuccessUrl(value *string) {
 	m.successUrl = value
 }
 
+// SetTermsVersion sets the termsVersion property value. The termsVersion property
+func (m *CreateCheckoutSessionRequest) SetTermsVersion(value *string) {
+	m.termsVersion = value
+}
+
 type CreateCheckoutSessionRequestable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetCancelUrl() *string
 	GetSuccessUrl() *string
+	GetTermsVersion() *string
 	SetCancelUrl(value *string)
 	SetSuccessUrl(value *string)
+	SetTermsVersion(value *string)
 }

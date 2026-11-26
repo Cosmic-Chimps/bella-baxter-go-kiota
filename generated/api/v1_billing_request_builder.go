@@ -33,8 +33,20 @@ func NewV1BillingRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
 	return NewV1BillingRequestBuilderInternal(urlParams, requestAdapter)
 }
 
+// ModuleSubscription the moduleSubscription property
+// returns a *V1BillingModuleSubscriptionRequestBuilder when successful
+func (m *V1BillingRequestBuilder) ModuleSubscription() *V1BillingModuleSubscriptionRequestBuilder {
+	return NewV1BillingModuleSubscriptionRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Portal the portal property
 // returns a *V1BillingPortalRequestBuilder when successful
 func (m *V1BillingRequestBuilder) Portal() *V1BillingPortalRequestBuilder {
 	return NewV1BillingPortalRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
+// Usage the usage property
+// returns a *V1BillingUsageRequestBuilder when successful
+func (m *V1BillingRequestBuilder) Usage() *V1BillingUsageRequestBuilder {
+	return NewV1BillingUsageRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }

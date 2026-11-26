@@ -123,6 +123,12 @@ func (m *V1RequestBuilder) Pki() *V1PkiRequestBuilder {
 	return NewV1PkiRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
 
+// Plane the plane property
+// returns a *V1PlaneRequestBuilder when successful
+func (m *V1RequestBuilder) Plane() *V1PlaneRequestBuilder {
+	return NewV1PlaneRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
+}
+
 // Projects the projects property
 // returns a *V1ProjectsRequestBuilder when successful
 func (m *V1RequestBuilder) Projects() *V1ProjectsRequestBuilder {
